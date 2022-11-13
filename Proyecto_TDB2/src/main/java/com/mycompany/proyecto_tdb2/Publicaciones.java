@@ -16,9 +16,9 @@ public class Publicaciones {
     int id_publicaciones;
     String [] contenido;
     Date fecha;
-    ArrayList<String>Comentarios;
+    ArrayList<Comentarios>Comentarios;
 
-    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, Date fecha, ArrayList<String> Comentarios) {
+    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, Date fecha, ArrayList<Comentarios> Comentarios) {
         this.id_cuenta = id_cuenta;
         this.id_publicaciones = id_publicaciones;
         this.contenido = contenido;
@@ -58,11 +58,11 @@ public class Publicaciones {
         this.fecha = fecha;
     }
 
-    public ArrayList<String> getComentarios() {
+    public ArrayList<Comentarios> getComentarios() {
         return Comentarios;
     }
 
-    public void setComentarios(ArrayList<String> Comentarios) {
+    public void setComentarios(ArrayList<Comentarios> Comentarios) {
         this.Comentarios = Comentarios;
     }
     
