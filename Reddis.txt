@@ -1,0 +1,55 @@
+es clave valor 
+./redis-server
+./redis-cli
+https://redis.io/docs/data-types/lists/
+
+----set
+set  miNombre 'Juan Perez'
+get miNombre 
+set miNombre 'Juan Perez Perez'
+set edad 15
+get edad
+incr edad //incremeto 
+incrby edad 12 
+hset categoria:1 id 1 nombre 'Lacteos' // es un registro
+hget categoria:1 nombre
+//otas mas
+hset categoria:2 id 2 nombre 'Ceriales' // es un registro
+hget categoria:2 nombre
+hset categoria:3 id 3 nombre 'Detergentes' // es un registro
+hget categoria:3 nombre
+hgteall categoria:3
+hset producto:1 id 1 nombre 'Arroz X' precio 23.50 existencias 20 categoria:id
+hincrby producto:1 existencias10 
+hset producto:2 id 2 nombre 'Frijoles ABC' precio 40.00 existencias 100 categoria:id 2
+hgteall producto:2
+hset proveedor:1 id 1 nombre 'Proveedor 1 '  pais 'USA'
+hset proveedor:2 id 2 nombre 'Proveedor 2 '  pais 'Mexico'
+hset proveedor:3 id 3 nombre 'Proveedor 3 '  pais 'Brasil'
+hset proveedor:4 id 4 nombre 'Proveedor 4 '  pais 'UK'
+//que sea proveedor del producto 
+sadd producto:1 proveedores proveedor:2 proveedor:3
+smembers producto:1:proveedores
+sadd producto:2 proveedores proveedor:1 proveedor:3 proveedor:4
+//intterseccionh
+sinter producto:1:proveedores producto:2:proveedores
+//es miembro
+sismember producto:1:proveedores 'proveedor:3'
+scard producto:2:proveedores
+//eliminar
+srem producto:2:proveedores proveedor:4
+//agregar unab lista
+lpush ordenes_compra:1 23 56 78 90
+// listar por rango (revisar)
+lrange ordenes_compra:1 0 4
+RPOP ordenes_compra:1
+LPOP ordenes_compra:1
+llen ordenes_compra:1
+//Conjunto ordenado
+zadd puntajes 45 'Juan'
+zrange puntajes 0 -1
+zadd puntajes 90 'Ana'
+zrange puntajes 0 -1 Rev    
+zadd puntajes 20 'Pedro'
+zadd puntajes 20 'Victor'
+
