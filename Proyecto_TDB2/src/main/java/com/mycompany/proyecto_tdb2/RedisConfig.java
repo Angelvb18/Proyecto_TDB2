@@ -4,8 +4,11 @@
  */
 package com.mycompany.proyecto_tdb2;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 import redis.clients.jedis.Jedis;
 
@@ -46,13 +49,13 @@ public class RedisConfig {
    }
    public void CrearBase(){
        if(conection.get("NumerodeCuentas") == null){
-           conection.set("NumerodeCuentas", "0");
+           conection.set("NumerodeCuentas", "1");
        }
        if(conection.get("NumerodePublicaciones") == null){
-           conection.set("NumerodePublicaciones", "0");
+           conection.set("NumerodePublicaciones", "1");
        }
        if(conection.get("NumerodeComentarios") == null){
-           conection.set("NumerodeComentarios", "0");
+           conection.set("NumerodeComentarios", "1");
        }
    }
    public String getNumerodeComentarios(){
@@ -104,6 +107,50 @@ public class RedisConfig {
    
     public RedisConfig() {
         connectionFactory();
+    }
+    
+    public String convertirSHA256(String password) {
+	MessageDigest md = null;
+	try {
+		md = MessageDigest.getInstance("SHA-256");
+	} 
+	catch (NoSuchAlgorithmException e) {		
+		e.printStackTrace();
+		return null;
+	}
+	    
+	byte[] hash = md.digest(password.getBytes());
+	StringBuffer sb = new StringBuffer();
+	    
+	for(byte b : hash) {        
+		sb.append(String.format("%02x", b));
+	}
+	    
+	return sb.toString();
+}
+    
+    public boolean validarCorreo (String correo) {
+        for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
+            if (Obtener_valor_Registro("Cuenta:" + i, "Email").equals(correo)) {
+                return true;
+            }
+        }
+        
+        
+        return false;
+    }
+    
+    public int login (String Email, String Contra) {
+        for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
+            if (Obtener_valor_Registro("Cuenta:" + i, "Email").equals(Email)) {
+                if (Obtener_valor_Registro("Cuenta:" + i, "Password").equals(convertirSHA256(Contra))) {
+                    return i;
+                }else{
+                    return 0;
+                }
+            }
+        }
+        return 0;
     }
    
    
