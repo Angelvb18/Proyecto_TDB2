@@ -22,7 +22,7 @@ public class RedisConfig {
            conection = new Jedis("localhost");
            System.out.println("Connection susccesful");
            System.out.println("Severping: " +conection.ping());
-           conection.set("edad", "1");
+           /*conection.set("edad", "1");
            conection.incr("edad");
            System.out.println(conection.get("edad2"));
            conection.hset("proveedor:1","id","1");
@@ -37,8 +37,8 @@ public class RedisConfig {
              conection.hset("producto:2","id","2");
              conection.hset("producto:2","nombre","Arroz");
             conection.sadd("proveedores:1", "producto:2");
-            System.out.println(conection.smembers("proveedores:1"));*/
-           System.out.println(":" + Obtener_Lista_de_Registro("proveedores:1")[0]);
+            System.out.println(conection.smembers("proveedores:1"));
+           System.out.println(":" + Obtener_Lista_de_Registro("proveedores:1")[0]);*/
             
        } catch (Exception e) {
            throw e;
@@ -85,8 +85,28 @@ public class RedisConfig {
        for (int i = 0; i < Fields_and_value.length; i++) {
             Agregar_Atributo_Valor_Registo(nombre_Tipo, Fields_and_value[i][0], Fields_and_value[i][1]);
        }
-      
+       Aumento(nombre_Tipo);
    }
+   
+   public void Aumento(String Tipo){
+       if(Tipo.contains("Comentario")){
+           conection.incr("NumerodeComentarios");
+       }else{
+           if(Tipo.contains("Cuenta")){
+               conection.incr("NumerodeCuentas");
+            }else{
+               if(Tipo.contains("Publicacion")){
+                   conection.incr("NumerodePublicaciones");
+                }
+           }
+       }
+   }
+   
+    public RedisConfig() {
+        connectionFactory();
+    }
+   
+   
    
    public JSONObject CreateJasonObject(){
        String hola []= {"dsa" , "fsfsd","fsdf"};
