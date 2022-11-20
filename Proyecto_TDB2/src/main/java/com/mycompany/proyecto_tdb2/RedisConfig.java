@@ -26,6 +26,7 @@ public class RedisConfig {
            conection = new Jedis("localhost");
            System.out.println("Connection susccesful");
            System.out.println("Severping: " +conection.ping());
+           
            //conection.sadd("proveedores:1", "producto:3");
           //  System.out.println(conection.smembers("proveedores:1").toArray()[0]);
            /*conection.set("edad", "1");

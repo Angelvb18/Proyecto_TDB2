@@ -19,6 +19,22 @@ public class Cuenta {
     String fecha;
     ArrayList<Publicaciones>publicaciones = new ArrayList();
     ArrayList<Cuenta>amigos = new ArrayList();
+    String Foto_Perfil;
+    String Foto_Portada;
+
+    public Cuenta() {
+    }
+
+    public Cuenta(int id_cuenta, String email, String nombre, String apellido, String fecha, String Foto_Perfil, String Foto_Portada) {
+        this.id_cuenta = id_cuenta;
+        this.email = email;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha = fecha;
+        this.Foto_Perfil = Foto_Perfil;
+        this.Foto_Portada = Foto_Portada;
+    }
+    
     
     public Cuenta(int id_cuenta, String email, String nombre, String apellido, String fecha) {
         this.id_cuenta = id_cuenta;
@@ -82,6 +98,22 @@ public class Cuenta {
 
     public void setAmigos(ArrayList<Cuenta> amigos) {
         this.amigos = amigos;
+    }
+
+    public String getFoto_Perfil() {
+        return Foto_Perfil;
+    }
+
+    public void setFoto_Perfil(String Foto_Perfil) {
+        this.Foto_Perfil = Foto_Perfil;
+    }
+
+    public String getFoto_Portada() {
+        return Foto_Portada;
+    }
+
+    public void setFoto_Portada(String Foto_Portada) {
+        this.Foto_Portada = Foto_Portada;
     }
 
     

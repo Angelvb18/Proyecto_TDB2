@@ -5,9 +5,14 @@
 package com.mycompany.proyecto_tdb2;
 
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import redis.clients.jedis.util.Hashing;
@@ -46,8 +51,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jt_nombres = new javax.swing.JTextField();
         jt_apellidos = new javax.swing.JTextField();
         jt_contra_registro = new javax.swing.JTextField();
-        jt_fechaNacimiento = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
+        jd_fecharegistro = new com.toedter.calendar.JDateChooser();
         jd_publicaciones = new javax.swing.JDialog();
         cb_Personas = new javax.swing.JComboBox<>();
         cb_Publicacion = new javax.swing.JComboBox<>();
@@ -81,8 +86,17 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jb_edit_foto = new javax.swing.JButton();
         jb_edit_portada = new javax.swing.JButton();
         jd_PedirString = new javax.swing.JDialog();
-        jLabel12 = new javax.swing.JLabel();
+        jl_PedirString = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jt_PedirString = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jSpinner1 = new javax.swing.JSpinner();
+        jd_PedirFecha = new javax.swing.JDialog();
+        jd_chosefecha_pedirfecha = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
+        jd_ChosserSelector = new javax.swing.JDialog();
+        jc_Selectorporfile = new javax.swing.JComboBox<>();
+        jl_fotoselector = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -137,11 +151,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jt_email)
+                            .addComponent(jt_email, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(jt_nombres)
                             .addComponent(jt_apellidos)
                             .addComponent(jt_contra_registro)
-                            .addComponent(jt_fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+                            .addComponent(jd_fecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -167,10 +181,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jt_contra_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jt_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jd_fecharegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -249,6 +263,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 jmi_perfilMouseClicked(evt);
             }
         });
+        jmi_perfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_perfilActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmi_perfil);
 
         MI_BuscarAmigos.setText("Buscar Amigos");
@@ -285,9 +304,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                                 .addComponent(b_CrearPublicacion))))
                     .addGroup(jd_publicacionesLayout.createSequentialGroup()
                         .addComponent(b_FlechaIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(18, 18, 18)
                         .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(48, 48, 48)
                         .addComponent(b_FlechaDer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_publicacionesLayout.createSequentialGroup()
@@ -322,13 +341,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jlabel_portada_perfil.setIcon(new javax.swing.ImageIcon("/home/angel/Escritorio/Proyecto_TDB2/Proyecto_TDB2/Imagenes/Portadas/CallSignRL.gif")); // NOI18N
+        jlabel_portada_perfil.setText(" ");
         jlabel_portada_perfil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jlabel_Nombre_perfil.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlabel_Nombre_perfil.setText("Nombre:");
 
-        jlabel_foto_perfil.setIcon(new javax.swing.ImageIcon("/home/angel/Descargas/person_5_icon-icons.com_68898(2).png")); // NOI18N
+        jlabel_foto_perfil.setText(" ");
         jlabel_foto_perfil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jlabel_Apellido_perfil.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -340,22 +359,46 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jlabel_Edad_perfil.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlabel_Edad_perfil.setText("Edad:");
 
-        jb_edit_nombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_nombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_nombreMouseClicked(evt);
+            }
+        });
         jb_edit_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_edit_nombreActionPerformed(evt);
             }
         });
 
-        jb_edit_apelllido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_apelllido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_apelllidoMouseClicked(evt);
+            }
+        });
 
-        jb_edit_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_emailMouseClicked(evt);
+            }
+        });
 
-        jb_edit_edad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_edad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_edadMouseClicked(evt);
+            }
+        });
 
-        jb_edit_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_foto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_fotoMouseClicked(evt);
+            }
+        });
 
-        jb_edit_portada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_tdb2/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"))); // NOI18N
+        jb_edit_portada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_edit_portadaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -363,11 +406,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlabel_portada_perfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jlabel_foto_perfil)
-                        .addGap(33, 33, 33)
+                        .addGap(276, 276, 276)
+                        .addComponent(jlabel_foto_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
                         .addComponent(jb_edit_foto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jb_edit_portada))
@@ -379,12 +422,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                             .addComponent(jlabel_Nombre_perfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                             .addComponent(jlabel_Edad_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jb_edit_nombre)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jb_edit_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jb_edit_apelllido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jb_edit_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jb_edit_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jb_edit_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jb_edit_apelllido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jb_edit_edad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -394,16 +436,16 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addComponent(jlabel_portada_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jb_edit_foto))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlabel_foto_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jb_edit_portada)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jb_edit_foto)))
-                        .addGap(27, 27, 27)
+                                    .addComponent(jlabel_foto_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jb_edit_portada))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlabel_Nombre_perfil))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -417,10 +459,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addComponent(jlabel_Email_perfil)
                     .addComponent(jb_edit_email))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlabel_Edad_perfil)
-                    .addComponent(jb_edit_edad))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(jb_edit_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_perfilLayout = new javax.swing.GroupLayout(jd_perfil.getContentPane());
@@ -446,7 +488,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("jLabel12");
+        jl_PedirString.setText("jLabel12");
+
+        jButton1.setText("Ingresar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_PedirStringLayout = new javax.swing.GroupLayout(jd_PedirString.getContentPane());
         jd_PedirString.getContentPane().setLayout(jd_PedirStringLayout);
@@ -454,18 +503,92 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jd_PedirStringLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_PedirStringLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addComponent(jl_PedirString)
+                .addGap(33, 33, 33)
+                .addComponent(jt_PedirString, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_PedirStringLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         jd_PedirStringLayout.setVerticalGroup(
             jd_PedirStringLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_PedirStringLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel12)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jd_PedirStringLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_PedirString)
+                    .addComponent(jt_PedirString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton2.setText("Aceptar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_PedirFechaLayout = new javax.swing.GroupLayout(jd_PedirFecha.getContentPane());
+        jd_PedirFecha.getContentPane().setLayout(jd_PedirFechaLayout);
+        jd_PedirFechaLayout.setHorizontalGroup(
+            jd_PedirFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_PedirFechaLayout.createSequentialGroup()
+                .addGroup(jd_PedirFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_PedirFechaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jd_chosefecha_pedirfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_PedirFechaLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_PedirFechaLayout.setVerticalGroup(
+            jd_PedirFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_PedirFechaLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jd_chosefecha_pedirfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jc_Selectorporfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jc_Selectorporfile.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jc_SelectorporfileItemStateChanged(evt);
+            }
+        });
+        jc_Selectorporfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_SelectorporfileActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_ChosserSelectorLayout = new javax.swing.GroupLayout(jd_ChosserSelector.getContentPane());
+        jd_ChosserSelector.getContentPane().setLayout(jd_ChosserSelectorLayout);
+        jd_ChosserSelectorLayout.setHorizontalGroup(
+            jd_ChosserSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ChosserSelectorLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addGroup(jd_ChosserSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jc_Selectorporfile, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_fotoselector, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+        jd_ChosserSelectorLayout.setVerticalGroup(
+            jd_ChosserSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ChosserSelectorLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jl_fotoselector, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(jc_Selectorporfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -499,13 +622,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btn_registro))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
@@ -513,12 +636,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jt_email_login)
-                            .addComponent(jt_contra_login, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))))
-                .addContainerGap(73, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jt_contra_login, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(jLabel7)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,11 +654,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jt_contra_login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_ingresar))
-                .addContainerGap())
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_ingresar)
+                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -557,16 +679,19 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         matriz[1][1] = jt_nombres.getText();
         matriz[2][1] = jt_apellidos.getText();
         matriz[3][1] = r.convertirSHA256(jt_contra_registro.getText());
-        matriz[4][1] = jt_fechaNacimiento.getText();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+        matriz[4][1] = formato.format(jd_fecharegistro.getDate());
         
         jt_email.setText("");
         jt_nombres.setText("");
         jt_apellidos.setText("");
         jt_contra_registro.setText("");
-        jt_fechaNacimiento.setText("");
         
         if (!r.validarCorreo(matriz[0][1])) {
             r.Insertar_Registro("Cuenta:"+r.getNumerodeCuentas(),matriz);
+            r.Agregar_Atributo_Valor_Registo( "Cuenta:"+r.getNumerodeCuentas(), "foto_perfil", "./Imagenes/user_icon-icons.com_57997.png");
+            r.Agregar_Atributo_Valor_Registo( "Cuenta:"+r.getNumerodeCuentas(), "foto_portada", "./Imagenes/Portadas/Tagged.gif");
+            
             JOptionPane.showMessageDialog(this, "Cuenta creada");
         }else{
             JOptionPane.showMessageDialog(this, "Correo ya en uso, utilice otro");
@@ -580,14 +705,49 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_registroMouseClicked
 
     private void btn_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseClicked
-        if (r.login(jt_email_login.getText(), jt_contra_login.getText()) != 0) {
+        int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
+        if ( exists!= 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
-            
+            cuentaActiva = new Cuenta();
+            cuentaActiva.setId_cuenta(exists);
             Map <String ,String> cuenta = r.Obtener_Registro("Cuenta:" + r.login(jt_email_login.getText(), jt_contra_login.getText()));
-            cuentaActiva = new Cuenta(0, cuenta.values().toArray()[0].toString(), cuenta.values().toArray()[1].toString(), cuenta.values().toArray()[2].toString(), cuenta.values().toArray()[3].toString());
+            System.out.println(":"+cuenta.values().toArray()[3].toString());
+            System.out.println("::"+cuenta.keySet());
+            System.out.println("::"+cuenta.values());
+            for (int i = 0; i < cuenta.values().toArray().length; i++) {
+                //cuenta.values().toArray().length
+                if(cuenta.keySet().toArray()[i].toString().equals("Email")){
+                    cuentaActiva.setEmail(cuenta.values().toArray()[i].toString());
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("Nombre")){
+                    cuentaActiva.setNombre(cuenta.values().toArray()[i].toString());
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("Apellidos")){
+                    cuentaActiva.setApellido(cuenta.values().toArray()[i].toString());
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("Password")){
+                    
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("Date")){
+                    cuentaActiva.setFecha(cuenta.values().toArray()[i].toString());
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("foto_perfil")){
+                    cuentaActiva.setFoto_Perfil(cuenta.values().toArray()[i].toString());
+                }
+                if(cuenta.keySet().toArray()[i].toString().equals("foto_portada")){
+                    cuentaActiva.setFoto_Portada(cuenta.values().toArray()[i].toString());
+                }
+                
+                
+            }
+               
+            
+            
+            
             System.out.println("Cuenta Activa" + cuentaActiva.toString());
-            System.out.println(cuenta.values());
+            
             cargarComboBox();
+            CargarPerfilUsuarioActivo();
             jd_publicaciones.setLocationRelativeTo(this);
             jd_publicaciones.setVisible(true);
             jd_publicaciones.pack();
@@ -599,9 +759,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingresarMouseClicked
 
     private void jmi_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_perfilMouseClicked
-        jd_perfil.setLocationRelativeTo(this);
-        jd_perfil.setVisible(true);
-        jd_perfil.pack();
+        
     }//GEN-LAST:event_jmi_perfilMouseClicked
 
     private void b_FlechaDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_FlechaDerActionPerformed
@@ -663,6 +821,133 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jd_PedirStringMouseClicked
 
+    private void jb_edit_nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_nombreMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Nombre";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jb_edit_nombreMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        
+        if(control_PedirCosas.equals("Nombre")){
+            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "Nombre", jt_PedirString.getText());
+            cuentaActiva.setNombre(jt_PedirString.getText());
+            CargarPerfilUsuarioActivo();
+        }else{
+            if (control_PedirCosas.equals("Email")) {
+                r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "Email", jt_PedirString.getText());
+                cuentaActiva.setEmail(jt_PedirString.getText());
+                CargarPerfilUsuarioActivo();
+            }else{
+                if (control_PedirCosas.equals("Apellidos")) {
+                    r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "Apellidos", jt_PedirString.getText());
+                    cuentaActiva.setApellido(jt_PedirString.getText());
+                    CargarPerfilUsuarioActivo();
+                    
+                }else{
+                    
+                }
+            }
+        }
+        jd_PedirString.dispose();
+        jt_PedirString.setText("");
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jmi_perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_perfilActionPerformed
+        // TODO add your handling code here:
+        jd_perfil.setLocationRelativeTo(this);
+        jd_perfil.setVisible(true);
+        jd_perfil.pack();
+    }//GEN-LAST:event_jmi_perfilActionPerformed
+
+    private void jb_edit_apelllidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_apelllidoMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Apellido";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jb_edit_apelllidoMouseClicked
+
+    private void jb_edit_emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_emailMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Email";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jb_edit_emailMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if(control_PedirCosas.equals("Edad") ){
+            Date fechaobtenida = jd_chosefecha_pedirfecha.getDate();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+            cuentaActiva.setFecha(formato.format(fechaobtenida));
+            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "Date", cuentaActiva.getFecha());
+            CargarPerfilUsuarioActivo();
+            jd_PedirFecha.setVisible(false);
+            jd_chosefecha_pedirfecha.setDate(new Date());
+            
+        }
+        jd_PedirFecha.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jb_edit_edadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_edadMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Edad";
+        jd_PedirFecha.setLocationRelativeTo(this);
+        jd_PedirFecha.pack();
+        jd_PedirFecha.setVisible(true);
+    }//GEN-LAST:event_jb_edit_edadMouseClicked
+
+    private void jc_SelectorporfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_SelectorporfileActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jc_SelectorporfileActionPerformed
+
+    private void jc_SelectorporfileItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jc_SelectorporfileItemStateChanged
+        // TODO add your handling code here:
+        if(control_PedirCosas.equals("Perfil")){
+            catcher = "./Imagenes/Usuarios/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+            jl_fotoselector.setIcon(new ImageIcon(catcher));
+            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_perfil", catcher);
+            cuentaActiva.setFoto_Perfil(catcher);
+            CargarPerfilUsuarioActivo();
+        }else{
+            if(control_PedirCosas.equals("Portada")){
+                catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+                jl_fotoselector.setIcon(new ImageIcon(catcher));
+                r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_portada", catcher);
+                cuentaActiva.setFoto_Portada(catcher);
+                CargarPerfilUsuarioActivo();
+            }
+        }
+        //jd_ChosserSelector.dispose();
+    }//GEN-LAST:event_jc_SelectorporfileItemStateChanged
+
+    private void jb_edit_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_fotoMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Perfil";
+        ModelosComboBoxSelector(control_PedirCosas);
+        jd_ChosserSelector.setLocationRelativeTo(this);
+        jd_ChosserSelector.pack();
+        jd_ChosserSelector.setVisible(true);
+    }//GEN-LAST:event_jb_edit_fotoMouseClicked
+
+    private void jb_edit_portadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_portadaMouseClicked
+        // TODO add your handling code here:
+        control_PedirCosas = "Portada";
+        ModelosComboBoxSelector(control_PedirCosas);
+        jd_ChosserSelector.setLocationRelativeTo(this);
+        jd_ChosserSelector.pack();
+        jd_ChosserSelector.setVisible(true);
+    }//GEN-LAST:event_jb_edit_portadaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -697,7 +982,31 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
     }
-    
+    public void CargarPerfilUsuarioActivo(){
+        jb_edit_portada.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jb_edit_foto.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jb_edit_nombre.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jb_edit_apelllido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jb_edit_email.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jb_edit_edad.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jlabel_portada_perfil.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
+        jlabel_foto_perfil.setIcon(new ImageIcon(cuentaActiva.getFoto_Perfil()));
+        jlabel_Nombre_perfil.setText("Nombre: " + cuentaActiva.getNombre());
+        jlabel_Apellido_perfil.setText("Apellido: " +cuentaActiva.getApellido());
+        jlabel_Email_perfil.setText("Email:" + cuentaActiva.email);
+        String parttern = "dd/mm/yyyy";
+        SimpleDateFormat formato = new SimpleDateFormat(parttern);
+        Date fecha_actual = new Date();
+        Date fecha_nacimiento = null;
+        fecha_actual.setTime(fecha_actual.getTime());
+        try{
+             fecha_nacimiento = formato.parse(cuentaActiva.getFecha());
+        }catch(ParseException e ){
+            System.out.println("");
+        }
+        int a = fecha_actual.getYear()-fecha_nacimiento.getYear();
+        jlabel_Edad_perfil.setText("Edad: " +(a));
+    }
     public void cargarComboBox(){
         DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
@@ -713,6 +1022,51 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         cb_Publicacion.setModel(publicaciones);
             
     }
+    public void ModelosComboBoxSelector(String bandera){
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        if(bandera.equals("Perfil")){
+            jc_Selectorporfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1486146612-propertyagent002_79450.png",
+                "admin_man_person_user_icon_127232.png",
+                "admin_person_user_man_2839.png",
+                "avatar_man_people_person_profile_user_icon_123375.png",
+                "avatar_man_people_person_profile_user_icon_123376.png",
+                "avatar_man_people_person_profile_user_icon_123377.png",
+                "avatar_man_people_person_profile_user_icon_123385.png",
+                "business_man_person_user_icon_127204.png",
+                "customer_person_people_woman_user_client_1631.png",
+                "customer_person_people_woman_user_client_1632.png",
+                "man_avatar_user_person_people_icon_123349.png",
+                "person_10_icon-icons.com_68895.png",
+                "person_5_icon-icons.com_68898(2).png",
+                "person_7_icon-icons.com_68893(1).png",
+                "person_user_customer_man_male_man_boy_people_1687.png",
+                "person_user_customer_man_male_man_boy_people_1688.png",
+                "person_worker_human_man_user_icon_188659.png",
+                "User-80_icon-icons.com_57249.png",
+                "user_icon-icons.com_57997.png",
+                "user_person_customer_man_1532.png",
+                "user_target_person_man_icon_193936.png",
+            }));
+            catcher = "./Imagenes/Usuarios/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+            System.out.println(catcher);    
+            jl_fotoselector.setIcon(new ImageIcon(catcher));
+        }else{
+            if (bandera.equals("Portada")) {
+                jl_fotoselector.setAlignmentX(40);
+                jl_fotoselector.setAlignmentY(10);
+                jc_Selectorporfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+                "CallSignRL.gif",
+                "FeathersBanner.gif",
+                "NiceSlice.gif",
+                "StarbaseARC.gif",
+                "Tagged.gif",
+                "Unicorn.gif"
+                }));
+                catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+                jl_fotoselector.setIcon(new ImageIcon(catcher));
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MI_BuscarAmigos;
@@ -725,12 +1079,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JButton btn_registro;
     private javax.swing.JComboBox<String> cb_Personas;
     private javax.swing.JComboBox<String> cb_Publicacion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -745,17 +1100,25 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jb_edit_apelllido;
     private javax.swing.JButton jb_edit_edad;
     private javax.swing.JButton jb_edit_email;
     private javax.swing.JButton jb_edit_foto;
     private javax.swing.JButton jb_edit_nombre;
     private javax.swing.JButton jb_edit_portada;
+    private javax.swing.JComboBox<String> jc_Selectorporfile;
+    private javax.swing.JDialog jd_ChosserSelector;
+    private javax.swing.JDialog jd_PedirFecha;
     private javax.swing.JDialog jd_PedirString;
+    private com.toedter.calendar.JDateChooser jd_chosefecha_pedirfecha;
+    private com.toedter.calendar.JDateChooser jd_fecharegistro;
     private javax.swing.JDialog jd_perfil;
     private javax.swing.JDialog jd_publicaciones;
     private javax.swing.JDialog jd_registro;
+    private javax.swing.JLabel jl_PedirString;
     private javax.swing.JList<String> jl_comentarios;
+    private javax.swing.JLabel jl_fotoselector;
     private javax.swing.JLabel jla_FotoPublicacion;
     private javax.swing.JLabel jlabel_Apellido_perfil;
     private javax.swing.JLabel jlabel_Edad_perfil;
@@ -764,14 +1127,16 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jlabel_foto_perfil;
     private javax.swing.JLabel jlabel_portada_perfil;
     private javax.swing.JMenuItem jmi_perfil;
+    private javax.swing.JTextField jt_PedirString;
     private javax.swing.JTextField jt_apellidos;
     private javax.swing.JTextField jt_contra_login;
     private javax.swing.JTextField jt_contra_registro;
     private javax.swing.JTextField jt_email;
     private javax.swing.JTextField jt_email_login;
-    private javax.swing.JTextField jt_fechaNacimiento;
     private javax.swing.JTextField jt_nombres;
     // End of variables declaration//GEN-END:variables
 RedisConfig r = new RedisConfig();
 Cuenta cuentaActiva;
+String control_PedirCosas="";
+String catcher = "";
 }
