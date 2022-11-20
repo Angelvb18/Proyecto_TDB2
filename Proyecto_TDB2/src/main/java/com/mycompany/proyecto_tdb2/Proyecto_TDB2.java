@@ -45,6 +45,18 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jt_fechaNacimiento = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
         jd_publicaciones = new javax.swing.JDialog();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmi_perfil = new javax.swing.JMenuItem();
@@ -166,6 +178,43 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Actualizar");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        jLabel10.setText("Persona");
+
+        jLabel11.setText("Publicacion");
+
+        jButton2.setText("Crear Publicacion");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jLabel12.setText("FOTO---------------------------------------------------------------------------------------------------------");
+
+        jLabel13.setText("Comentarios");
+
+        jButton3.setText("->");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("<-");
+
         jMenu1.setText("Menu");
 
         jmi_perfil.setText("Ver perfil");
@@ -184,11 +233,59 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_publicaciones.getContentPane().setLayout(jd_publicacionesLayout);
         jd_publicacionesLayout.setHorizontalGroup(
             jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                        .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(38, 38, 38)
+                        .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(58, 58, 58)
+                                .addComponent(jButton2))))
+                    .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_publicacionesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
         jd_publicacionesLayout.setVerticalGroup(
             jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(35, 35, 35)
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jlabel_portada_perfil.setText("portada");
@@ -264,9 +361,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jlabel_Nombre_perfil)
-                                            .addComponent(jb_edit_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jb_edit_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlabel_Nombre_perfil))
                                         .addGap(18, 18, 18)
                                         .addComponent(jlabel_Apellido_perfil))
                                     .addComponent(jb_edit_apelllido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -330,7 +427,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(77, 77, 77)
                             .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                             .addComponent(btn_registro))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(35, 35, 35)
@@ -356,9 +453,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jt_contra_login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ingresar)
-                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_ingresar))
                 .addContainerGap())
         );
 
@@ -408,6 +505,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jd_publicaciones.setLocationRelativeTo(this);
             jd_publicaciones.setVisible(true);
             jd_publicaciones.pack();
+            
         }else{
             JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
         }
@@ -418,6 +516,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_perfil.setVisible(true);
         jd_perfil.pack();
     }//GEN-LAST:event_jmi_perfilMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String descripcion = JOptionPane.showInputDialog("Que estas haciendo?");
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -458,7 +564,17 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JButton btn_registro;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -467,10 +583,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jb_edit_apelllido;
     private javax.swing.JButton jb_edit_edad;
     private javax.swing.JButton jb_edit_email;
@@ -496,4 +614,5 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JTextField jt_nombres;
     // End of variables declaration//GEN-END:variables
 RedisConfig r = new RedisConfig();
+Cuenta cuentaActiva;
 }

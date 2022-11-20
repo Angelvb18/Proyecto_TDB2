@@ -16,14 +16,13 @@ public class Publicaciones {
     int id_publicaciones;
     String [] contenido;
     Date fecha;
-    ArrayList<Comentarios>Comentarios;
+    ArrayList<Comentarios>Comentarios = new ArrayList();
 
-    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, Date fecha, ArrayList<Comentarios> Comentarios) {
+    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, Date fecha) {
         this.id_cuenta = id_cuenta;
         this.id_publicaciones = id_publicaciones;
         this.contenido = contenido;
         this.fecha = fecha;
-        this.Comentarios = Comentarios;
     }
 
     public int getId_cuenta() {
