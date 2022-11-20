@@ -6,6 +6,7 @@ package com.mycompany.proyecto_tdb2;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
@@ -25,6 +26,8 @@ public class RedisConfig {
            conection = new Jedis("localhost");
            System.out.println("Connection susccesful");
            System.out.println("Severping: " +conection.ping());
+           //conection.sadd("proveedores:1", "producto:3");
+          //  System.out.println(conection.smembers("proveedores:1").toArray()[0]);
            /*conection.set("edad", "1");
            conection.incr("edad");
            System.out.println(conection.get("edad2"));
@@ -153,8 +156,48 @@ public class RedisConfig {
         return 0;
     }
    
-   
-   
+    public ArrayList<Cuenta> Obtenertodas_cuentas(int UsuarioActivo){
+        ArrayList<Cuenta> listas = new ArrayList();
+        for (int i = 0; i < Integer.parseInt(getNumerodeCuentas()); i++) {
+            if(i != UsuarioActivo){
+                Map <String ,String> cuenta = Obtener_Registro("Cuenta:"+i);
+                listas.add(new Cuenta(i, cuenta.values().toArray()[0].toString(),
+                    cuenta.values().toArray()[1].toString(),
+                    cuenta.values().toArray()[2].toString(), cuenta.values().toArray()[3].toString()));
+            }
+        }
+        
+        return listas;
+    }
+    public ArrayList<Publicaciones> Obtener_Publicaciones_deUsuario(int Usuario_Designado){
+        ArrayList<Publicaciones> lista = new ArrayList();       
+        Object[]lista_Publicaciones = conection.smembers("Cuenta:"+Usuario_Designado).toArray();
+        for (int i = 0; i < lista_Publicaciones.length; i++) {
+            String[] parseado = lista_Publicaciones[i].toString().split(":") ;
+            int Id_publicacion = Integer.parseInt(parseado[1]);
+            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Publicaciones[i].toString());
+            lista.add(new Publicaciones(Usuario_Designado,Id_publicacion,
+                    ((Publicacion_Actual.values().toArray()[0]).toString()).split("-")
+                    ,Publicacion_Actual.values().toArray()[1].toString()));
+        }
+        return  lista;
+    }
+   public ArrayList<Comentarios> Obtener_Comentarios_Publicacion(Publicaciones pub){
+       ArrayList<Comentarios> lista = new ArrayList();
+       Object[]lista_Comentarios = conection.smembers("Publicacion:"+pub.getId_publicaciones()).toArray();
+       for (int i = 0; i < lista_Comentarios.length; i++) {
+           String[] parseado = lista_Comentarios[i].toString().split(":") ;
+           int Id_Comentario = Integer.parseInt(parseado[1]);
+           Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Comentarios[i].toString());
+           int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[0].toString());
+           lista.add(new Comentarios(Id_Comentario,id_Cuenta
+                   ,pub.getId_publicaciones(),
+                   Publicacion_Actual.values().toArray()[1].toString(),
+                   Publicacion_Actual.values().toArray()[2].toString()
+                   ,Publicacion_Actual.values().toArray()[3].toString()));
+       }
+       return  lista;
+   }
    public JSONObject CreateJasonObject(){
        String hola []= {"dsa" , "fsfsd","fsdf"};
        JSONObject jsobj = new JSONObject();
