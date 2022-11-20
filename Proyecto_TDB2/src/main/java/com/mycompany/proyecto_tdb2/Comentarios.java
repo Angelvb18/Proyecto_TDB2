@@ -14,14 +14,26 @@ public class Comentarios {
     int id_publicacion;
     String email;
     String contenido;
+    String nombreComment;
 
-    public Comentarios(int id_Comentario, int id_Cuenta, int id_publicacion, String email, String contenido) {
+    public Comentarios(int id_Comentario, int id_Cuenta, int id_publicacion, String email, String contenido, String nombreComment) {
         this.id_Comentario = id_Comentario;
         this.id_Cuenta = id_Cuenta;
         this.id_publicacion = id_publicacion;
         this.email = email;
         this.contenido = contenido;
+        this.nombreComment = nombreComment;
     }
+
+    public String getNombreComment() {
+        return nombreComment;
+    }
+
+    public void setNombreComment(String nombreComment) {
+        this.nombreComment = nombreComment;
+    }
+    
+    
 
     public int getId_Comentario() {
         return id_Comentario;

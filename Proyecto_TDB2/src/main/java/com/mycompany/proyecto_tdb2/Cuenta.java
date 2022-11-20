@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto_tdb2;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,9 +16,11 @@ public class Cuenta {
     String email;
     String nombre;
     String apellido;
-    Date fecha;
-
-    public Cuenta(int id_cuenta, String email, String nombre, String apellido, Date fecha) {
+    String fecha;
+    ArrayList<Publicaciones>publicaciones = new ArrayList();
+    ArrayList<Cuenta>amigos = new ArrayList();
+    
+    public Cuenta(int id_cuenta, String email, String nombre, String apellido, String fecha) {
         this.id_cuenta = id_cuenta;
         this.email = email;
         this.nombre = nombre;
@@ -57,12 +60,37 @@ public class Cuenta {
         this.apellido = apellido;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public ArrayList<Publicaciones> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void setPublicaciones(ArrayList<Publicaciones> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+
+    public ArrayList<Cuenta> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(ArrayList<Cuenta> amigos) {
+        this.amigos = amigos;
+    }
+
+    
+    
+    @Override
+    public String toString() {
+        return "Cuenta{" + "id_cuenta=" + id_cuenta + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha + '}';
+    }
+    
+    
     
 }

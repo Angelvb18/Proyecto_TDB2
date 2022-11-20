@@ -5,6 +5,10 @@
 package com.mycompany.proyecto_tdb2;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import redis.clients.jedis.util.Hashing;
 
@@ -45,21 +49,23 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jt_fechaNacimiento = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
         jd_publicaciones = new javax.swing.JDialog();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        cb_Personas = new javax.swing.JComboBox<>();
+        cb_Publicacion = new javax.swing.JComboBox<>();
+        b_Actualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jl_comentarios = new javax.swing.JList<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        b_CrearPublicacion = new javax.swing.JButton();
+        jla_FotoPublicacion = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        b_FlechaDer = new javax.swing.JButton();
+        b_FlechaIzq = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmi_perfil = new javax.swing.JMenuItem();
+        MI_BuscarAmigos = new javax.swing.JMenuItem();
         jd_perfil = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jlabel_portada_perfil = new javax.swing.JLabel();
@@ -178,42 +184,59 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Personas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Publicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Actualizar");
+        b_Actualizar.setText("Actualizar");
+        b_Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_ActualizarMouseClicked(evt);
+            }
+        });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jl_comentarios.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(jl_comentarios);
 
         jLabel10.setText("Persona");
 
         jLabel11.setText("Publicacion");
 
-        jButton2.setText("Crear Publicacion");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        b_CrearPublicacion.setText("Crear Publicacion");
+        b_CrearPublicacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                b_CrearPublicacionMouseClicked(evt);
             }
         });
 
-        jLabel12.setText("FOTO---------------------------------------------------------------------------------------------------------");
+        jla_FotoPublicacion.setText("FOTO---------------------------------------------------------------------------------------------------------");
 
         jLabel13.setText("Comentarios");
 
-        jButton3.setText("->");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        b_FlechaDer.setText("->");
+        b_FlechaDer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_FlechaDerMouseClicked(evt);
+            }
+        });
+        b_FlechaDer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                b_FlechaDerActionPerformed(evt);
             }
         });
 
-        jButton4.setText("<-");
+        b_FlechaIzq.setText("<-");
+        b_FlechaIzq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_FlechaIzqMouseClicked(evt);
+            }
+        });
+
+        jButton5.setText("jButton5");
 
         jMenu1.setText("Menu");
 
@@ -224,6 +247,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jmi_perfil);
+
+        MI_BuscarAmigos.setText("Buscar Amigos");
+        MI_BuscarAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MI_BuscarAmigosMouseClicked(evt);
+            }
+        });
+        jMenu1.add(MI_BuscarAmigos);
 
         jMenuBar1.add(jMenu1);
 
@@ -238,23 +269,23 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_publicacionesLayout.createSequentialGroup()
                         .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_Personas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(38, 38, 38)
                         .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addGroup(jd_publicacionesLayout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_Publicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addGap(58, 58, 58)
-                                .addComponent(jButton2))))
+                                .addComponent(b_Actualizar)
+                                .addGap(53, 53, 53)
+                                .addComponent(b_CrearPublicacion))))
                     .addGroup(jd_publicacionesLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b_FlechaIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(b_FlechaDer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_publicacionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -272,15 +303,15 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cb_Personas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_Publicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_Actualizar)
+                    .addComponent(b_CrearPublicacion))
                 .addGap(35, 35, 35)
                 .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_FlechaDer)
+                    .addComponent(b_FlechaIzq))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(5, 5, 5)
@@ -502,9 +533,16 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private void btn_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseClicked
         if (r.login(jt_email_login.getText(), jt_contra_login.getText()) != 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
+            
+            Map <String ,String> cuenta = r.Obtener_Registro("Cuenta:" + r.login(jt_email_login.getText(), jt_contra_login.getText()));
+            cuentaActiva = new Cuenta(0, cuenta.values().toArray()[0].toString(), cuenta.values().toArray()[1].toString(), cuenta.values().toArray()[2].toString(), cuenta.values().toArray()[3].toString());
+            System.out.println("Cuenta Activa" + cuentaActiva.toString());
+            System.out.println(cuenta.values());
+            cargarComboBox();
             jd_publicaciones.setLocationRelativeTo(this);
             jd_publicaciones.setVisible(true);
             jd_publicaciones.pack();
+            
             
         }else{
             JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
@@ -517,13 +555,56 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_perfil.pack();
     }//GEN-LAST:event_jmi_perfilMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void b_FlechaDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_FlechaDerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_b_FlechaDerActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        String descripcion = JOptionPane.showInputDialog("Que estas haciendo?");
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void b_CrearPublicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearPublicacionMouseClicked
+        String[] contenido = new String[1];
+        contenido[0] = "";
+        contenido[1] = JOptionPane.showInputDialog("Que estas haciendo?");
+        if (JOptionPane.showConfirmDialog(this, "Desea Agregar Imagen?") == 1) {
+            //Agregar la foto url
+        }
+        Publicaciones publicacion = new Publicaciones(cuentaActiva.getId_cuenta(), 0, contenido, "20/11/2022");
+    }//GEN-LAST:event_b_CrearPublicacionMouseClicked
+
+    private void MI_BuscarAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MI_BuscarAmigosMouseClicked
+        String nombreAmigo = JOptionPane.showInputDialog("Ingrese el nombre de una persona: ");
+        if (true) {
+            // ingresar validacion de si se encontro una persona
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró la persona");
+        }
+    }//GEN-LAST:event_MI_BuscarAmigosMouseClicked
+
+    private void b_FlechaDerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_FlechaDerMouseClicked
+        JOptionPane.showMessageDialog(this, "Pague $35 para el modo premium");
+    }//GEN-LAST:event_b_FlechaDerMouseClicked
+
+    private void b_FlechaIzqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_FlechaIzqMouseClicked
+        JOptionPane.showMessageDialog(this, "Pague $35 para el modo premium");
+    }//GEN-LAST:event_b_FlechaIzqMouseClicked
+
+    private void b_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ActualizarMouseClicked
+        //Actualizar Publicaciones
+        //Por ahora solo texto
+        String publica = cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getNombre() + ": " +
+                cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getPublicaciones().get(cb_Publicacion.getSelectedIndex()).toString();
+        jla_FotoPublicacion.setText(publica);
+        //Actualizar Comentarios
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (int i = 0; i < cuentaActiva.getPublicaciones().size()-1; i++) {
+            String comentario = "";
+            for (int j = 0; j < cuentaActiva.getPublicaciones().get(i).getComentarios().size()-1; j++) {
+                comentario =  cuentaActiva.getPublicaciones().get(i).getComentarios().get(j).getNombreComment() + cuentaActiva.getPublicaciones().get(i).getComentarios().get(j).getContenido() ;
+            }
+            model.addElement(comentario);
+           
+        }
+        jl_comentarios.setModel(model);
+    }//GEN-LAST:event_b_ActualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -559,21 +640,38 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void cargarComboBox(){
+        DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
+        for (int i = 0; i < cuentaActiva.getAmigos().size()-1; i++) {
+            personas.addElement(cuentaActiva.getAmigos().get(i).getNombre());
+            for (int j = 0; j < cuentaActiva.getAmigos().get(i).getPublicaciones().size(); j++) {
+                //por ahora solo se imprime el texto, no la foto
+                publicaciones.addElement(cuentaActiva.getAmigos().get(i).getPublicaciones().get(j).toString());
+            }
+        }
+        
+        cb_Personas.setModel(personas);
+        cb_Publicacion.setModel(publicaciones);
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MI_BuscarAmigos;
+    private javax.swing.JButton b_Actualizar;
+    private javax.swing.JButton b_CrearPublicacion;
+    private javax.swing.JButton b_FlechaDer;
+    private javax.swing.JButton b_FlechaIzq;
     private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JButton btn_registro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cb_Personas;
+    private javax.swing.JComboBox<String> cb_Publicacion;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -583,7 +681,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -598,6 +695,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JDialog jd_perfil;
     private javax.swing.JDialog jd_publicaciones;
     private javax.swing.JDialog jd_registro;
+    private javax.swing.JList<String> jl_comentarios;
+    private javax.swing.JLabel jla_FotoPublicacion;
     private javax.swing.JLabel jlabel_Apellido_perfil;
     private javax.swing.JLabel jlabel_Edad_perfil;
     private javax.swing.JLabel jlabel_Email_perfil;

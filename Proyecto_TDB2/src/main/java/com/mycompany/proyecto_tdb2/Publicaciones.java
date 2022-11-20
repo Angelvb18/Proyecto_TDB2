@@ -15,10 +15,10 @@ public class Publicaciones {
     int id_cuenta;
     int id_publicaciones;
     String [] contenido;
-    Date fecha;
+    String fecha;
     ArrayList<Comentarios>Comentarios = new ArrayList();
 
-    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, Date fecha) {
+    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, String fecha) {
         this.id_cuenta = id_cuenta;
         this.id_publicaciones = id_publicaciones;
         this.contenido = contenido;
@@ -49,11 +49,11 @@ public class Publicaciones {
         this.contenido = contenido;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -64,5 +64,15 @@ public class Publicaciones {
     public void setComentarios(ArrayList<Comentarios> Comentarios) {
         this.Comentarios = Comentarios;
     }
+
+    @Override
+    public String toString() {
+        
+        //Por ahora solo imprimer el texto, no la foto
+       
+        return contenido[1];
+    }
+    
+    
     
 }
