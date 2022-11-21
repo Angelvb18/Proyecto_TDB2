@@ -19,6 +19,7 @@ public class Cuenta {
     String fecha;
     ArrayList<Publicaciones>publicaciones = new ArrayList();
     ArrayList<Cuenta>amigos = new ArrayList();
+    ArrayList<Cuenta>solicitudes = new ArrayList();
     String Foto_Perfil;
     String Foto_Portada;
 
@@ -114,6 +115,14 @@ public class Cuenta {
 
     public void setFoto_Portada(String Foto_Portada) {
         this.Foto_Portada = Foto_Portada;
+    }
+
+    public ArrayList<Cuenta> getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(ArrayList<Cuenta> solicitudes) {
+        this.solicitudes = solicitudes;
     }
 
     

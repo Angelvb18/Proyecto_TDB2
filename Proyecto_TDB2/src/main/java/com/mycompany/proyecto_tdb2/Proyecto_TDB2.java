@@ -71,6 +71,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmi_perfil = new javax.swing.JMenuItem();
         MI_BuscarAmigos = new javax.swing.JMenuItem();
+        jmi_solicitudes = new javax.swing.JMenuItem();
         jd_perfil = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jlabel_portada_perfil = new javax.swing.JLabel();
@@ -97,6 +98,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_ChosserSelector = new javax.swing.JDialog();
         jc_Selectorporfile = new javax.swing.JComboBox<>();
         jl_fotoselector = new javax.swing.JLabel();
+        jd_solicitudes = new javax.swing.JDialog();
+        cb_solicitudes = new javax.swing.JComboBox<>();
+        jb_aceptar = new javax.swing.JButton();
+        jb_rechazar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -277,6 +282,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
         jMenu1.add(MI_BuscarAmigos);
+
+        jmi_solicitudes.setText("Solicitudes de Amistad");
+        jmi_solicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmi_solicitudesMouseClicked(evt);
+            }
+        });
+        jMenu1.add(jmi_solicitudes);
 
         jMenuBar1.add(jMenu1);
 
@@ -590,6 +603,39 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
+        cb_solicitudes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jb_aceptar.setText("Aceptar");
+
+        jb_rechazar.setText("Rechazar");
+
+        javax.swing.GroupLayout jd_solicitudesLayout = new javax.swing.GroupLayout(jd_solicitudes.getContentPane());
+        jd_solicitudes.getContentPane().setLayout(jd_solicitudesLayout);
+        jd_solicitudesLayout.setHorizontalGroup(
+            jd_solicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_solicitudesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cb_solicitudes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jd_solicitudesLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jb_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jb_rechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+        );
+        jd_solicitudesLayout.setVerticalGroup(
+            jd_solicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_solicitudesLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(cb_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGroup(jd_solicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_rechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -658,7 +704,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ingresar)
                     .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -752,6 +798,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jd_publicaciones.setVisible(true);
             jd_publicaciones.pack();
             
+            jt_email_login.setText("");
+            jt_contra_login.setText("");
             
         }else{
             JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
@@ -948,6 +996,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_ChosserSelector.setVisible(true);
     }//GEN-LAST:event_jb_edit_portadaMouseClicked
 
+    private void jmi_solicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_solicitudesMouseClicked
+        jd_solicitudes.setLocationRelativeTo(this);
+        jd_solicitudes.pack();
+        jd_solicitudes.setVisible(true);
+    }//GEN-LAST:event_jmi_solicitudesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1010,6 +1064,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     public void cargarComboBox(){
         DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
+
+        for (int i = 0; i < cuentaActiva.getSolicitudes().size()-1; i++) {
+            solicitudes.addElement(cuentaActiva.getSolicitudes().get(i).getNombre());
+        }
         for (int i = 0; i < cuentaActiva.getAmigos().size()-1; i++) {
             personas.addElement(cuentaActiva.getAmigos().get(i).getNombre());
             for (int j = 0; j < cuentaActiva.getAmigos().get(i).getPublicaciones().size(); j++) {
@@ -1020,6 +1079,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         
         cb_Personas.setModel(personas);
         cb_Publicacion.setModel(publicaciones);
+        cb_solicitudes.setModel(solicitudes);
             
     }
     public void ModelosComboBoxSelector(String bandera){
@@ -1079,6 +1139,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JButton btn_registro;
     private javax.swing.JComboBox<String> cb_Personas;
     private javax.swing.JComboBox<String> cb_Publicacion;
+    private javax.swing.JComboBox<String> cb_solicitudes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
@@ -1101,12 +1162,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JButton jb_aceptar;
     private javax.swing.JButton jb_edit_apelllido;
     private javax.swing.JButton jb_edit_edad;
     private javax.swing.JButton jb_edit_email;
     private javax.swing.JButton jb_edit_foto;
     private javax.swing.JButton jb_edit_nombre;
     private javax.swing.JButton jb_edit_portada;
+    private javax.swing.JButton jb_rechazar;
     private javax.swing.JComboBox<String> jc_Selectorporfile;
     private javax.swing.JDialog jd_ChosserSelector;
     private javax.swing.JDialog jd_PedirFecha;
@@ -1116,6 +1179,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JDialog jd_perfil;
     private javax.swing.JDialog jd_publicaciones;
     private javax.swing.JDialog jd_registro;
+    private javax.swing.JDialog jd_solicitudes;
     private javax.swing.JLabel jl_PedirString;
     private javax.swing.JList<String> jl_comentarios;
     private javax.swing.JLabel jl_fotoselector;
@@ -1127,6 +1191,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jlabel_foto_perfil;
     private javax.swing.JLabel jlabel_portada_perfil;
     private javax.swing.JMenuItem jmi_perfil;
+    private javax.swing.JMenuItem jmi_solicitudes;
     private javax.swing.JTextField jt_PedirString;
     private javax.swing.JTextField jt_apellidos;
     private javax.swing.JTextField jt_contra_login;
