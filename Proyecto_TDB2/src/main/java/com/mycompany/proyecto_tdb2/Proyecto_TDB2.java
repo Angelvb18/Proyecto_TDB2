@@ -206,10 +206,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        cb_Personas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cb_Publicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         b_Actualizar.setText("Actualizar");
         b_Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -217,11 +213,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
 
-        jl_comentarios.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jl_comentarios);
 
         jLabel10.setText("Persona");
@@ -603,9 +594,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        cb_solicitudes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jb_aceptar.setText("Aceptar");
+        jb_aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_aceptarMouseClicked(evt);
+            }
+        });
 
         jb_rechazar.setText("Rechazar");
 
@@ -754,38 +748,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
         if ( exists!= 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
-            cuentaActiva = new Cuenta();
-            cuentaActiva.setId_cuenta(exists);
-            Map <String ,String> cuenta = r.Obtener_Registro("Cuenta:" + r.login(jt_email_login.getText(), jt_contra_login.getText()));
-            System.out.println(":"+cuenta.values().toArray()[3].toString());
-            System.out.println("::"+cuenta.keySet());
-            System.out.println("::"+cuenta.values());
-            for (int i = 0; i < cuenta.values().toArray().length; i++) {
-                //cuenta.values().toArray().length
-                if(cuenta.keySet().toArray()[i].toString().equals("Email")){
-                    cuentaActiva.setEmail(cuenta.values().toArray()[i].toString());
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("Nombre")){
-                    cuentaActiva.setNombre(cuenta.values().toArray()[i].toString());
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("Apellidos")){
-                    cuentaActiva.setApellido(cuenta.values().toArray()[i].toString());
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("Password")){
-                    
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("Date")){
-                    cuentaActiva.setFecha(cuenta.values().toArray()[i].toString());
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("foto_perfil")){
-                    cuentaActiva.setFoto_Perfil(cuenta.values().toArray()[i].toString());
-                }
-                if(cuenta.keySet().toArray()[i].toString().equals("foto_portada")){
-                    cuentaActiva.setFoto_Portada(cuenta.values().toArray()[i].toString());
-                }
-                
-                
-            }
+            cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
                
             
             
@@ -815,7 +778,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_b_FlechaDerActionPerformed
 
     private void b_CrearPublicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_CrearPublicacionMouseClicked
-        String[] contenido = new String[1];
+        String[] contenido = new String[2];
         contenido[0] = "";
         contenido[1] = JOptionPane.showInputDialog("Que estas haciendo?");
         if (JOptionPane.showConfirmDialog(this, "Desea Agregar Imagen?") == 1) {
@@ -1001,6 +964,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_solicitudes.pack();
         jd_solicitudes.setVisible(true);
     }//GEN-LAST:event_jmi_solicitudesMouseClicked
+
+    private void jb_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aceptarMouseClicked
+        cuentaActiva.getAmigos().add(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex()));
+        cuentaActiva.getSolicitudes().remove(cb_solicitudes.getSelectedIndex());
+        cargarComboBox();
+    }//GEN-LAST:event_jb_aceptarMouseClicked
 
     /**
      * @param args the command line arguments

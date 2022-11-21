@@ -74,5 +74,7 @@ public class Comentarios {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
-    
+
+    public Comentarios() {
+    }
 }

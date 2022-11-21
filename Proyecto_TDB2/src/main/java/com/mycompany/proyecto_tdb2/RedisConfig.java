@@ -109,6 +109,40 @@ public class RedisConfig {
        }
    }
    
+   public Cuenta Obtener_Una_Cuenta(String key){
+        Cuenta temp = new Cuenta();
+        String [] parseado_key = key.split(":");
+        Map <String ,String> cuenta = Obtener_Registro(key);
+        temp.setId_cuenta(Integer.parseInt(parseado_key[1]));
+        
+        for (int j = 0; j < cuenta.values().toArray().length; j++) {
+            if(cuenta.keySet().toArray()[j].toString().equals("Email")){
+                temp.setEmail(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Nombre")){
+                temp.setNombre(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Apellidos")){
+                temp.setApellido(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Password")){
+
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Date")){
+                temp.setFecha(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("foto_perfil")){
+                temp.setFoto_Perfil(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
+                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+            }
+            temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
+        }
+
+       return temp;
+   } 
+   
     public RedisConfig() {
         connectionFactory();
     }
@@ -159,30 +193,85 @@ public class RedisConfig {
    
     public ArrayList<Cuenta> Obtenertodas_cuentas(int UsuarioActivo){
         ArrayList<Cuenta> listas = new ArrayList();
-        for (int i = 0; i < Integer.parseInt(getNumerodeCuentas()); i++) {
+        for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
             if(i != UsuarioActivo){
                 Map <String ,String> cuenta = Obtener_Registro("Cuenta:"+i);
-                listas.add(new Cuenta(i, cuenta.values().toArray()[0].toString(),
-                    cuenta.values().toArray()[1].toString(),
-                    cuenta.values().toArray()[2].toString(), cuenta.values().toArray()[3].toString()));
+                Cuenta temp = new Cuenta();
+                temp.setId_cuenta(i);
+                for (int j = 0; j < cuenta.values().toArray().length; j++) {
+                    if(cuenta.keySet().toArray()[j].toString().equals("Email")){
+                        temp.setEmail(cuenta.values().toArray()[j].toString());
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("Nombre")){
+                        temp.setNombre(cuenta.values().toArray()[j].toString());
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("Apellidos")){
+                        temp.setApellido(cuenta.values().toArray()[j].toString());
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("Password")){
+
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("Date")){
+                        temp.setFecha(cuenta.values().toArray()[j].toString());
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("foto_perfil")){
+                        temp.setFoto_Perfil(cuenta.values().toArray()[j].toString());
+                    }
+                    if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
+                        temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+                    }
+                    temp.setPublicaciones(Obtener_Publicaciones_deUsuario(i));
+                    listas.add(temp);
+                }
             }
         }
         
         return listas;
     }
+    
     public ArrayList<Publicaciones> Obtener_Publicaciones_deUsuario(int Usuario_Designado){
         ArrayList<Publicaciones> lista = new ArrayList();       
-        Object[]lista_Publicaciones = conection.smembers("Cuenta:"+Usuario_Designado).toArray();
-        for (int i = 0; i < lista_Publicaciones.length; i++) {
+        Object[]lista_Publicaciones = conection.smembers("Publicaciones:"+Usuario_Designado).toArray();
+        for (int i = 1; i < lista_Publicaciones.length; i++) {
             String[] parseado = lista_Publicaciones[i].toString().split(":") ;
             int Id_publicacion = Integer.parseInt(parseado[1]);
             Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Publicaciones[i].toString());
-            lista.add(new Publicaciones(Usuario_Designado,Id_publicacion,
-                    ((Publicacion_Actual.values().toArray()[0]).toString()).split("-")
-                    ,Publicacion_Actual.values().toArray()[1].toString()));
+            Publicaciones temp = new Publicaciones();
+            temp.setId_cuenta(Usuario_Designado);
+            temp.setId_publicaciones(Id_publicacion);
+            for (int j = 0; j < Publicacion_Actual.values().toArray().length; j++) {
+                    if(Publicacion_Actual.keySet().toArray()[i].toString().equals("contenido")){
+                        temp.setContenido((Publicacion_Actual.values().toArray()[i].toString()).split("-"));
+                    }
+                    if(Publicacion_Actual.keySet().toArray()[i].toString().equals("fecha")){
+                        temp.setFecha(Publicacion_Actual.values().toArray()[i].toString());
+                    }
+            }
+            temp.setComentarios(Obtener_Comentarios_Publicacion(temp));
+            lista.add(temp);
+            
         }
         return  lista;
     }
+    
+    public int buscarCorreo (String Correo) {
+        for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
+            if (Obtener_valor_Registro("Cuenta:" + i, "Email").equals(Correo)) {
+                    return i;
+            }
+        }
+        return 0;
+    }
+    
+    public ArrayList<Cuenta> Lista_solicitada(String key){
+        ArrayList<Cuenta> lista = new ArrayList();
+        Object[]lista_requerida = Obtener_Lista_de_Registro(key);
+        for (int i = 0; i < lista_requerida.length; i++) {
+            lista.add(Obtener_Una_Cuenta(lista_requerida.toString()));
+        }
+        return lista;
+    }
+    
    public ArrayList<Comentarios> Obtener_Comentarios_Publicacion(Publicaciones pub){
        ArrayList<Comentarios> lista = new ArrayList();
        Object[]lista_Comentarios = conection.smembers("Publicacion:"+pub.getId_publicaciones()).toArray();
@@ -191,14 +280,30 @@ public class RedisConfig {
            int Id_Comentario = Integer.parseInt(parseado[1]);
            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Comentarios[i].toString());
            int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[0].toString());
-           lista.add(new Comentarios(Id_Comentario,id_Cuenta
+           Comentarios temp = new Comentarios();
+           temp.setId_Cuenta(id_Cuenta);
+           temp.setId_publicacion(pub.getId_publicaciones());
+           temp.setId_Comentario(Id_Comentario);
+           for (int j = 0; j < Publicacion_Actual.values().toArray().length  ; j++) {
+               if(Publicacion_Actual.keySet().toArray()[i].toString().equals("Contenido")){
+                    temp.setContenido((Publicacion_Actual.values().toArray()[i].toString()));
+                }
+                if(Publicacion_Actual.keySet().toArray()[i].toString().equals("Email")){
+                    temp.setEmail(Publicacion_Actual.values().toArray()[i].toString());
+                }
+                if(Publicacion_Actual.keySet().toArray()[i].toString().equals("nombreComment")){
+                    temp.setNombreComment(Publicacion_Actual.values().toArray()[i].toString());
+                }
+           }
+           /*lista.add(new Comentarios(Id_Comentario,id_Cuenta
                    ,pub.getId_publicaciones(),
                    Publicacion_Actual.values().toArray()[1].toString(),
                    Publicacion_Actual.values().toArray()[2].toString()
-                   ,Publicacion_Actual.values().toArray()[3].toString()));
+                   ,Publicacion_Actual.values().toArray()[3].toString()));*/
        }
        return  lista;
    }
+    
    public JSONObject CreateJasonObject(){
        String hola []= {"dsa" , "fsfsd","fsdf"};
        JSONObject jsobj = new JSONObject();

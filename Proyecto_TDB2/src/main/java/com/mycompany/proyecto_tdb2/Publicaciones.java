@@ -72,6 +72,9 @@ public class Publicaciones {
        
         return contenido[1];
     }
+
+    public Publicaciones() {
+    }
     
     
     
