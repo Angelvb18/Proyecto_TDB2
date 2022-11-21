@@ -14,11 +14,12 @@ import java.util.Date;
 public class Publicaciones {
     int id_cuenta;
     int id_publicaciones;
-    String [] contenido;
+    String  contenido ;
+    String foto;
     String fecha;
     ArrayList<Comentarios>Comentarios = new ArrayList();
 
-    public Publicaciones(int id_cuenta, int id_publicaciones, String[] contenido, String fecha) {
+    public Publicaciones(int id_cuenta, int id_publicaciones, String contenido, String fecha) {
         this.id_cuenta = id_cuenta;
         this.id_publicaciones = id_publicaciones;
         this.contenido = contenido;
@@ -41,11 +42,27 @@ public class Publicaciones {
         this.id_publicaciones = id_publicaciones;
     }
 
-    public String[] getContenido() {
+    public String getContenido() {
         return contenido;
     }
 
-    public void setContenido(String[] contenido) {
+    public Publicaciones(int id_cuenta, int id_publicaciones, String contenido, String foto, String fecha) {
+        this.id_cuenta = id_cuenta;
+        this.id_publicaciones = id_publicaciones;
+        this.contenido = contenido;
+        this.foto = foto;
+        this.fecha = fecha;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
@@ -69,8 +86,12 @@ public class Publicaciones {
     public String toString() {
         
         //Por ahora solo imprimer el texto, no la foto
-       
-        return contenido[1];
+        if(contenido == null){
+            return "Fallo";
+        }else{
+            return contenido;
+        }
+        
     }
 
     public Publicaciones() {

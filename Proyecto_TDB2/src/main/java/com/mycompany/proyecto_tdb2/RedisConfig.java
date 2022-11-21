@@ -26,7 +26,7 @@ public class RedisConfig {
            conection = new Jedis("localhost");
            System.out.println("Connection susccesful");
            System.out.println("Severping: " +conection.ping());
-           
+           //CrearBase();
            //conection.sadd("proveedores:1", "producto:3");
           //  System.out.println(conection.smembers("proveedores:1").toArray()[0]);
            /*conection.set("edad", "1");
@@ -113,6 +113,7 @@ public class RedisConfig {
         Cuenta temp = new Cuenta();
         String [] parseado_key = key.split(":");
         Map <String ,String> cuenta = Obtener_Registro(key);
+        System.out.println(":fdsfsdfdf"+key);
         temp.setId_cuenta(Integer.parseInt(parseado_key[1]));
         
         for (int j = 0; j < cuenta.values().toArray().length; j++) {
@@ -137,11 +138,15 @@ public class RedisConfig {
             if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
+            
             temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
+            
         }
 
        return temp;
-   } 
+   }
+   
+   
    
     public RedisConfig() {
         connectionFactory();
@@ -197,8 +202,10 @@ public class RedisConfig {
             if(i != UsuarioActivo){
                 Map <String ,String> cuenta = Obtener_Registro("Cuenta:"+i);
                 Cuenta temp = new Cuenta();
-                temp.setId_cuenta(i);
+                    temp.setId_cuenta(i);
+              
                 for (int j = 0; j < cuenta.values().toArray().length; j++) {
+                    
                     if(cuenta.keySet().toArray()[j].toString().equals("Email")){
                         temp.setEmail(cuenta.values().toArray()[j].toString());
                     }
@@ -221,8 +228,9 @@ public class RedisConfig {
                         temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
                     }
                     temp.setPublicaciones(Obtener_Publicaciones_deUsuario(i));
-                    listas.add(temp);
+                    
                 }
+                listas.add(temp);
             }
         }
         
@@ -232,19 +240,22 @@ public class RedisConfig {
     public ArrayList<Publicaciones> Obtener_Publicaciones_deUsuario(int Usuario_Designado){
         ArrayList<Publicaciones> lista = new ArrayList();       
         Object[]lista_Publicaciones = conection.smembers("Publicaciones:"+Usuario_Designado).toArray();
-        for (int i = 1; i < lista_Publicaciones.length; i++) {
+        for (int i = 1; i < lista_Publicaciones.length-1; i++) {
             String[] parseado = lista_Publicaciones[i].toString().split(":") ;
             int Id_publicacion = Integer.parseInt(parseado[1]);
             Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Publicaciones[i].toString());
             Publicaciones temp = new Publicaciones();
             temp.setId_cuenta(Usuario_Designado);
             temp.setId_publicaciones(Id_publicacion);
-            for (int j = 0; j < Publicacion_Actual.values().toArray().length; j++) {
-                    if(Publicacion_Actual.keySet().toArray()[i].toString().equals("contenido")){
-                        temp.setContenido((Publicacion_Actual.values().toArray()[i].toString()).split("-"));
+            for (int j = 0; j < (Publicacion_Actual.values().toArray().length-1); j++) {
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Contenido")){
+                        temp.setContenido((Publicacion_Actual.values().toArray()[j].toString()));
                     }
-                    if(Publicacion_Actual.keySet().toArray()[i].toString().equals("fecha")){
-                        temp.setFecha(Publicacion_Actual.values().toArray()[i].toString());
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Foto")){
+                        temp.setFoto((Publicacion_Actual.values().toArray()[j].toString()));
+                    }
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("fecha")){
+                        temp.setFecha(Publicacion_Actual.values().toArray()[j].toString());
                     }
             }
             temp.setComentarios(Obtener_Comentarios_Publicacion(temp));
@@ -274,27 +285,37 @@ public class RedisConfig {
     
    public ArrayList<Comentarios> Obtener_Comentarios_Publicacion(Publicaciones pub){
        ArrayList<Comentarios> lista = new ArrayList();
-       Object[]lista_Comentarios = conection.smembers("Publicacion:"+pub.getId_publicaciones()).toArray();
+       Object[]lista_Comentarios = conection.smembers("Comentarios:"+pub.getId_publicaciones()).toArray();
+//       
        for (int i = 0; i < lista_Comentarios.length; i++) {
+           System.out.println(";"+lista_Comentarios[i].toString());
            String[] parseado = lista_Comentarios[i].toString().split(":") ;
            int Id_Comentario = Integer.parseInt(parseado[1]);
+           System.out.println("Aqui:"+parseado[0]);
+           System.out.println("Aqui:"+lista_Comentarios[i].toString());
            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Comentarios[i].toString());
-           int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[0].toString());
+           int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[1].toString());
            Comentarios temp = new Comentarios();
            temp.setId_Cuenta(id_Cuenta);
            temp.setId_publicacion(pub.getId_publicaciones());
            temp.setId_Comentario(Id_Comentario);
+           System.out.println(":x:"+Publicacion_Actual.keySet());
            for (int j = 0; j < Publicacion_Actual.values().toArray().length  ; j++) {
-               if(Publicacion_Actual.keySet().toArray()[i].toString().equals("Contenido")){
-                    temp.setContenido((Publicacion_Actual.values().toArray()[i].toString()));
+               if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Contenido")){
+                   System.out.println("::"+Publicacion_Actual.values().toArray()[j].toString());
+                    temp.setContenido((Publicacion_Actual.values().toArray()[j].toString()));
                 }
-                if(Publicacion_Actual.keySet().toArray()[i].toString().equals("Email")){
-                    temp.setEmail(Publicacion_Actual.values().toArray()[i].toString());
+                if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Email")){
+                    System.out.println("::"+Publicacion_Actual.values().toArray()[j].toString());
+                    temp.setEmail(Publicacion_Actual.values().toArray()[j].toString());
                 }
-                if(Publicacion_Actual.keySet().toArray()[i].toString().equals("nombreComment")){
-                    temp.setNombreComment(Publicacion_Actual.values().toArray()[i].toString());
+                if(Publicacion_Actual.keySet().toArray()[j].toString().equals("nombreComment")){
+                    System.out.println("::"+Publicacion_Actual.values().toArray()[j].toString());
+                    temp.setNombreComment(Publicacion_Actual.values().toArray()[j].toString());
                 }
            }
+           lista.add(temp);
+           System.out.println("ls:"+lista.size());
            /*lista.add(new Comentarios(Id_Comentario,id_Cuenta
                    ,pub.getId_publicaciones(),
                    Publicacion_Actual.values().toArray()[1].toString(),

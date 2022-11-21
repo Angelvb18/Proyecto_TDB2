@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -67,6 +68,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         b_FlechaDer = new javax.swing.JButton();
         b_FlechaIzq = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jla_caption = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmi_perfil = new javax.swing.JMenuItem();
@@ -213,6 +216,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
 
+        jl_comentarios.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jl_comentarios.setMinimumSize(new java.awt.Dimension(544, 159));
         jScrollPane2.setViewportView(jl_comentarios);
 
         jLabel10.setText("Persona");
@@ -225,8 +230,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 b_CrearPublicacionMouseClicked(evt);
             }
         });
-
-        jla_FotoPublicacion.setText("FOTO---------------------------------------------------------------------------------------------------------");
 
         jLabel13.setText("Comentarios");
 
@@ -251,6 +254,15 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jButton5.setText("jButton5");
 
+        jla_caption.setText("Pie de foto");
+
+        jButton3.setText("Comentar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         jMenu1.setText("Menu");
 
         jmi_perfil.setText("Ver perfil");
@@ -272,12 +284,22 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 MI_BuscarAmigosMouseClicked(evt);
             }
         });
+        MI_BuscarAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_BuscarAmigosActionPerformed(evt);
+            }
+        });
         jMenu1.add(MI_BuscarAmigos);
 
         jmi_solicitudes.setText("Solicitudes de Amistad");
         jmi_solicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmi_solicitudesMouseClicked(evt);
+            }
+        });
+        jmi_solicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_solicitudesActionPerformed(evt);
             }
         });
         jMenu1.add(jmi_solicitudes);
@@ -309,16 +331,25 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addGroup(jd_publicacionesLayout.createSequentialGroup()
                         .addComponent(b_FlechaIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(b_FlechaDer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jla_caption)
+                            .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                                .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(b_FlechaDer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_publicacionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
+                    .addGroup(jd_publicacionesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_publicacionesLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(371, 371, 371)
+                        .addComponent(jButton3)
+                        .addGap(66, 66, 66))))
         );
         jd_publicacionesLayout.setVerticalGroup(
             jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,10 +369,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addComponent(jla_FotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_FlechaDer)
                     .addComponent(b_FlechaIzq))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jla_caption)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(jd_publicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -728,9 +763,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jt_contra_registro.setText("");
         
         if (!r.validarCorreo(matriz[0][1])) {
-            r.Insertar_Registro("Cuenta:"+r.getNumerodeCuentas(),matriz);
             r.Agregar_Atributo_Valor_Registo( "Cuenta:"+r.getNumerodeCuentas(), "foto_perfil", "./Imagenes/user_icon-icons.com_57997.png");
             r.Agregar_Atributo_Valor_Registo( "Cuenta:"+r.getNumerodeCuentas(), "foto_portada", "./Imagenes/Portadas/Tagged.gif");
+            r.Insertar_Registro("Cuenta:"+r.getNumerodeCuentas(),matriz);
+            
             
             JOptionPane.showMessageDialog(this, "Cuenta creada");
         }else{
@@ -749,12 +785,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         if ( exists!= 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
             cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
-               
-            
-            
-            
+            cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
+            cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
             System.out.println("Cuenta Activa" + cuentaActiva.toString());
             
+            k=0;
+            cuentas= r.Obtenertodas_cuentas(0);
             cargarComboBox();
             CargarPerfilUsuarioActivo();
             jd_publicaciones.setLocationRelativeTo(this);
@@ -781,16 +817,35 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         String[] contenido = new String[2];
         contenido[0] = "";
         contenido[1] = JOptionPane.showInputDialog("Que estas haciendo?");
-        if (JOptionPane.showConfirmDialog(this, "Desea Agregar Imagen?") == 1) {
-            //Agregar la foto url
+        if (JOptionPane.showConfirmDialog(this, "Desea Agregar Imagen?") == 0) {
+            control_PedirCosas = "Imagenpublic";
+             ModelosComboBoxSelector(control_PedirCosas);
+            jd_ChosserSelector.setLocationRelativeTo(this);
+            jd_ChosserSelector.pack();
+            jd_ChosserSelector.setVisible(true);
+            contenido[0]=catcher;
         }
-        Publicaciones publicacion = new Publicaciones(cuentaActiva.getId_cuenta(), 0, contenido, "20/11/2022");
+        Publicaciones publicacion = new Publicaciones(cuentaActiva.getId_cuenta(), Integer.parseInt(r.getNumerodePublicaciones()), contenido[1],contenido[0], "20/11/2022");
+        cuentaActiva.publicaciones.add(publicacion);
+        String [][] key_vaule= new String [3][2];
+        key_vaule[0][0]="Foto";
+        key_vaule[0][1]=contenido[0];
+        key_vaule[1][0]="Contenido";
+        key_vaule[1][1]=contenido[1];
+        key_vaule[2][0]="fecha";
+        key_vaule[2][1]= cuentaActiva.getEmail();
+        r.Insertar_Registro("Publicacion:"+r.getNumerodePublicaciones(),key_vaule);
+        r.Agregar_a_Lista_de_Registro("Publicaciones:"+cuentaActiva.getId_cuenta(), "Publicacion:"+r.getNumerodePublicaciones());
+        CargarCuentas();
     }//GEN-LAST:event_b_CrearPublicacionMouseClicked
 
     private void MI_BuscarAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MI_BuscarAmigosMouseClicked
         String nombreAmigo = JOptionPane.showInputDialog("Ingrese el nombre de una persona: ");
-        if (true) {
-            // ingresar validacion de si se encontro una persona
+        int user = r.buscarCorreo(nombreAmigo);
+        if ( user!= 0) {
+            r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:"+cuentaActiva.getId_cuenta() );
+            
+            
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró la persona");
         }
@@ -807,21 +862,30 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private void b_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ActualizarMouseClicked
         //Actualizar Publicaciones
         //Por ahora solo texto
+        for (int i = 0; i < cuentas.size(); i++) {
+            String[] busqueda = cb_Publicacion.getItemAt(cb_Publicacion.getSelectedIndex()).split(":");
+            if(cuentas.get(i).getNombre().equals(busqueda[0])){
+                cuentaVista = cuentas.get(i);
+            }
+        }
+        int index = cb_Publicacion.getSelectedIndex();
+        jla_caption.setText(cb_Publicacion.getItemAt(cb_Publicacion.getSelectedIndex()));
+        jla_FotoPublicacion.setIcon(new ImageIcon(cuentaVista.getPublicaciones().get(index).getFoto()));
+        /*
         String publica = cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getNombre() + ": " +
                 cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getPublicaciones().get(cb_Publicacion.getSelectedIndex()).toString();
         jla_FotoPublicacion.setText(publica);
         //Actualizar Comentarios
+        */
         DefaultListModel<String> model = new DefaultListModel<>();
-
-        for (int i = 0; i < cuentaActiva.getPublicaciones().size()-1; i++) {
-            String comentario = "";
-            for (int j = 0; j < cuentaActiva.getPublicaciones().get(i).getComentarios().size()-1; j++) {
-                comentario =  cuentaActiva.getPublicaciones().get(i).getComentarios().get(j).getNombreComment() + cuentaActiva.getPublicaciones().get(i).getComentarios().get(j).getContenido() ;
-            }
-            model.addElement(comentario);
-           
-        }
         jl_comentarios.setModel(model);
+         String comentario = "";
+        for (int j = 0; j < cuentaVista.getPublicaciones().get(index).getComentarios().size(); j++) {
+                comentario =  cuentaVista.getPublicaciones().get(index).getComentarios().get(j).getNombreComment() +": "+ cuentaVista.getPublicaciones().get(index).getComentarios().get(j).getContenido() ;
+                model.addElement(comentario);
+            }
+        jl_comentarios.setModel(model);
+        
     }//GEN-LAST:event_b_ActualizarMouseClicked
 
     private void jb_edit_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_edit_nombreActionPerformed
@@ -936,6 +1000,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_portada", catcher);
                 cuentaActiva.setFoto_Portada(catcher);
                 CargarPerfilUsuarioActivo();
+            }else{
+                if (control_PedirCosas.equals("Imagenpublic")) {
+                    catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+                    jla_FotoPublicacion.setIcon(new ImageIcon(catcher));
+                    
+                }
             }
         }
         //jd_ChosserSelector.dispose();
@@ -967,9 +1037,52 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
     private void jb_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_aceptarMouseClicked
         cuentaActiva.getAmigos().add(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex()));
+        
+        r.Agregar_a_Lista_de_Registro("Amigos:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex())).id_cuenta );
+        r.Agregar_a_Lista_de_Registro("Amigos:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex()).id_cuenta), "Cuenta:"+cuentaActiva.id_cuenta);
         cuentaActiva.getSolicitudes().remove(cb_solicitudes.getSelectedIndex());
         cargarComboBox();
     }//GEN-LAST:event_jb_aceptarMouseClicked
+
+    private void MI_BuscarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_BuscarAmigosActionPerformed
+        // TODO add your handling code here:
+        String nombreAmigo = JOptionPane.showInputDialog("Ingrese el nombre de una persona: ");
+        int user = r.buscarCorreo(nombreAmigo);
+        if ( user!= 0) {
+            r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:"+cuentaActiva.getId_cuenta() );
+            
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró la persona");
+        }
+    }//GEN-LAST:event_MI_BuscarAmigosActionPerformed
+
+    private void jmi_solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_solicitudesActionPerformed
+        // TODO add your handling code here:
+        jd_solicitudes.setLocationRelativeTo(this);
+        jd_solicitudes.pack();
+        jd_solicitudes.setVisible(true);
+    }//GEN-LAST:event_jmi_solicitudesActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        String comentario = JOptionPane.showInputDialog("Que quieres decir?");
+        Comentarios objComentario = new Comentarios((Integer.parseInt(r.getNumerodeComentarios())),
+                cuentaVista.getId_cuenta(),
+                cuentaVista.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getId_publicaciones(),
+                 cuentaVista.getEmail(), 
+                comentario, 
+                cuentaActiva.getNombre());
+        cuentaVista.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getComentarios().add(objComentario);
+        String [][] key_value = new String[3][2];
+        key_value[0][0]="Contenido";
+        key_value[0][1]= objComentario.getContenido();
+        key_value[1][0]="Email";
+        key_value[1][1]= objComentario.getEmail();
+        key_value[2][0]="nombreComment";
+        key_value[2][1]=objComentario.getNombreComment();
+        r.Insertar_Registro("Comentario:"+r.getNumerodeComentarios(), key_value);
+        r.Agregar_a_Lista_de_Registro("Comentarios:"+objComentario.getId_publicacion(), "Comentario:"+objComentario.getId_Comentario());
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1005,6 +1118,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void CargarCuentas(){
+        System.out.println("Cargando Cuentas");
+        cuentas= r.Obtenertodas_cuentas(0);
+        System.out.println("Cuentas Cargadas");
+        //k=cb_Personas.getSelectedIndex();
+        cargarComboBox();
+    }
     public void CargarPerfilUsuarioActivo(){
         jb_edit_portada.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
         jb_edit_foto.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
@@ -1031,25 +1152,29 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jlabel_Edad_perfil.setText("Edad: " +(a));
     }
     public void cargarComboBox(){
-        DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
-        DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
+        
+            System.out.println("Cargando Combobox");
+            DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
+            DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
+        /*
         DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
-
         for (int i = 0; i < cuentaActiva.getSolicitudes().size()-1; i++) {
             solicitudes.addElement(cuentaActiva.getSolicitudes().get(i).getNombre());
         }
-        for (int i = 0; i < cuentaActiva.getAmigos().size()-1; i++) {
-            personas.addElement(cuentaActiva.getAmigos().get(i).getNombre());
-            for (int j = 0; j < cuentaActiva.getAmigos().get(i).getPublicaciones().size(); j++) {
-                //por ahora solo se imprime el texto, no la foto
-                publicaciones.addElement(cuentaActiva.getAmigos().get(i).getPublicaciones().get(j).toString());
+*/          
+        System.out.println("k: " +k);
+            for (int i = 0; i < cuentas.size(); i++) {
+                personas.addElement(cuentas.get(i).getNombre());
+                for (int j = 0; j < cuentas.get(i).getPublicaciones().size(); j++) {
+                    //por ahora solo se imprime el texto, no la foto
+                    publicaciones.addElement(cuentas.get(i).getNombre() + ": " + cuentas.get(i).getPublicaciones().get(j).toString());
+                }
             }
-        }
         
-        cb_Personas.setModel(personas);
-        cb_Publicacion.setModel(publicaciones);
-        cb_solicitudes.setModel(solicitudes);
-            
+            cb_Personas.setModel(personas);
+            cb_Publicacion.setModel(publicaciones);
+        //cb_solicitudes.setModel(solicitudes);
+        System.out.println("Combobox Cargado");
     }
     public void ModelosComboBoxSelector(String bandera){
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1080,7 +1205,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             System.out.println(catcher);    
             jl_fotoselector.setIcon(new ImageIcon(catcher));
         }else{
-            if (bandera.equals("Portada")) {
+            if (bandera.equals("Portada") ||bandera.equals("Imagenpublic") ) {
                 jl_fotoselector.setAlignmentX(40);
                 jl_fotoselector.setAlignmentY(10);
                 jc_Selectorporfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
@@ -1111,6 +1236,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_solicitudes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -1153,6 +1279,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_comentarios;
     private javax.swing.JLabel jl_fotoselector;
     private javax.swing.JLabel jla_FotoPublicacion;
+    private javax.swing.JLabel jla_caption;
     private javax.swing.JLabel jlabel_Apellido_perfil;
     private javax.swing.JLabel jlabel_Edad_perfil;
     private javax.swing.JLabel jlabel_Email_perfil;
@@ -1173,4 +1300,7 @@ RedisConfig r = new RedisConfig();
 Cuenta cuentaActiva;
 String control_PedirCosas="";
 String catcher = "";
+    ArrayList<Cuenta>cuentas;
+    int k = 1;
+    Cuenta cuentaVista;
 }

@@ -22,10 +22,27 @@ public class Cuenta {
     ArrayList<Cuenta>solicitudes = new ArrayList();
     String Foto_Perfil;
     String Foto_Portada;
-
+    
     public Cuenta() {
     }
-
+    public void ObtenerAmigos(RedisConfig conecxion , int id){
+       
+       Object[] lista  = conecxion.Obtener_Lista_de_Registro("Amigos:"+id);
+       System.out.println("s"+lista.length);
+       for (int i = 0; i < lista.length; i++) {
+            System.out.println("dsa");
+            amigos.add(conecxion.Obtener_Una_Cuenta(lista[i].toString()));
+        }
+    }
+    public void ObtenerSolicitudes(RedisConfig conecxion , int id){
+       
+        Object[] lista  = conecxion.Obtener_Lista_de_Registro("Solicitudes:"+id);
+        System.out.println("s"+lista.length);
+       for (int i = 0; i < lista.length; i++) {
+           System.out.println("dsa"); 
+           solicitudes.add(conecxion.Obtener_Una_Cuenta(lista[i].toString()));
+        }
+    }
     public Cuenta(int id_cuenta, String email, String nombre, String apellido, String fecha, String Foto_Perfil, String Foto_Portada) {
         this.id_cuenta = id_cuenta;
         this.email = email;
