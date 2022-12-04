@@ -29,7 +29,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
      * Creates new form Proyecto_TDB2
      */
     public Proyecto_TDB2() {
+        
         initComponents();
+        
     }
 
     /**
@@ -703,7 +705,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         bg.add(psw_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/logo.png"))); // NOI18N
+        logo.setIcon(new ImageIcon("./Imagenes/logo.png"));
         bg.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 290, 140));
 
         logoname.setBackground(new java.awt.Color(255, 255, 255));
@@ -718,11 +720,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         bg.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         citybg.setBackground(new java.awt.Color(0, 134, 190));
-        citybg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/city.png"))); // NOI18N
+        citybg.setIcon(new ImageIcon("./Imagenes/city.png"));
         bg.add(citybg, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 500));
 
         favicon.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        favicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/favicon.png"))); // NOI18N
+        favicon.setIcon(new ImageIcon("./Imagenes/favicon.png"));
         favicon.setText("LOGIN");
         bg.add(favicon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
@@ -783,14 +785,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        jt_contra_login.setBackground(new java.awt.Color(255, 255, 255));
         jt_contra_login.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         jt_contra_login.setForeground(new java.awt.Color(204, 204, 204));
         jt_contra_login.setText("INGRESE SU CONTRASEÑA");
         jt_contra_login.setBorder(null);
         bg.add(jt_contra_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 390, 30));
 
-        jt_email_login.setBackground(new java.awt.Color(255, 255, 255));
         jt_email_login.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         jt_email_login.setForeground(new java.awt.Color(204, 204, 204));
         jt_email_login.setText("INGRESE SU E-MAIL");
@@ -1185,8 +1185,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         if ( exists!= 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
             cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
-            cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
-            cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
+           // cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
+            //cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
             System.out.println("Cuenta Activa" + cuentaActiva.toString());
             
             k=0;
@@ -1262,10 +1262,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Proyecto_TDB2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Proyecto_TDB2().setVisible(true);
             }
         });

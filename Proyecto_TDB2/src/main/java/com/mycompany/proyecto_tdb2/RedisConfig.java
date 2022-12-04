@@ -113,7 +113,47 @@ public class RedisConfig {
         Cuenta temp = new Cuenta();
         String [] parseado_key = key.split(":");
         Map <String ,String> cuenta = Obtener_Registro(key);
-        System.out.println(":fdsfsdfdf"+key);
+        //System.out.println(":fdsfsdfdf"+key);
+        temp.setId_cuenta(Integer.parseInt(parseado_key[1]));
+        
+        for (int j = 0; j < cuenta.values().toArray().length; j++) {
+            if(cuenta.keySet().toArray()[j].toString().equals("Email")){
+                temp.setEmail(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Nombre")){
+                temp.setNombre(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Apellidos")){
+                temp.setApellido(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Password")){
+
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("Date")){
+                temp.setFecha(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("foto_perfil")){
+                temp.setFoto_Perfil(cuenta.values().toArray()[j].toString());
+            }
+            if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
+                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+            }
+            
+           
+            
+        }
+         temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
+         temp.setAmigos(Lista_solicitada("Amigos:"+parseado_key[1]));
+         temp.setSolicitudes(Lista_solicitada("Solicitudes:"+parseado_key[1]));
+       return temp;
+   }
+   
+   
+   public Cuenta Obtener_Una_Cuenta_simple(String key){
+        Cuenta temp = new Cuenta();
+        String [] parseado_key = key.split(":");
+        Map <String ,String> cuenta = Obtener_Registro(key);
+       // System.out.println(":fdsfsdfdf"+key);
         temp.setId_cuenta(Integer.parseInt(parseado_key[1]));
         
         for (int j = 0; j < cuenta.values().toArray().length; j++) {
@@ -238,6 +278,10 @@ public class RedisConfig {
         return listas;
     }
     
+    
+    
+    
+    
     public ArrayList<Publicaciones> Obtener_Publicaciones_deUsuario(int Usuario_Designado){
         ArrayList<Publicaciones> lista = new ArrayList(); 
         
@@ -278,9 +322,11 @@ public class RedisConfig {
     
     public ArrayList<Cuenta> Lista_solicitada(String key){
         ArrayList<Cuenta> lista = new ArrayList();
-        Object[]lista_requerida = Obtener_Lista_de_Registro(key);
-        for (int i = 0; i < lista_requerida.length; i++) {
-            lista.add(Obtener_Una_Cuenta(lista_requerida.toString()));
+        Object[] lista_Obtenida  = Obtener_Lista_de_Registro(key);
+       
+       for (int i = 0; i < lista_Obtenida.length; i++) {
+           
+            lista.add(Obtener_Una_Cuenta_simple(lista_Obtenida[i].toString()));
         }
         return lista;
     }
@@ -290,20 +336,20 @@ public class RedisConfig {
        Object[]lista_Comentarios = conection.smembers("Comentarios:"+pub.getId_publicaciones()).toArray();
 //       
        for (int i = 0; i < lista_Comentarios.length; i++) {
-           System.out.println("Aquis;"+lista_Comentarios[i].toString());
+          // System.out.println("Aquis;"+lista_Comentarios[i].toString());
            String[] parseado = lista_Comentarios[i].toString().split(":") ;
            int Id_Comentario = Integer.parseInt(parseado[1]);
-           System.out.println("Aqui:"+parseado[0]);
-           System.out.println("Aqui2:"+lista_Comentarios[i].toString());
+          // System.out.println("Aqui:"+parseado[0]);
+         //  System.out.println("Aqui2:"+lista_Comentarios[i].toString());
            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Comentarios[i].toString());
-           System.out.println(Publicacion_Actual);
+          // System.out.println(Publicacion_Actual);
            
           // int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[1].toString());
            Comentarios temp = new Comentarios();
          //  temp.setId_Cuenta(id_Cuenta);
            temp.setId_publicacion(pub.getId_publicaciones());
            temp.setId_Comentario(Id_Comentario);
-           System.out.println(":x:"+Publicacion_Actual.keySet());
+        //   System.out.println(":x:"+Publicacion_Actual.keySet());
            for (int j = 0; j < Publicacion_Actual.values().toArray().length  ; j++) {
                if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Contenido")){
                    System.out.println("::"+Publicacion_Actual.values().toArray()[j].toString());
@@ -319,7 +365,7 @@ public class RedisConfig {
                 }
            }
            lista.add(temp);
-           System.out.println("ls:"+lista.size());
+         //  System.out.println("ls:"+lista.size());
            /*lista.add(new Comentarios(Id_Comentario,id_Cuenta
                    ,pub.getId_publicaciones(),
                    Publicacion_Actual.values().toArray()[1].toString(),

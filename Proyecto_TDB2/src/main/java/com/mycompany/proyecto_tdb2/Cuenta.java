@@ -154,6 +154,14 @@ public class Cuenta {
             salida += i+"*"+publicaciones.get(i).toString()+"\n";
             
         }
+        salida += "         Amigos:\n";
+        for (int i = 0; i < amigos.size(); i++) {
+            salida += "     "+i+"**"+amigos.get(i).getNombre() +" "+ amigos.get(i).getEmail()+"\n";
+        }
+        salida += "         Solicitudes:\n";
+        for (int i = 0; i < solicitudes.size(); i++) {
+            salida += "     "+i+"**"+solicitudes.get(i).getNombre() +" "+ solicitudes.get(i).getEmail()+"\n";
+        }
         return salida;  
     }
     
