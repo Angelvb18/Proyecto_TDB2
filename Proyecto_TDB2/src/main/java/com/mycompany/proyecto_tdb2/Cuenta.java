@@ -157,6 +157,9 @@ public class Cuenta {
         return salida;  
     }
     
-    
+    public void agregar_solicitud (Cuenta destinatario) {
+        solicitudes.add(destinatario);
+        
+    }
     
 }

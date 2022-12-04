@@ -1058,8 +1058,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         String nombreAmigo = JOptionPane.showInputDialog("Ingrese el nombre de una persona: ");
         int user = r.buscarCorreo(nombreAmigo);
         if ( user!= 0) {
-            r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:"+cuentaActiva.getId_cuenta() );
-            
+            //r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:"+r.Obtener_Una_Cuenta("Cuenta:" + user).getId_cuenta() );
+            System.out.println("usuario:" + user);
+            cuentas.get(user - 1).agregar_solicitud(cuentaActiva);
             
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró la persona");
@@ -1165,6 +1166,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             System.out.println("Cargando Combobox");
             DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
             DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
+            DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
         /*
         DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
         for (int i = 0; i < cuentaActiva.getSolicitudes().size()-1; i++) {
@@ -1180,10 +1182,15 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 publicaciones.addElement(cuentaActiva.getNombre() + ": " + cuentaActiva.getPublicaciones().get(j).toString());
             }
             
+            for (int x = 0; x < cuentaActiva.getSolicitudes().size(); x++) {
+                //por ahora solo se imprime el texto, no la foto
+                solicitudes.addElement(cuentaActiva.getSolicitudes().get(x).getNombre());
+            }
+            
         
             cb_Personas.setModel(personas);
             cb_Publicacion.setModel(publicaciones);
-        //cb_solicitudes.setModel(solicitudes);
+            cb_solicitudes.setModel(solicitudes);
         System.out.println("Combobox Cargado");
     }
     public void ModelosComboBoxSelector(String bandera){
