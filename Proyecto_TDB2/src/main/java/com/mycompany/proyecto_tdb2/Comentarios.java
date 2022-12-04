@@ -77,4 +77,10 @@ public class Comentarios {
 
     public Comentarios() {
     }
+
+    @Override
+    public String toString() {
+        return "            Comentarios{" + "id_Comentario=" + id_Comentario + ", id_Cuenta=" + id_Cuenta + ", id_publicacion=" + id_publicacion + ", email=" + email + ", contenido=" + contenido + ", nombreComment=" + nombreComment + '}';
+    }
+    
 }

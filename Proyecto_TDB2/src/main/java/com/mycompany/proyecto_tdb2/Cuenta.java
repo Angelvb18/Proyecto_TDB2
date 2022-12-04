@@ -107,6 +107,7 @@ public class Cuenta {
     }
 
     public void setPublicaciones(ArrayList<Publicaciones> publicaciones) {
+        System.out.println("Tamañolist_publicaciones:"+publicaciones.size());
         this.publicaciones = publicaciones;
     }
 
@@ -146,7 +147,14 @@ public class Cuenta {
     
     @Override
     public String toString() {
-        return "Cuenta{" + "id_cuenta=" + id_cuenta + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha + '}';
+        String salida = "id_cuenta=" + id_cuenta + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha+"\n";
+        System.out.println("s:"+ publicaciones.size());
+        for (int i = 0; i < publicaciones.size(); i++) {
+            
+            salida += i+"*"+publicaciones.get(i).toString()+"\n";
+            
+        }
+        return salida;  
     }
     
     

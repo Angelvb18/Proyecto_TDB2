@@ -85,6 +85,18 @@ public class Publicaciones {
     @Override
     public String toString() {
         
+        String Salida = "   /*"+id_cuenta +" "+ id_publicaciones+ " "+ contenido +" "+foto + " "+ fecha+ "\n";
+        
+        for (int i = 0; i < Comentarios.size(); i++) {
+            Salida += i+"-"+Comentarios.get(i).toString()+"\n";
+        }
+        
+        return Salida;
+        
+    }
+    /*@Override
+    public String toString() {
+        
         //Por ahora solo imprimer el texto, no la foto
         if(contenido == null){
             return "Fallo";
@@ -92,7 +104,7 @@ public class Publicaciones {
             return contenido;
         }
         
-    }
+    }*/
 
     public Publicaciones() {
     }

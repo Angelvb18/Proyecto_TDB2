@@ -26,7 +26,7 @@ public class RedisConfig {
            conection = new Jedis("localhost");
            System.out.println("Connection susccesful");
            System.out.println("Severping: " +conection.ping());
-           //CrearBase();
+          //CrearBase();
            //conection.sadd("proveedores:1", "producto:3");
           //  System.out.println(conection.smembers("proveedores:1").toArray()[0]);
            /*conection.set("edad", "1");
@@ -139,10 +139,10 @@ public class RedisConfig {
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
             
-            temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
+           
             
         }
-
+         temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
        return temp;
    }
    
@@ -170,7 +170,7 @@ public class RedisConfig {
 	}
 	    
 	return sb.toString();
-}
+    }
     
     public boolean validarCorreo (String correo) {
         for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
@@ -227,9 +227,10 @@ public class RedisConfig {
                     if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
                         temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
                     }
-                    temp.setPublicaciones(Obtener_Publicaciones_deUsuario(i));
+                    
                     
                 }
+                temp.setPublicaciones(Obtener_Publicaciones_deUsuario(i));
                 listas.add(temp);
             }
         }
@@ -238,9 +239,10 @@ public class RedisConfig {
     }
     
     public ArrayList<Publicaciones> Obtener_Publicaciones_deUsuario(int Usuario_Designado){
-        ArrayList<Publicaciones> lista = new ArrayList();       
+        ArrayList<Publicaciones> lista = new ArrayList(); 
+        
         Object[]lista_Publicaciones = conection.smembers("Publicaciones:"+Usuario_Designado).toArray();
-        for (int i = 1; i < lista_Publicaciones.length-1; i++) {
+        for (int i = 0; i < lista_Publicaciones.length; i++) {
             String[] parseado = lista_Publicaciones[i].toString().split(":") ;
             int Id_publicacion = Integer.parseInt(parseado[1]);
             Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Publicaciones[i].toString());
@@ -288,15 +290,17 @@ public class RedisConfig {
        Object[]lista_Comentarios = conection.smembers("Comentarios:"+pub.getId_publicaciones()).toArray();
 //       
        for (int i = 0; i < lista_Comentarios.length; i++) {
-           System.out.println(";"+lista_Comentarios[i].toString());
+           System.out.println("Aquis;"+lista_Comentarios[i].toString());
            String[] parseado = lista_Comentarios[i].toString().split(":") ;
            int Id_Comentario = Integer.parseInt(parseado[1]);
            System.out.println("Aqui:"+parseado[0]);
-           System.out.println("Aqui:"+lista_Comentarios[i].toString());
+           System.out.println("Aqui2:"+lista_Comentarios[i].toString());
            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Comentarios[i].toString());
-           int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[1].toString());
+           System.out.println(Publicacion_Actual);
+           
+          // int id_Cuenta = Integer.parseInt(Publicacion_Actual.values().toArray()[1].toString());
            Comentarios temp = new Comentarios();
-           temp.setId_Cuenta(id_Cuenta);
+         //  temp.setId_Cuenta(id_Cuenta);
            temp.setId_publicacion(pub.getId_publicaciones());
            temp.setId_Comentario(Id_Comentario);
            System.out.println(":x:"+Publicacion_Actual.keySet());

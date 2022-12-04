@@ -676,6 +676,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Contraseña:");
 
+        jt_email_login.setText("manuelperez2@gmail.com");
+
+        jt_contra_login.setText("3456");
+
         btn_ingresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_ingresar.setText("Ingresar");
         btn_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -711,11 +715,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jt_email_login)
-                            .addComponent(jt_contra_login, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                            .addComponent(jt_contra_login)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(jLabel7)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -834,8 +838,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         key_vaule[1][1]=contenido[1];
         key_vaule[2][0]="fecha";
         key_vaule[2][1]= cuentaActiva.getEmail();
-        r.Insertar_Registro("Publicacion:"+r.getNumerodePublicaciones(),key_vaule);
-        r.Agregar_a_Lista_de_Registro("Publicaciones:"+cuentaActiva.getId_cuenta(), "Publicacion:"+r.getNumerodePublicaciones());
+        String Cantidad_Actual_Publicaciones = r.getNumerodePublicaciones();
+        r.Insertar_Registro("Publicacion:"+Cantidad_Actual_Publicaciones,key_vaule);
+        r.Agregar_a_Lista_de_Registro("Publicaciones:"+cuentaActiva.getId_cuenta(), "Publicacion:"+Cantidad_Actual_Publicaciones);
         CargarCuentas();
     }//GEN-LAST:event_b_CrearPublicacionMouseClicked
 
@@ -860,6 +865,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_b_FlechaIzqMouseClicked
 
     private void b_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_ActualizarMouseClicked
+        for (int i = 0; i < cuentas.size(); i++) {
+            System.out.println(i+"-"+cuentas.get(i).toString()+"\n");
+        }
         //Actualizar Publicaciones
         //Por ahora solo texto
         for (int i = 0; i < cuentas.size(); i++) {
@@ -869,8 +877,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         }
         int index = cb_Publicacion.getSelectedIndex();
+        System.out.println("a:"+ index);
         jla_caption.setText(cb_Publicacion.getItemAt(cb_Publicacion.getSelectedIndex()));
-        jla_FotoPublicacion.setIcon(new ImageIcon(cuentaVista.getPublicaciones().get(index).getFoto()));
+        jla_FotoPublicacion.setIcon(new ImageIcon(cuentaActiva.getPublicaciones().get(index).getFoto()));
         /*
         String publica = cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getNombre() + ": " +
                 cuentaActiva.getAmigos().get(cb_Personas.getSelectedIndex()).getPublicaciones().get(cb_Publicacion.getSelectedIndex()).toString();
@@ -880,8 +889,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         jl_comentarios.setModel(model);
          String comentario = "";
-        for (int j = 0; j < cuentaVista.getPublicaciones().get(index).getComentarios().size(); j++) {
-                comentario =  cuentaVista.getPublicaciones().get(index).getComentarios().get(j).getNombreComment() +": "+ cuentaVista.getPublicaciones().get(index).getComentarios().get(j).getContenido() ;
+        for (int j = 0; j < cuentaActiva.getPublicaciones().get(index).getComentarios().size(); j++) {
+                comentario =  cuentaActiva.getPublicaciones().get(index).getComentarios().get(j).getNombreComment() +": "+ cuentaActiva.getPublicaciones().get(index).getComentarios().get(j).getContenido() ;
                 model.addElement(comentario);
             }
         jl_comentarios.setModel(model);
@@ -1067,12 +1076,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         String comentario = JOptionPane.showInputDialog("Que quieres decir?");
         Comentarios objComentario = new Comentarios((Integer.parseInt(r.getNumerodeComentarios())),
-                cuentaVista.getId_cuenta(),
-                cuentaVista.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getId_publicaciones(),
-                 cuentaVista.getEmail(), 
+                cuentaActiva.getId_cuenta(),
+                cuentaActiva.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getId_publicaciones(),
+                 cuentaActiva.getEmail(), 
                 comentario, 
                 cuentaActiva.getNombre());
-        cuentaVista.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getComentarios().add(objComentario);
+        cuentaActiva.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getComentarios().add(objComentario);
         String [][] key_value = new String[3][2];
         key_value[0][0]="Contenido";
         key_value[0][1]= objComentario.getContenido();
@@ -1124,7 +1133,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         cuentas= r.Obtenertodas_cuentas(0);
         System.out.println("Cuentas Cargadas");
         //k=cb_Personas.getSelectedIndex();
-        cargarComboBox();
+        
     }
     public void CargarPerfilUsuarioActivo(){
         jb_edit_portada.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
@@ -1165,11 +1174,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         System.out.println("k: " +k);
             for (int i = 0; i < cuentas.size(); i++) {
                 personas.addElement(cuentas.get(i).getNombre());
-                for (int j = 0; j < cuentas.get(i).getPublicaciones().size(); j++) {
-                    //por ahora solo se imprime el texto, no la foto
-                    publicaciones.addElement(cuentas.get(i).getNombre() + ": " + cuentas.get(i).getPublicaciones().get(j).toString());
-                }
             }
+            for (int j = 0; j < cuentaActiva.getPublicaciones().size(); j++) {
+                //por ahora solo se imprime el texto, no la foto
+                publicaciones.addElement(cuentaActiva.getNombre() + ": " + cuentaActiva.getPublicaciones().get(j).toString());
+            }
+            
         
             cb_Personas.setModel(personas);
             cb_Publicacion.setModel(publicaciones);
