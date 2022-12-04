@@ -1,4 +1,4 @@
-//e
+//se
 //es clave valor 
 ./redis-server
 ./redis-cli
