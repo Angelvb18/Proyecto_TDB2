@@ -1,5 +1,5 @@
 
-es clave valor 
+//es clave valor 
 ./redis-server
 ./redis-cli
 https://redis.io/docs/data-types/lists/
