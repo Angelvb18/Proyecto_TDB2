@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto_tdb2;
 
+import java.awt.Color;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -105,13 +106,25 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         cb_solicitudes = new javax.swing.JComboBox<>();
         jb_aceptar = new javax.swing.JButton();
         jb_rechazar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jt_email_login = new javax.swing.JTextField();
+        Principal = new javax.swing.JFrame();
+        bg = new javax.swing.JPanel();
+        psw_txt = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        logoname = new javax.swing.JLabel();
+        email_txt = new javax.swing.JLabel();
+        citybg = new javax.swing.JLabel();
+        favicon = new javax.swing.JLabel();
+        header = new javax.swing.JPanel();
+        exitBtn = new javax.swing.JPanel();
+        exitTxt = new javax.swing.JLabel();
         jt_contra_login = new javax.swing.JTextField();
-        btn_ingresar = new javax.swing.JButton();
-        btn_registro = new javax.swing.JButton();
+        jt_email_login = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        pn_Ingresar = new javax.swing.JPanel();
+        ingresar_txt = new javax.swing.JLabel();
+        pn_registrar = new javax.swing.JPanel();
+        registar_txt = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Registro");
@@ -665,80 +678,184 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        javax.swing.GroupLayout PrincipalLayout = new javax.swing.GroupLayout(Principal.getContentPane());
+        Principal.getContentPane().setLayout(PrincipalLayout);
+        PrincipalLayout.setHorizontalGroup(
+            PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        PrincipalLayout.setVerticalGroup(
+            PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setText("Login");
+        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Email:");
+        psw_txt.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        psw_txt.setText("CONTRASEÑA:");
+        bg.add(psw_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Contraseña:");
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/logo.png"))); // NOI18N
+        bg.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 290, 140));
 
-        jt_email_login.setText("manuelperez2@gmail.com");
+        logoname.setBackground(new java.awt.Color(255, 255, 255));
+        logoname.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        logoname.setForeground(new java.awt.Color(255, 255, 255));
+        logoname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoname.setText("CHISME-CITY");
+        bg.add(logoname, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 290, 20));
 
-        jt_contra_login.setText("3456");
+        email_txt.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        email_txt.setText("E-MAIL:");
+        bg.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        btn_ingresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_ingresar.setText("Ingresar");
-        btn_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_ingresarMouseClicked(evt);
+        citybg.setBackground(new java.awt.Color(0, 134, 190));
+        citybg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/city.png"))); // NOI18N
+        bg.add(citybg, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 500));
+
+        favicon.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        favicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/favicon.png"))); // NOI18N
+        favicon.setText("LOGIN");
+        bg.add(favicon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+
+        header.setBackground(new java.awt.Color(255, 255, 255));
+        header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headerMouseDragged(evt);
+            }
+        });
+        header.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headerMousePressed(evt);
             }
         });
 
-        btn_registro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_registro.setText("Registrar");
-        btn_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+        exitBtn.setBackground(new java.awt.Color(255, 255, 255));
+
+        exitTxt.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitTxt.setText("X");
+        exitTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exitTxt.setPreferredSize(new java.awt.Dimension(40, 40));
+        exitTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_registroMouseClicked(evt);
+                exitTxtMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitTxtMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitTxtMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_registro))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jt_email_login)
-                            .addComponent(jt_contra_login)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel7)))
-                .addContainerGap(11, Short.MAX_VALUE))
+        javax.swing.GroupLayout exitBtnLayout = new javax.swing.GroupLayout(exitBtn);
+        exitBtn.setLayout(exitBtnLayout);
+        exitBtnLayout.setHorizontalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jt_email_login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jt_contra_login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ingresar)
-                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        exitBtnLayout.setVerticalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 760, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+
+        jt_contra_login.setBackground(new java.awt.Color(255, 255, 255));
+        jt_contra_login.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jt_contra_login.setForeground(new java.awt.Color(204, 204, 204));
+        jt_contra_login.setText("INGRESE SU CONTRASEÑA");
+        jt_contra_login.setBorder(null);
+        bg.add(jt_contra_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 390, 30));
+
+        jt_email_login.setBackground(new java.awt.Color(255, 255, 255));
+        jt_email_login.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jt_email_login.setForeground(new java.awt.Color(204, 204, 204));
+        jt_email_login.setText("INGRESE SU E-MAIL");
+        jt_email_login.setBorder(null);
+        bg.add(jt_email_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 390, 30));
+        bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 390, 10));
+        bg.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 390, 20));
+
+        pn_Ingresar.setBackground(new java.awt.Color(0, 134, 190));
+
+        ingresar_txt.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        ingresar_txt.setForeground(new java.awt.Color(255, 255, 255));
+        ingresar_txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ingresar_txt.setText("INGRESAR");
+        ingresar_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ingresar_txtMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pn_IngresarLayout = new javax.swing.GroupLayout(pn_Ingresar);
+        pn_Ingresar.setLayout(pn_IngresarLayout);
+        pn_IngresarLayout.setHorizontalGroup(
+            pn_IngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_IngresarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(ingresar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pn_IngresarLayout.setVerticalGroup(
+            pn_IngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_IngresarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(ingresar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        bg.add(pn_Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 130, 40));
+
+        pn_registrar.setBackground(new java.awt.Color(0, 134, 190));
+
+        registar_txt.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        registar_txt.setForeground(new java.awt.Color(255, 255, 255));
+        registar_txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        registar_txt.setText("REGISTRAR");
+        registar_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registar_txtMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pn_registrarLayout = new javax.swing.GroupLayout(pn_registrar);
+        pn_registrar.setLayout(pn_registrarLayout);
+        pn_registrarLayout.setHorizontalGroup(
+            pn_registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(registar_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        );
+        pn_registrarLayout.setVerticalGroup(
+            pn_registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(registar_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        bg.add(pn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -777,37 +894,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Correo ya en uso, utilice otro");
         }
     }//GEN-LAST:event_btn_registrarMouseClicked
-
-    private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
-        jd_registro.setLocationRelativeTo(this);
-        jd_registro.setVisible(true);
-        jd_registro.pack();
-    }//GEN-LAST:event_btn_registroMouseClicked
-
-    private void btn_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseClicked
-        int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
-        if ( exists!= 0) {
-            JOptionPane.showMessageDialog(this, "Cuenta encontrada");
-            cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
-            cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
-            cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
-            System.out.println("Cuenta Activa" + cuentaActiva.toString());
-            
-            k=0;
-            cuentas= r.Obtenertodas_cuentas(0);
-            cargarComboBox();
-            CargarPerfilUsuarioActivo();
-            jd_publicaciones.setLocationRelativeTo(this);
-            jd_publicaciones.setVisible(true);
-            jd_publicaciones.pack();
-            
-            jt_email_login.setText("");
-            jt_contra_login.setText("");
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
-        }
-    }//GEN-LAST:event_btn_ingresarMouseClicked
 
     private void jmi_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_perfilMouseClicked
         
@@ -1094,6 +1180,62 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         r.Agregar_a_Lista_de_Registro("Comentarios:"+objComentario.getId_publicacion(), "Comentario:"+objComentario.getId_Comentario());
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void ingresar_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresar_txtMouseClicked
+        int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
+        if ( exists!= 0) {
+            JOptionPane.showMessageDialog(this, "Cuenta encontrada");
+            cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
+            cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
+            cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
+            System.out.println("Cuenta Activa" + cuentaActiva.toString());
+            
+            k=0;
+            cuentas= r.Obtenertodas_cuentas(0);
+            cargarComboBox();
+            CargarPerfilUsuarioActivo();
+            jd_publicaciones.setLocationRelativeTo(this);
+            jd_publicaciones.setVisible(true);
+            jd_publicaciones.pack();
+            
+            jt_email_login.setText("");
+            jt_contra_login.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
+        }
+    }//GEN-LAST:event_ingresar_txtMouseClicked
+
+    private void registar_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registar_txtMouseClicked
+        jd_registro.setLocationRelativeTo(this);
+        jd_registro.setVisible(true);
+        jd_registro.pack();
+    }//GEN-LAST:event_registar_txtMouseClicked
+
+    private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitTxtMouseClicked
+
+    private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
+        exitBtn.setBackground(Color.red);
+        exitTxt.setForeground(Color.white);
+    }//GEN-LAST:event_exitTxtMouseEntered
+
+    private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseExited
+        exitBtn.setBackground(Color.white);
+        exitTxt.setForeground(Color.black);
+    }//GEN-LAST:event_exitTxtMouseExited
+
+    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_headerMouseDragged
+
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_headerMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -1241,16 +1383,23 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MI_BuscarAmigos;
+    private javax.swing.JFrame Principal;
     private javax.swing.JButton b_Actualizar;
     private javax.swing.JButton b_CrearPublicacion;
     private javax.swing.JButton b_FlechaDer;
     private javax.swing.JButton b_FlechaIzq;
-    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JPanel bg;
     private javax.swing.JButton btn_registrar;
-    private javax.swing.JButton btn_registro;
     private javax.swing.JComboBox<String> cb_Personas;
     private javax.swing.JComboBox<String> cb_Publicacion;
     private javax.swing.JComboBox<String> cb_solicitudes;
+    private javax.swing.JLabel citybg;
+    private javax.swing.JLabel email_txt;
+    private javax.swing.JPanel exitBtn;
+    private javax.swing.JLabel exitTxt;
+    private javax.swing.JLabel favicon;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel ingresar_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1265,14 +1414,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jb_aceptar;
     private javax.swing.JButton jb_edit_apelllido;
@@ -1312,6 +1460,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JTextField jt_email;
     private javax.swing.JTextField jt_email_login;
     private javax.swing.JTextField jt_nombres;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel logoname;
+    private javax.swing.JPanel pn_Ingresar;
+    private javax.swing.JPanel pn_registrar;
+    private javax.swing.JLabel psw_txt;
+    private javax.swing.JLabel registar_txt;
     // End of variables declaration//GEN-END:variables
 RedisConfig r = new RedisConfig();
 Cuenta cuentaActiva;
@@ -1320,4 +1474,6 @@ String catcher = "";
     ArrayList<Cuenta>cuentas;
     int k = 1;
     Cuenta cuentaVista;
+int xMouse, yMouse;
 }
+
