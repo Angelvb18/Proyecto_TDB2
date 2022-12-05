@@ -652,6 +652,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         });
 
         jb_rechazar.setText("Rechazar");
+        jb_rechazar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_rechazarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_solicitudesLayout = new javax.swing.GroupLayout(jd_solicitudes.getContentPane());
         jd_solicitudes.getContentPane().setLayout(jd_solicitudesLayout);
@@ -824,7 +829,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             pn_IngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_IngresarLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(ingresar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(ingresar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1135,7 +1140,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         
         r.Agregar_a_Lista_de_Registro("Amigos:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex())).id_cuenta );
         r.Agregar_a_Lista_de_Registro("Amigos:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex()).id_cuenta), "Cuenta:"+cuentaActiva.id_cuenta);
-        cuentaActiva.getSolicitudes().remove(cb_solicitudes.getSelectedIndex());
+        r.Eliminar_de_Lista_de_Registro("Solicitudes:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex())).id_cuenta );
+        cuentaActiva.getSolicitudes().remove(cb_solicitudes.getSelectedIndex());       
         cargarComboBox();
     }//GEN-LAST:event_jb_aceptarMouseClicked
 
@@ -1144,12 +1150,18 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         String nombreAmigo = JOptionPane.showInputDialog("Ingrese el nombre de una persona: ");
         int user = r.buscarCorreo(nombreAmigo);
         if ( user!= 0) {
-            //r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:"+r.Obtener_Una_Cuenta("Cuenta:" + user).getId_cuenta() );
+            cuentas.get(user - 1).setAmigos(r.Lista_solicitada("Amigos:" + user));
+            cuentas.get(user - 1).setSolicitudes(r.Lista_solicitada("Solicitudes:" + user));
+            String mensaje = cuentas.get(user - 1).agregar_solicitud(cuentaActiva);
+            if (mensaje.equals("Solicitud enviada")) {
+                r.Agregar_a_Lista_de_Registro("Solicitudes:"+user,"Cuenta:" + cuentaActiva.getId_cuenta());
+            }
             System.out.println("usuario:" + user);
-            cuentas.get(user - 1).agregar_solicitud(cuentaActiva);
+            JOptionPane.showMessageDialog(this, mensaje);
+            cargarComboBox();
             
         } else {
-            JOptionPane.showMessageDialog(this, "No se encontró la persona");
+            JOptionPane.showMessageDialog(this, "No se le puede mandar solicitud a esta persona");
         }
     }//GEN-LAST:event_MI_BuscarAmigosActionPerformed
 
@@ -1236,6 +1248,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_headerMousePressed
 
+    private void jb_rechazarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_rechazarMouseClicked
+        r.Eliminar_de_Lista_de_Registro("Solicitudes:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(cb_solicitudes.getSelectedIndex())).id_cuenta );
+        cuentaActiva.getSolicitudes().remove(cb_solicitudes.getSelectedIndex());       
+        cargarComboBox();
+    }//GEN-LAST:event_jb_rechazarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1310,6 +1328,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             DefaultComboBoxModel<String> personas = new DefaultComboBoxModel<>();
             DefaultComboBoxModel<String> publicaciones = new DefaultComboBoxModel<>();
             DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
+            
         /*
         DefaultComboBoxModel<String> solicitudes = new DefaultComboBoxModel<>();
         for (int i = 0; i < cuentaActiva.getSolicitudes().size()-1; i++) {
@@ -1336,6 +1355,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             cb_solicitudes.setModel(solicitudes);
         System.out.println("Combobox Cargado");
     }
+    
     public void ModelosComboBoxSelector(String bandera){
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         if(bandera.equals("Perfil")){

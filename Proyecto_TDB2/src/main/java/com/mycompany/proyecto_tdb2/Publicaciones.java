@@ -18,6 +18,7 @@ public class Publicaciones {
     String foto;
     String fecha;
     ArrayList<Comentarios>Comentarios = new ArrayList();
+    String acceso;
 
     public Publicaciones(int id_cuenta, int id_publicaciones, String contenido, String fecha) {
         this.id_cuenta = id_cuenta;
@@ -107,6 +108,7 @@ public class Publicaciones {
     }*/
 
     public Publicaciones() {
+        acceso = "Amigos";
     }
     
     

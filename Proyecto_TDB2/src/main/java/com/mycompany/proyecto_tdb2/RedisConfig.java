@@ -74,7 +74,9 @@ public class RedisConfig {
    public void Agregar_a_Lista_de_Registro(String key, String member){
        conection.sadd(key, member);
    }
-   
+   public void Eliminar_de_Lista_de_Registro(String key, String member){
+       conection.srem(key, member);
+   }
    public Map <String ,String> Obtener_Registro(String key){
        return conection.hgetAll(key);
    }

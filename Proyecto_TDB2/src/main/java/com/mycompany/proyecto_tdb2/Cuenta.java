@@ -6,6 +6,7 @@ package com.mycompany.proyecto_tdb2;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -165,9 +166,33 @@ public class Cuenta {
         return salida;  
     }
     
-    public void agregar_solicitud (Cuenta destinatario) {
-        solicitudes.add(destinatario);
-        
+    public String agregar_solicitud (Cuenta destinatario) {
+        String cadena = getNombre()+" "+ getApellido() +" ya le mando una solicitud";
+        for (int i = 0; i < amigos.size(); i++) {
+            if (destinatario.getEmail().equals(amigos.get(i).getEmail()) ) {
+                i = amigos.size();
+                cadena = "Ya lo tiene agregado como amigo";
+            }
+        }
+        for (int i = 0; i < destinatario.getSolicitudes().size(); i++) {
+            if (getEmail().equals(destinatario.getSolicitudes().get(i).getEmail()) ) {
+                i = destinatario.getSolicitudes().size();
+                cadena = "Ya le mando solicitud "+ destinatario.getNombre() +" " + destinatario.getApellido();
+            }  
+        }
+        if(cadena.equals(getNombre()+" "+ getApellido() +" ya le mando una solicitud")){
+            cadena = "Solicitud enviada";
+        }
+        for (int i = 0; i < solicitudes.size(); i++) {
+            if (destinatario.getEmail().equals(solicitudes.get(i).getEmail()) ) {
+                i = solicitudes.size();
+                cadena = "Ya le mando solicitud";
+            }  
+        }
+        if (cadena.equals("Solicitud enviada")) {
+            solicitudes.add(destinatario);
+        }
+        return cadena;
     }
     
 }
