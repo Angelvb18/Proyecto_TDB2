@@ -160,22 +160,53 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_comentar = new javax.swing.JLabel();
         JP_AcercaDe = new javax.swing.JPanel();
         JP_BuscarAmigos = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jf_buscarAmigos = new javax.swing.JTextField();
+        jp_BuscarApellido = new javax.swing.JPanel();
+        jl_buscarApellido = new javax.swing.JLabel();
+        jp_BuscarNombre = new javax.swing.JPanel();
+        jl_buscarNombre = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jt_tablaBusquedaAmigos = new javax.swing.JTable();
         JP_Principal = new javax.swing.JPanel();
         JP_Solicitudes = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jt_tablaSolicitudes = new javax.swing.JTable();
+        jp_rechazarAmigo = new javax.swing.JPanel();
+        jl_rechazarAmigo = new javax.swing.JLabel();
+        jp_aceptarAmigos = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
         JP_VerPerfil = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jlabel_portada_perfil1 = new javax.swing.JLabel();
         jlabel_Nombre_perfil1 = new javax.swing.JLabel();
         jlabel_foto_perfil1 = new javax.swing.JLabel();
-        jlabel_Apellido_perfil1 = new javax.swing.JLabel();
         jlabel_Email_perfil1 = new javax.swing.JLabel();
         jlabel_Edad_perfil1 = new javax.swing.JLabel();
-        jb_edit_nombre1 = new javax.swing.JButton();
-        jb_edit_apelllido1 = new javax.swing.JButton();
-        jb_edit_email1 = new javax.swing.JButton();
-        jb_edit_edad1 = new javax.swing.JButton();
-        jb_edit_foto1 = new javax.swing.JButton();
-        jb_edit_portada1 = new javax.swing.JButton();
+        jp_editarFotoPerfil = new javax.swing.JPanel();
+        jl_editarFotoPerfil = new javax.swing.JLabel();
+        jp_editarFotoBanner = new javax.swing.JPanel();
+        jl_editarFotoBanner = new javax.swing.JLabel();
+        jp_editarNombreApellido = new javax.swing.JPanel();
+        jl_editarNombreApellido = new javax.swing.JLabel();
+        jp_editarEdad = new javax.swing.JPanel();
+        jl_editarEdad = new javax.swing.JLabel();
+        jp_editarEmail = new javax.swing.JPanel();
+        jl_editarEmail = new javax.swing.JLabel();
+        jp_pubDelante1 = new javax.swing.JPanel();
+        jl_pubDelante1 = new javax.swing.JLabel();
+        jp_pubAtras1 = new javax.swing.JPanel();
+        jl_pubAtras1 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jl_fotoPubPerfil = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_comentariosPubPerfil = new javax.swing.JList<>();
+        jLabel31 = new javax.swing.JLabel();
+        jp_cambiarModo = new javax.swing.JPanel();
+        jl_cambiarModo = new javax.swing.JLabel();
         bg = new javax.swing.JPanel();
         psw_txt = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -899,14 +930,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
 
-        Background.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 750, 150));
+        Background.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 750, 90));
 
         Title.setBackground(new java.awt.Color(255, 255, 255));
         Title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -991,22 +1022,23 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        Background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 750, 430));
+        Background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 750, 490));
 
         Principal.getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         JP_Publicaciones.setBackground(new java.awt.Color(255, 255, 255));
-        JP_Publicaciones.setMinimumSize(new java.awt.Dimension(750, 430));
+        JP_Publicaciones.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_Publicaciones.setMinimumSize(new java.awt.Dimension(750, 490));
         JP_Publicaciones.setName(""); // NOI18N
-        JP_Publicaciones.setPreferredSize(new java.awt.Dimension(750, 430));
+        JP_Publicaciones.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_Publicaciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jla_caption1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jla_caption1.setText("FOTO");
-        JP_Publicaciones.add(jla_caption1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 350, 330));
+        JP_Publicaciones.add(jla_caption1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 350, 330));
         JP_Publicaciones.add(jla_FotoPublicacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
 
         jl_comentarios1.setBackground(new java.awt.Color(255, 255, 255));
@@ -1014,12 +1046,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_comentarios1.setMinimumSize(new java.awt.Dimension(544, 159));
         jScrollPane3.setViewportView(jl_comentarios1);
 
-        JP_Publicaciones.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 280, 300));
+        JP_Publicaciones.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 280, 360));
 
         jLabel25.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("DESCRIPCION:");
-        JP_Publicaciones.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, 20));
+        JP_Publicaciones.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 20));
 
         jLabel24.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
@@ -1053,7 +1085,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addComponent(jl_pubAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        JP_Publicaciones.add(jp_pubAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 40, 40));
+        JP_Publicaciones.add(jp_pubAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 40, 40));
 
         jp_pubDelante.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1077,7 +1109,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addComponent(jl_pubDelante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        JP_Publicaciones.add(jp_pubDelante, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
+        JP_Publicaciones.add(jp_pubDelante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
 
         jp_crearPub.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1105,7 +1137,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_Actualizar.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jp_Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         jp_Actualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jp_Actualizar.setText("ACTUALIZAR");
+        jp_Actualizar.setText("COMPARTIR");
 
         javax.swing.GroupLayout jp_actualizarPubLayout = new javax.swing.GroupLayout(jp_actualizarPub);
         jp_actualizarPub.setLayout(jp_actualizarPubLayout);
@@ -1137,92 +1169,445 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             .addComponent(jl_comentar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        JP_Publicaciones.add(jp_Comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 160, 30));
+        JP_Publicaciones.add(jp_Comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 160, 30));
 
+        JP_AcercaDe.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_AcercaDe.setMinimumSize(new java.awt.Dimension(750, 490));
+        JP_AcercaDe.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_AcercaDe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JP_BuscarAmigos.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_BuscarAmigos.setMinimumSize(new java.awt.Dimension(750, 490));
+        JP_BuscarAmigos.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_BuscarAmigos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jf_buscarAmigos.setBackground(new java.awt.Color(255, 255, 255));
+        jf_buscarAmigos.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        jf_buscarAmigos.setForeground(new java.awt.Color(0, 0, 0));
+        jf_buscarAmigos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jf_buscarAmigos.setText("INGRESE UN NOMBRE O APELLIDO");
+        jf_buscarAmigos.setBorder(null);
+        jf_buscarAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jf_buscarAmigosMouseClicked(evt);
+            }
+        });
+        jf_buscarAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jf_buscarAmigosActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jf_buscarAmigos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 470, 30));
+
+        jp_BuscarApellido.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_buscarApellido.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_buscarApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jl_buscarApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_buscarApellido.setText("APELLIDO");
+
+        javax.swing.GroupLayout jp_BuscarApellidoLayout = new javax.swing.GroupLayout(jp_BuscarApellido);
+        jp_BuscarApellido.setLayout(jp_BuscarApellidoLayout);
+        jp_BuscarApellidoLayout.setHorizontalGroup(
+            jp_BuscarApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_buscarApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        jp_BuscarApellidoLayout.setVerticalGroup(
+            jp_BuscarApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_buscarApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel13.add(jp_BuscarApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 120, 30));
+
+        jp_BuscarNombre.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_buscarNombre.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_buscarNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jl_buscarNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_buscarNombre.setText("NOMBRE");
+
+        javax.swing.GroupLayout jp_BuscarNombreLayout = new javax.swing.GroupLayout(jp_BuscarNombre);
+        jp_BuscarNombre.setLayout(jp_BuscarNombreLayout);
+        jp_BuscarNombreLayout.setHorizontalGroup(
+            jp_BuscarNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        jp_BuscarNombreLayout.setVerticalGroup(
+            jp_BuscarNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel13.add(jp_BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 120, 30));
+
+        jLabel39.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setText("BUSQUEDA POR:");
+        jPanel13.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 140, 20));
+        jPanel13.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 470, -1));
+
+        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jt_tablaBusquedaAmigos.setBackground(new java.awt.Color(255, 255, 255));
+        jt_tablaBusquedaAmigos.setForeground(new java.awt.Color(0, 0, 0));
+        jt_tablaBusquedaAmigos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CORREO", "NOMBRE", "APELLIDO"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jt_tablaBusquedaAmigos);
+        if (jt_tablaBusquedaAmigos.getColumnModel().getColumnCount() > 0) {
+            jt_tablaBusquedaAmigos.getColumnModel().getColumn(0).setResizable(false);
+            jt_tablaBusquedaAmigos.getColumnModel().getColumn(1).setResizable(false);
+            jt_tablaBusquedaAmigos.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jPanel13.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 600, 370));
+
+        JP_BuscarAmigos.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
+
+        JP_Principal.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_Principal.setMinimumSize(new java.awt.Dimension(750, 490));
+        JP_Principal.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_Principal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JP_Solicitudes.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_Solicitudes.setMinimumSize(new java.awt.Dimension(750, 490));
+        JP_Solicitudes.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_Solicitudes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jt_tablaSolicitudes.setBackground(new java.awt.Color(255, 255, 255));
+        jt_tablaSolicitudes.setForeground(new java.awt.Color(0, 0, 0));
+        jt_tablaSolicitudes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CORREO", "NOMBRE", "APELLIDO"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jt_tablaSolicitudes);
+        if (jt_tablaSolicitudes.getColumnModel().getColumnCount() > 0) {
+            jt_tablaSolicitudes.getColumnModel().getColumn(0).setResizable(false);
+            jt_tablaSolicitudes.getColumnModel().getColumn(1).setResizable(false);
+            jt_tablaSolicitudes.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jPanel11.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 600, 370));
+
+        jp_rechazarAmigo.setBackground(new java.awt.Color(255, 51, 51));
+
+        jl_rechazarAmigo.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jl_rechazarAmigo.setForeground(new java.awt.Color(255, 255, 255));
+        jl_rechazarAmigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_rechazarAmigo.setText("RECHAZAR");
+
+        javax.swing.GroupLayout jp_rechazarAmigoLayout = new javax.swing.GroupLayout(jp_rechazarAmigo);
+        jp_rechazarAmigo.setLayout(jp_rechazarAmigoLayout);
+        jp_rechazarAmigoLayout.setHorizontalGroup(
+            jp_rechazarAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_rechazarAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        );
+        jp_rechazarAmigoLayout.setVerticalGroup(
+            jp_rechazarAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_rechazarAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        jPanel11.add(jp_rechazarAmigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 150, 40));
+
+        jp_aceptarAmigos.setBackground(new java.awt.Color(0, 204, 0));
+
+        jLabel35.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("ACEPTAR");
+
+        javax.swing.GroupLayout jp_aceptarAmigosLayout = new javax.swing.GroupLayout(jp_aceptarAmigos);
+        jp_aceptarAmigos.setLayout(jp_aceptarAmigosLayout);
+        jp_aceptarAmigosLayout.setHorizontalGroup(
+            jp_aceptarAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+        );
+        jp_aceptarAmigosLayout.setVerticalGroup(
+            jp_aceptarAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        jPanel11.add(jp_aceptarAmigos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 140, 40));
+
+        JP_Solicitudes.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
+
+        JP_VerPerfil.setMaximumSize(new java.awt.Dimension(750, 490));
+        JP_VerPerfil.setMinimumSize(new java.awt.Dimension(750, 490));
+        JP_VerPerfil.setPreferredSize(new java.awt.Dimension(750, 490));
         JP_VerPerfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlabel_portada_perfil1.setText(" ");
         jlabel_portada_perfil1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jlabel_portada_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 678, 165));
+        jPanel3.add(jlabel_portada_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 110));
 
-        jlabel_Nombre_perfil1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlabel_Nombre_perfil1.setText("Nombre:");
-        jPanel3.add(jlabel_Nombre_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 339, 518, -1));
+        jlabel_Nombre_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        jlabel_Nombre_perfil1.setText("NOMBRE Y APELLIDO:");
+        jPanel3.add(jlabel_Nombre_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 350, 20));
 
         jlabel_foto_perfil1.setText(" ");
         jlabel_foto_perfil1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jlabel_foto_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 177, 98, 156));
+        jPanel3.add(jlabel_foto_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 130, 120));
 
-        jlabel_Apellido_perfil1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlabel_Apellido_perfil1.setText("Apellido:");
-        jPanel3.add(jlabel_Apellido_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 362, 518, -1));
+        jlabel_Email_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        jlabel_Email_perfil1.setText("EMAIL:");
+        jPanel3.add(jlabel_Email_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 360, 20));
 
-        jlabel_Email_perfil1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlabel_Email_perfil1.setText("Email:");
-        jPanel3.add(jlabel_Email_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 385, 518, -1));
+        jlabel_Edad_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        jlabel_Edad_perfil1.setText("EDAD:");
+        jPanel3.add(jlabel_Edad_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 120, 20));
 
-        jlabel_Edad_perfil1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlabel_Edad_perfil1.setText("Edad:");
-        jPanel3.add(jlabel_Edad_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 408, 518, -1));
+        jp_editarFotoPerfil.setBackground(new java.awt.Color(25, 118, 210));
 
-        jb_edit_nombre1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jl_editarFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarFotoPerfil.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarFotoPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarFotoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarFotoPerfil.setText("EDITAR");
+
+        javax.swing.GroupLayout jp_editarFotoPerfilLayout = new javax.swing.GroupLayout(jp_editarFotoPerfil);
+        jp_editarFotoPerfil.setLayout(jp_editarFotoPerfilLayout);
+        jp_editarFotoPerfilLayout.setHorizontalGroup(
+            jp_editarFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_editarFotoPerfilLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_editarFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jp_editarFotoPerfilLayout.setVerticalGroup(
+            jp_editarFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarFotoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 110, 30));
+
+        jp_editarFotoBanner.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarFotoBanner.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarFotoBanner.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarFotoBanner.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarFotoBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarFotoBanner.setText("EDITAR");
+
+        javax.swing.GroupLayout jp_editarFotoBannerLayout = new javax.swing.GroupLayout(jp_editarFotoBanner);
+        jp_editarFotoBanner.setLayout(jp_editarFotoBannerLayout);
+        jp_editarFotoBannerLayout.setHorizontalGroup(
+            jp_editarFotoBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarFotoBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jp_editarFotoBannerLayout.setVerticalGroup(
+            jp_editarFotoBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarFotoBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarFotoBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 100, 30));
+
+        jp_editarNombreApellido.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarNombreApellido.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarNombreApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarNombreApellido.setText("EDITAR");
+
+        javax.swing.GroupLayout jp_editarNombreApellidoLayout = new javax.swing.GroupLayout(jp_editarNombreApellido);
+        jp_editarNombreApellido.setLayout(jp_editarNombreApellidoLayout);
+        jp_editarNombreApellidoLayout.setHorizontalGroup(
+            jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_editarNombreApellidoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jp_editarNombreApellidoLayout.setVerticalGroup(
+            jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_editarNombreApellidoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel3.add(jp_editarNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 120, 30));
+
+        jp_editarEdad.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarEdad.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarEdad.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarEdad.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarEdad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarEdad.setText("EDITAR");
+
+        javax.swing.GroupLayout jp_editarEdadLayout = new javax.swing.GroupLayout(jp_editarEdad);
+        jp_editarEdad.setLayout(jp_editarEdadLayout);
+        jp_editarEdadLayout.setHorizontalGroup(
+            jp_editarEdadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        jp_editarEdadLayout.setVerticalGroup(
+            jp_editarEdadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 120, 30));
+
+        jp_editarEmail.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarEmail.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarEmail.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarEmail.setText("EDITAR");
+
+        javax.swing.GroupLayout jp_editarEmailLayout = new javax.swing.GroupLayout(jp_editarEmail);
+        jp_editarEmail.setLayout(jp_editarEmailLayout);
+        jp_editarEmailLayout.setHorizontalGroup(
+            jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        jp_editarEmailLayout.setVerticalGroup(
+            jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 120, 30));
+
+        jp_pubDelante1.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_pubDelante1.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        jl_pubDelante1.setForeground(new java.awt.Color(255, 255, 255));
+        jl_pubDelante1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_pubDelante1.setText("->");
+
+        javax.swing.GroupLayout jp_pubDelante1Layout = new javax.swing.GroupLayout(jp_pubDelante1);
+        jp_pubDelante1.setLayout(jp_pubDelante1Layout);
+        jp_pubDelante1Layout.setHorizontalGroup(
+            jp_pubDelante1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_pubDelante1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_pubDelante1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jp_pubDelante1Layout.setVerticalGroup(
+            jp_pubDelante1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_pubDelante1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_pubDelante1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel3.add(jp_pubDelante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+
+        jp_pubAtras1.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_pubAtras1.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        jl_pubAtras1.setForeground(new java.awt.Color(255, 255, 255));
+        jl_pubAtras1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_pubAtras1.setText("<-");
+        jl_pubAtras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_nombre1MouseClicked(evt);
+                jl_pubAtras1MouseClicked(evt);
             }
         });
-        jb_edit_nombre1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_edit_nombre1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jb_edit_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 348, 100, -1));
 
-        jb_edit_apelllido1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_apelllido1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jb_edit_apelllido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 371, 100, -1));
+        javax.swing.GroupLayout jp_pubAtras1Layout = new javax.swing.GroupLayout(jp_pubAtras1);
+        jp_pubAtras1.setLayout(jp_pubAtras1Layout);
+        jp_pubAtras1Layout.setHorizontalGroup(
+            jp_pubAtras1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_pubAtras1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_pubAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jp_pubAtras1Layout.setVerticalGroup(
+            jp_pubAtras1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_pubAtras1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_pubAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jb_edit_email1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_email1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jb_edit_email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 394, 100, -1));
+        jPanel3.add(jp_pubAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 40, 40));
+        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 750, 10));
 
-        jb_edit_edad1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_edad1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jb_edit_edad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 408, 100, 44));
+        jl_fotoPubPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_fotoPubPerfil.setText("FOTO");
+        jPanel3.add(jl_fotoPubPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 270, 180));
 
-        jb_edit_foto1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_foto1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jb_edit_foto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 204, 90, -1));
+        jl_comentariosPubPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        jl_comentariosPubPerfil.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jl_comentariosPubPerfil.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jl_comentariosPubPerfil);
 
-        jb_edit_portada1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_edit_portada1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jb_edit_portada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 177, 90, -1));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 350, 160));
 
-        JP_VerPerfil.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 500));
+        jLabel31.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("DESCRIPCION:");
+        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 340, 20));
+
+        jp_cambiarModo.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_cambiarModo.setBackground(new java.awt.Color(255, 255, 255));
+        jl_cambiarModo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_cambiarModo.setForeground(new java.awt.Color(255, 255, 255));
+        jl_cambiarModo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_cambiarModo.setText("CAMBIAR MODO");
+
+        javax.swing.GroupLayout jp_cambiarModoLayout = new javax.swing.GroupLayout(jp_cambiarModo);
+        jp_cambiarModo.setLayout(jp_cambiarModoLayout);
+        jp_cambiarModoLayout.setHorizontalGroup(
+            jp_cambiarModoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_cambiarModo, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+        );
+        jp_cambiarModoLayout.setVerticalGroup(
+            jp_cambiarModoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_cambiarModo, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_cambiarModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 170, 30));
+
+        JP_VerPerfil.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -1846,7 +2231,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         resetColor(btn_verPerfil);
         resetColor(btn_acercaDe);
         // Abrir sección
-        JP_Principal.setSize(750, 430);
+        JP_Principal.setSize(750, 490);
         JP_Principal.setLocation(0,0);
 
         content.removeAll();
@@ -1875,7 +2260,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         resetColor(btn_acercaDe);
         // Abrir sección
         
-        JP_BuscarAmigos.setSize(750, 430);
+        JP_BuscarAmigos.setSize(750, 490);
         JP_BuscarAmigos.setLocation(0,0);
 
         content.removeAll();
@@ -1903,7 +2288,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         resetColor(btn_verPerfil);
         resetColor(btn_acercaDe);
         // Abrir sección
-        JP_Solicitudes.setSize(750, 430);
+        JP_Solicitudes.setSize(750, 490);
         JP_Solicitudes.setLocation(0,0);
 
         content.removeAll();
@@ -1931,7 +2316,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         setColor(btn_verPerfil);
         resetColor(btn_acercaDe);
         // Abrir sección
-        JP_VerPerfil.setSize(750, 430);
+        JP_VerPerfil.setSize(750, 490);
         JP_VerPerfil.setLocation(0,0);
 
         content.removeAll();
@@ -1959,7 +2344,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         resetColor(btn_verPerfil);
         setColor(btn_acercaDe);
         // Abrir sección
-        JP_AcercaDe.setSize(750, 430);
+        JP_AcercaDe.setSize(750, 490);
         JP_AcercaDe.setLocation(0,0);
 
         content.removeAll();
@@ -1987,7 +2372,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         resetColor(btn_verPerfil);
         resetColor(btn_acercaDe);
         // Abrir sección
-        JP_Publicaciones.setSize(750, 430);
+        JP_Publicaciones.setSize(750, 490);
         JP_Publicaciones.setLocation(0,0);
 
         content.removeAll();
@@ -2035,66 +2420,21 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_TitleMousePressed
 
-    private void jb_edit_nombre1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_nombre1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Nombre";
-        jl_PedirString.setText(control_PedirCosas);
-        jd_PedirString.pack();
-        jd_PedirString.setLocationRelativeTo(this);
-        jd_PedirString.setVisible(true);
-    }//GEN-LAST:event_jb_edit_nombre1MouseClicked
-
-    private void jb_edit_nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_edit_nombre1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_edit_nombre1ActionPerformed
-
-    private void jb_edit_apelllido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_apelllido1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Apellido";
-        jl_PedirString.setText(control_PedirCosas);
-        jd_PedirString.pack();
-        jd_PedirString.setLocationRelativeTo(this);
-        jd_PedirString.setVisible(true);
-    }//GEN-LAST:event_jb_edit_apelllido1MouseClicked
-
-    private void jb_edit_email1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_email1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Email";
-        jl_PedirString.setText(control_PedirCosas);
-        jd_PedirString.pack();
-        jd_PedirString.setLocationRelativeTo(this);
-        jd_PedirString.setVisible(true);
-    }//GEN-LAST:event_jb_edit_email1MouseClicked
-
-    private void jb_edit_edad1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_edad1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Edad";
-        jd_PedirFecha.setLocationRelativeTo(this);
-        jd_PedirFecha.pack();
-        jd_PedirFecha.setVisible(true);
-    }//GEN-LAST:event_jb_edit_edad1MouseClicked
-
-    private void jb_edit_foto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_foto1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Perfil";
-        ModelosComboBoxSelector(control_PedirCosas);
-        jd_ChosserSelector.setLocationRelativeTo(this);
-        jd_ChosserSelector.pack();
-        jd_ChosserSelector.setVisible(true);
-    }//GEN-LAST:event_jb_edit_foto1MouseClicked
-
-    private void jb_edit_portada1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_portada1MouseClicked
-        // TODO add your handling code here:
-        control_PedirCosas = "Portada";
-        ModelosComboBoxSelector(control_PedirCosas);
-        jd_ChosserSelector.setLocationRelativeTo(this);
-        jd_ChosserSelector.pack();
-        jd_ChosserSelector.setVisible(true);
-    }//GEN-LAST:event_jb_edit_portada1MouseClicked
-
     private void jl_pubAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtrasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jl_pubAtrasMouseClicked
+
+    private void jl_pubAtras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtras1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jl_pubAtras1MouseClicked
+
+    private void jf_buscarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jf_buscarAmigosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jf_buscarAmigosActionPerformed
+
+    private void jf_buscarAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jf_buscarAmigosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jf_buscarAmigosMouseClicked
 
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
@@ -2312,6 +2652,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2321,27 +2664,28 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jb_aceptar;
     private javax.swing.JButton jb_edit_apelllido;
-    private javax.swing.JButton jb_edit_apelllido1;
     private javax.swing.JButton jb_edit_edad;
-    private javax.swing.JButton jb_edit_edad1;
     private javax.swing.JButton jb_edit_email;
-    private javax.swing.JButton jb_edit_email1;
     private javax.swing.JButton jb_edit_foto;
-    private javax.swing.JButton jb_edit_foto1;
     private javax.swing.JButton jb_edit_nombre;
-    private javax.swing.JButton jb_edit_nombre1;
     private javax.swing.JButton jb_edit_portada;
-    private javax.swing.JButton jb_edit_portada1;
     private javax.swing.JButton jb_rechazar;
     private javax.swing.JComboBox<String> jc_Selectorporfile;
     private javax.swing.JDialog jd_ChosserSelector;
@@ -2353,20 +2697,33 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JDialog jd_publicaciones;
     private javax.swing.JDialog jd_registro;
     private javax.swing.JDialog jd_solicitudes;
+    private javax.swing.JTextField jf_buscarAmigos;
     private javax.swing.JLabel jl_PedirString;
+    private javax.swing.JLabel jl_buscarApellido;
+    private javax.swing.JLabel jl_buscarNombre;
+    private javax.swing.JLabel jl_cambiarModo;
     private javax.swing.JLabel jl_comentar;
     private javax.swing.JList<String> jl_comentarios;
     private javax.swing.JList<String> jl_comentarios1;
+    private javax.swing.JList<String> jl_comentariosPubPerfil;
     private javax.swing.JLabel jl_crearPub;
+    private javax.swing.JLabel jl_editarEdad;
+    private javax.swing.JLabel jl_editarEmail;
+    private javax.swing.JLabel jl_editarFotoBanner;
+    private javax.swing.JLabel jl_editarFotoPerfil;
+    private javax.swing.JLabel jl_editarNombreApellido;
+    private javax.swing.JLabel jl_fotoPubPerfil;
     private javax.swing.JLabel jl_fotoselector;
     private javax.swing.JLabel jl_pubAtras;
+    private javax.swing.JLabel jl_pubAtras1;
     private javax.swing.JLabel jl_pubDelante;
+    private javax.swing.JLabel jl_pubDelante1;
+    private javax.swing.JLabel jl_rechazarAmigo;
     private javax.swing.JLabel jla_FotoPublicacion;
     private javax.swing.JLabel jla_FotoPublicacion1;
     private javax.swing.JLabel jla_caption;
     private javax.swing.JLabel jla_caption1;
     private javax.swing.JLabel jlabel_Apellido_perfil;
-    private javax.swing.JLabel jlabel_Apellido_perfil1;
     private javax.swing.JLabel jlabel_Edad_perfil;
     private javax.swing.JLabel jlabel_Edad_perfil1;
     private javax.swing.JLabel jlabel_Email_perfil;
@@ -2380,11 +2737,23 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_perfil;
     private javax.swing.JMenuItem jmi_solicitudes;
     private javax.swing.JLabel jp_Actualizar;
+    private javax.swing.JPanel jp_BuscarApellido;
+    private javax.swing.JPanel jp_BuscarNombre;
     private javax.swing.JPanel jp_Comentar;
+    private javax.swing.JPanel jp_aceptarAmigos;
     private javax.swing.JPanel jp_actualizarPub;
+    private javax.swing.JPanel jp_cambiarModo;
     private javax.swing.JPanel jp_crearPub;
+    private javax.swing.JPanel jp_editarEdad;
+    private javax.swing.JPanel jp_editarEmail;
+    private javax.swing.JPanel jp_editarFotoBanner;
+    private javax.swing.JPanel jp_editarFotoPerfil;
+    private javax.swing.JPanel jp_editarNombreApellido;
     private javax.swing.JPanel jp_pubAtras;
+    private javax.swing.JPanel jp_pubAtras1;
     private javax.swing.JPanel jp_pubDelante;
+    private javax.swing.JPanel jp_pubDelante1;
+    private javax.swing.JPanel jp_rechazarAmigo;
     private javax.swing.JTextField jt_PedirString;
     private javax.swing.JTextField jt_apellidos;
     private javax.swing.JTextField jt_contra_login;
@@ -2392,6 +2761,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JTextField jt_email;
     private javax.swing.JTextField jt_email_login;
     private javax.swing.JTextField jt_nombres;
+    private javax.swing.JTable jt_tablaBusquedaAmigos;
+    private javax.swing.JTable jt_tablaSolicitudes;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoname;
     private javax.swing.JPanel pn_Ingresar;
