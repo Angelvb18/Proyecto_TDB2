@@ -190,8 +190,7 @@ public class RedisConfig {
             
         }
          temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
-         temp.setAmigos(Lista_solicitada("Amigos:"+parseado_key[1]));
-         temp.setSolicitudes(Lista_solicitada("Solicitudes:"+parseado_key[1]));
+         
        return temp;
    }
    

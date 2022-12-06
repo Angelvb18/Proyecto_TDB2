@@ -159,6 +159,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_Actualizar = new javax.swing.JLabel();
         jp_Comentar = new javax.swing.JPanel();
         jl_comentar = new javax.swing.JLabel();
+        jl_timepublicaciones = new javax.swing.JLabel();
         JP_AcercaDe = new javax.swing.JPanel();
         JP_BuscarAmigos = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -1092,6 +1093,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_pubDelante.setForeground(new java.awt.Color(255, 255, 255));
         jl_pubDelante.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_pubDelante.setText("->");
+        jl_pubDelante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_pubDelanteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_pubDelanteLayout = new javax.swing.GroupLayout(jp_pubDelante);
         jp_pubDelante.setLayout(jp_pubDelanteLayout);
@@ -1156,6 +1162,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_comentar.setForeground(new java.awt.Color(255, 255, 255));
         jl_comentar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_comentar.setText("COMENTAR");
+        jl_comentar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_comentarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_ComentarLayout = new javax.swing.GroupLayout(jp_Comentar);
         jp_Comentar.setLayout(jp_ComentarLayout);
@@ -1169,6 +1180,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         );
 
         JP_Publicaciones.add(jp_Comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 160, 30));
+
+        jl_timepublicaciones.setText("jLabel23");
+        JP_Publicaciones.add(jl_timepublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
         JP_AcercaDe.setMaximumSize(new java.awt.Dimension(750, 490));
         JP_AcercaDe.setMinimumSize(new java.awt.Dimension(750, 490));
@@ -1351,6 +1365,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_rechazarAmigo.setForeground(new java.awt.Color(255, 255, 255));
         jl_rechazarAmigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_rechazarAmigo.setText("RECHAZAR");
+        jl_rechazarAmigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_rechazarAmigoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_rechazarAmigoLayout = new javax.swing.GroupLayout(jp_rechazarAmigo);
         jp_rechazarAmigo.setLayout(jp_rechazarAmigoLayout);
@@ -1371,6 +1390,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("ACEPTAR");
+        jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel35MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_aceptarAmigosLayout = new javax.swing.GroupLayout(jp_aceptarAmigos);
         jp_aceptarAmigos.setLayout(jp_aceptarAmigosLayout);
@@ -1957,7 +1981,30 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     CargarPerfilUsuarioActivo();
                     
                 }else{
+                    if (control_PedirCosas.equals("Comentar")) {
+                        String comentario = jt_PedirString.getText();
+                        Comentarios objComentario = new Comentarios((Integer.parseInt(r.getNumerodeComentarios())),
+                                cuentaActiva.getId_cuenta(),
+                                cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_publicaciones(),
+                                 cuentaActiva.getEmail(), 
+                                comentario, 
+                                cuentaActiva.getNombre());
+                        cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().add(objComentario);
+                        
+                        String [][] key_value = new String[3][2];
+                        key_value[0][0]="Contenido";
+                        key_value[0][1]= objComentario.getContenido();
+                        key_value[1][0]="Email";
+                        key_value[1][1]= objComentario.getEmail();
+                        key_value[2][0]="nombreComment";
+                        key_value[2][1]=objComentario.getNombreComment();
+                        
+                        r.Insertar_Registro("Comentario:"+r.getNumerodeComentarios(), key_value);
+                        r.Agregar_a_Lista_de_Registro("Comentarios:"+objComentario.getId_publicacion(), "Comentario:"+objComentario.getId_Comentario());
+                        
+                        Show_publicacion_in_publicaciones();
                     
+                    }
                 }
             }
         }
@@ -2131,18 +2178,21 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
             cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
             
-            cuentaActiva.ObtenerAmigos(r, cuentaActiva.id_cuenta);
-            cuentaActiva.ObtenerSolicitudes(r, cuentaActiva.id_cuenta);
+            
             ArrayList <Cuenta> cuentas_temp = r.Obtenertodas_cuentas(cuentaActiva.id_cuenta);
             cuentas = cuentaActiva.Personas_no_agregadas(cuentas_temp);
-            for (int i = 0; i < cuentas.size(); i++) {
-                System.out.println("esta:" + cuentas.get(i).getEmail());
-            }
-            cuentaActiva.Personas_no_agregadas(cuentas);
+            
+           // cuentaActiva.Personas_no_agregadas(cuentas);
+           
             System.out.println("Cuenta Activa" + cuentaActiva.toString());
-            
+            cuentaActiva.Publicaciones_to_show();
+            for (int i = 0; i < cuentas.size(); i++) {
+                cuentas.get(i).setAmigos(r.Lista_solicitada("Amigos:"+cuentas.get(i).getId_cuenta()));
+                cuentas.get(i).setSolicitudes(r.Lista_solicitada("Solicitudes:"+cuentas.get(i).getId_cuenta()));
+                cuentaActiva.Publicaciones_de_Amigos_de_Amigos(cuentaActiva, cuentas.get(i));
+            }
             k=0;
-            
+            System.out.println("Size = " + cuentaActiva.getPublicaciones_to_show().size());
             cargarComboBox();
             CargarPerfilUsuarioActivo();
             Principal.setVisible(true);
@@ -2301,7 +2351,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         // Abrir sección
         JP_Solicitudes.setSize(750, 490);
         JP_Solicitudes.setLocation(0,0);
-
+        Tabla_Busqueda_Solicitudes();
         content.removeAll();
         content.add(JP_Solicitudes);
         content.revalidate();
@@ -2392,11 +2442,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         content.repaint();
         index_publicaciones_to_show = 0;
         
-        cuentaActiva.Publicaciones_to_show();
-        if(cuentaActiva.getPublicaciones_to_show().size() > 0){
-            jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(0).getId_cuenta(), "Nombre") +
-                " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(0).getId_cuenta(), "Apellidos"));  
-        }
+        Show_publicacion_in_publicaciones();
                          
     }//GEN-LAST:event_btn_publicacionesMousePressed
 
@@ -2441,6 +2487,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
     private void jl_pubAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtrasMouseClicked
         // TODO add your handling code here:
+        if(index_publicaciones_to_show > 0){
+            index_publicaciones_to_show--;
+        }
+        Show_publicacion_in_publicaciones();
+        
     }//GEN-LAST:event_jl_pubAtrasMouseClicked
 
     private void jl_pubAtras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtras1MouseClicked
@@ -2485,6 +2536,49 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jb_Enviar_SoliMouseClicked
+
+    private void jl_rechazarAmigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_rechazarAmigoMouseClicked
+        // TODO add your handling code here:
+        if(jt_tablaSolicitudes.getSelectedRow()!= -1){
+            r.Eliminar_de_Lista_de_Registro("Solicitudes:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(jt_tablaSolicitudes.getSelectedRow())).id_cuenta );
+            cuentaActiva.getSolicitudes().remove(jt_tablaSolicitudes.getSelectedRow());
+            JOptionPane.showMessageDialog(this, "Solicitud Rechazada");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se seleciono nada");
+        }
+        Tabla_Busqueda_Solicitudes();
+    }//GEN-LAST:event_jl_rechazarAmigoMouseClicked
+
+    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
+        // TODO add your handling code here:
+        if(jt_tablaSolicitudes.getSelectedRow()!= -1){
+            r.Agregar_a_Lista_de_Registro("Amigos:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(jt_tablaSolicitudes.getSelectedRow())).id_cuenta );
+            r.Agregar_a_Lista_de_Registro("Amigos:"+(cuentaActiva.getSolicitudes().get(jt_tablaSolicitudes.getSelectedRow()).id_cuenta), "Cuenta:"+cuentaActiva.id_cuenta);
+            r.Eliminar_de_Lista_de_Registro("Solicitudes:"+cuentaActiva.id_cuenta, "Cuenta:"+(cuentaActiva.getSolicitudes().get(jt_tablaSolicitudes.getSelectedRow())).id_cuenta );
+            cuentaActiva.getSolicitudes().remove(jt_tablaSolicitudes.getSelectedRow());
+        }else{
+            JOptionPane.showMessageDialog(this, "No se seleciono nada");
+        }
+               
+        Tabla_Busqueda_Solicitudes();
+    }//GEN-LAST:event_jLabel35MouseClicked
+
+    private void jl_pubDelanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubDelanteMouseClicked
+        // TODO add your handling code here:
+        if(index_publicaciones_to_show < cuentaActiva.getPublicaciones_to_show().size()-1){
+            index_publicaciones_to_show++;
+        }
+        Show_publicacion_in_publicaciones();
+    }//GEN-LAST:event_jl_pubDelanteMouseClicked
+
+    private void jl_comentarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_comentarMouseClicked
+         // TODO add your handling code here:
+        control_PedirCosas = "Comentar";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jl_comentarMouseClicked
 
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
@@ -2623,6 +2717,43 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             modelotabal.addRow(nrow);
         }
         jt_tablaBusquedaAmigos.setModel(modelotabal);
+    }
+    public void Tabla_Busqueda_Solicitudes(){
+       
+        jt_tablaSolicitudes.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "CORREO", "NOMBRE", "APELLIDO"
+                }
+        ));
+        DefaultTableModel modelotabal = (DefaultTableModel) jt_tablaSolicitudes.getModel();
+        for (int i = 0; i < cuentaActiva.getSolicitudes().size(); i++) {
+            Object[] nrow = {cuentaActiva.getSolicitudes().get(i).getEmail(), cuentaActiva.getSolicitudes().get(i).getNombre(), cuentaActiva.getSolicitudes().get(i).getApellido()};
+            modelotabal.addRow(nrow);
+        }
+        jt_tablaSolicitudes.setModel(modelotabal);
+    }
+    public void Show_publicacion_in_publicaciones(){
+        Date fechaactual = new Date();
+        cuentaActiva.Publicaciones_to_show();
+        SimpleDateFormat sp = new SimpleDateFormat(catcher);
+        if(cuentaActiva.getPublicaciones_to_show().size() > 0){
+            jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_cuenta(), "Nombre") +
+                " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_cuenta(), "Apellidos"));  
+            jla_caption1.setIcon(new ImageIcon(cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getFoto()));
+            jLabel25.setText("DESCRIPCION:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getContenido());
+            
+            DefaultListModel<String> model = new DefaultListModel<>();
+            jl_comentarios1.setModel(model);
+            String comentario = "";
+            for (int j = 0; j < cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().size(); j++) {
+                   comentario =  cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().get(j).getNombreComment() +": "+ cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().get(j).getContenido() ;
+                   model.addElement(comentario);
+            }
+            jl_comentarios.setModel(model);
+            
+            
+        }
     }
     public void ModelosComboBoxSelector(String bandera){
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -2800,6 +2931,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jl_pubDelante;
     private javax.swing.JLabel jl_pubDelante1;
     private javax.swing.JLabel jl_rechazarAmigo;
+    private javax.swing.JLabel jl_timepublicaciones;
     private javax.swing.JLabel jla_FotoPublicacion;
     private javax.swing.JLabel jla_FotoPublicacion1;
     private javax.swing.JLabel jla_caption;

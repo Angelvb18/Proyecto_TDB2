@@ -109,6 +109,8 @@ public class Publicaciones {
 
     public Publicaciones() {
         acceso = "Amigos";
+        foto = "";
+        contenido = "";
     }
     
     

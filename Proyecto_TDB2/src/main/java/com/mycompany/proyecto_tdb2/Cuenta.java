@@ -175,17 +175,17 @@ public class Cuenta {
         this.acceso = Acesso;
     }
     
-    public ArrayList<Publicaciones> Publicaciones_de_Amigos_de_Amigos(Cuenta cuenta_A , Cuenta cuenta_B){
-        ArrayList <Publicaciones> temp_to_show = new ArrayList();
+    public void Publicaciones_de_Amigos_de_Amigos(Cuenta cuenta_A , Cuenta cuenta_B){
+       
         ArrayList <Cuenta> amigos_de_amigos = AmigosdeAmigos(cuenta_A, cuenta_B);
         for (int i = 0; i < amigos_de_amigos.size(); i++) {
             if(amigos_de_amigos.get(i).getAcceso().equals("Amigos de Amigos")){
                 for (int j = 0; j < amigos_de_amigos.get(i).getPublicaciones().size(); j++) {
-                    temp_to_show.add(amigos_de_amigos.get(i).getPublicaciones().get(j));
+                    publicaciones_to_show.add(amigos_de_amigos.get(i).getPublicaciones().get(j));
                 }
             }
         }
-        return temp_to_show;
+       
     }
     public void Publicaciones_to_show(){
         publicaciones_to_show = new ArrayList();
@@ -194,6 +194,7 @@ public class Cuenta {
                 publicaciones_to_show.add(amigos.get(i).getPublicaciones().get(j));
             }
         }
+        
     }
     
     @Override
