@@ -210,6 +210,15 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jp_cambiarModo = new javax.swing.JPanel();
         jl_cambiarModo = new javax.swing.JLabel();
+        JP_CrearPublicacion = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jt_EscribirPub = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jp_PublicarPub = new javax.swing.JPanel();
+        jl_PublicarPub = new javax.swing.JLabel();
+        jl_FotoCrearPub = new javax.swing.JLabel();
+        cb_elegirFoto = new javax.swing.JComboBox<>();
         bg = new javax.swing.JPanel();
         psw_txt = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -1122,12 +1131,17 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_crearPub.setForeground(new java.awt.Color(255, 255, 255));
         jl_crearPub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_crearPub.setText("CREAR PUBLICACION");
+        jl_crearPub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_crearPubMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_crearPubLayout = new javax.swing.GroupLayout(jp_crearPub);
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1639,6 +1653,62 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jPanel3.add(jp_cambiarModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 170, 30));
 
         JP_VerPerfil.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
+
+        JP_CrearPublicacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jt_EscribirPub.setBackground(new java.awt.Color(255, 255, 255));
+        jt_EscribirPub.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jt_EscribirPub.setForeground(new java.awt.Color(0, 0, 0));
+        jt_EscribirPub.setText("ESCRIBE AQUI");
+        jt_EscribirPub.setBorder(null);
+        jPanel4.add(jt_EscribirPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 155, 553, 20));
+
+        jLabel23.setFont(new java.awt.Font("Roboto Light", 0, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("QUE ESTAS PENSANDO?");
+        jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 41, 553, 82));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 570, 20));
+
+        jp_PublicarPub.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_PublicarPub.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_PublicarPub.setForeground(new java.awt.Color(255, 255, 255));
+        jl_PublicarPub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_PublicarPub.setText("PUBLICAR");
+        jl_PublicarPub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_PublicarPubMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_PublicarPubLayout = new javax.swing.GroupLayout(jp_PublicarPub);
+        jp_PublicarPub.setLayout(jp_PublicarPubLayout);
+        jp_PublicarPubLayout.setHorizontalGroup(
+            jp_PublicarPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_PublicarPub, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        );
+        jp_PublicarPubLayout.setVerticalGroup(
+            jp_PublicarPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_PublicarPub, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel4.add(jp_PublicarPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 220, 30));
+
+        jl_FotoCrearPub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_FotoCrearPub.setText("FOTO");
+        jPanel4.add(jl_FotoCrearPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 180));
+
+        cb_elegirFoto.setBackground(new java.awt.Color(255, 255, 255));
+        cb_elegirFoto.setForeground(new java.awt.Color(0, 0, 0));
+        cb_elegirFoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_elegirFoto.setBorder(null);
+        jPanel4.add(cb_elegirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 200, 30));
+
+        JP_CrearPublicacion.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -2173,7 +2243,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void ingresar_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresar_txtMouseClicked
-       int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
+        int exists = r.login(jt_email_login.getText(), jt_contra_login.getText());
         if ( exists!= 0) {
             JOptionPane.showMessageDialog(this, "Cuenta encontrada");
             cuentaActiva = r.Obtener_Una_Cuenta("Cuenta:" + exists);
@@ -2207,6 +2277,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         /*jd_publicaciones.setLocationRelativeTo(this);
         jd_publicaciones.setVisible(true);
         jd_publicaciones.pack();*/
+        /*
+        Principal.setVisible(true);
+            Principal.setLocationRelativeTo(this);
+            Principal.pack();*/
             
     }//GEN-LAST:event_ingresar_txtMouseClicked
 
@@ -2580,6 +2654,43 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_PedirString.setVisible(true);
     }//GEN-LAST:event_jl_comentarMouseClicked
 
+    private void jl_crearPubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_crearPubMouseClicked
+        resetColor(btn_prin);
+        setColor(btn_publicaciones);
+        resetColor(btn_buscarAmigos);
+        resetColor(btn_solicitudes);
+        resetColor(btn_verPerfil);
+        resetColor(btn_acercaDe);
+        // Abrir sección
+        JP_CrearPublicacion.setSize(750, 490);
+        JP_CrearPublicacion.setLocation(0,0);
+
+        content.removeAll();
+        content.add(JP_CrearPublicacion);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_jl_crearPubMouseClicked
+
+    private void jl_PublicarPubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_PublicarPubMouseClicked
+resetColor(btn_prin);
+        setColor(btn_publicaciones);
+        resetColor(btn_buscarAmigos);
+        resetColor(btn_solicitudes);
+        resetColor(btn_verPerfil);
+        resetColor(btn_acercaDe);
+        // Abrir sección
+        JP_Publicaciones.setSize(750, 490);
+        JP_Publicaciones.setLocation(0,0);
+
+        content.removeAll();
+        content.add(JP_Publicaciones);
+        content.revalidate();
+        content.repaint();
+        index_publicaciones_to_show = 0;
+        
+        Show_publicacion_in_publicaciones();        // TODO add your handling code here:
+    }//GEN-LAST:event_jl_PublicarPubMouseClicked
+
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
     }
@@ -2806,6 +2917,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel Header;
     private javax.swing.JPanel JP_AcercaDe;
     private javax.swing.JPanel JP_BuscarAmigos;
+    private javax.swing.JPanel JP_CrearPublicacion;
     private javax.swing.JPanel JP_Principal;
     private javax.swing.JPanel JP_Publicaciones;
     private javax.swing.JPanel JP_Solicitudes;
@@ -2829,6 +2941,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel btn_verPerfil;
     private javax.swing.JComboBox<String> cb_Personas;
     private javax.swing.JComboBox<String> cb_Publicacion;
+    private javax.swing.JComboBox<String> cb_elegirFoto;
     private javax.swing.JComboBox<String> cb_solicitudes;
     private javax.swing.JLabel citybg;
     public static javax.swing.JPanel content;
@@ -2860,6 +2973,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
@@ -2878,6 +2992,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2888,6 +3003,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jb_Enviar_Soli;
     private javax.swing.JButton jb_aceptar;
@@ -2909,8 +3025,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JDialog jd_registro;
     private javax.swing.JDialog jd_solicitudes;
     private javax.swing.JTextField jf_buscarAmigos;
+    private javax.swing.JLabel jl_FotoCrearPub;
     private javax.swing.JLabel jl_Name_person_publicaciones;
     private javax.swing.JLabel jl_PedirString;
+    private javax.swing.JLabel jl_PublicarPub;
     private javax.swing.JLabel jl_buscarApellido;
     private javax.swing.JLabel jl_buscarNombre;
     private javax.swing.JLabel jl_cambiarModo;
@@ -2953,6 +3071,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jp_BuscarApellido;
     private javax.swing.JPanel jp_BuscarNombre;
     private javax.swing.JPanel jp_Comentar;
+    private javax.swing.JPanel jp_PublicarPub;
     private javax.swing.JPanel jp_aceptarAmigos;
     private javax.swing.JPanel jp_actualizarPub;
     private javax.swing.JPanel jp_cambiarModo;
@@ -2967,6 +3086,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jp_pubDelante;
     private javax.swing.JPanel jp_pubDelante1;
     private javax.swing.JPanel jp_rechazarAmigo;
+    private javax.swing.JTextField jt_EscribirPub;
     private javax.swing.JTextField jt_PedirString;
     private javax.swing.JTextField jt_apellidos;
     private javax.swing.JTextField jt_contra_login;
