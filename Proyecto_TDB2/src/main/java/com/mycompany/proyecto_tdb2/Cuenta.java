@@ -23,7 +23,8 @@ public class Cuenta {
     ArrayList<Cuenta>solicitudes = new ArrayList();
     String Foto_Perfil;
     String Foto_Portada;
-    
+    ArrayList<Publicaciones>publicaciones_to_show = new ArrayList();
+    String acceso;
     public Cuenta() {
     }
     public void ObtenerAmigos(RedisConfig conecxion , int id){
@@ -144,7 +145,56 @@ public class Cuenta {
         this.solicitudes = solicitudes;
     }
 
+    public ArrayList<Cuenta> AmigosdeAmigos(Cuenta cuenta_A , Cuenta cuenta_B){
+       ArrayList lista_amigosdeamigos = new ArrayList();
+       for (int i = 0; i < cuenta_A.getAmigos().size(); i++) {
+           for (int j = 0; j < cuenta_B.getAmigos().size(); j++) {
+               if(cuenta_A.getId_cuenta() != cuenta_B.getAmigos().get(j).getId_cuenta()){
+                   if (cuenta_A.getAmigos().get(i) == cuenta_B.getAmigos().get(j)) {
+                        lista_amigosdeamigos.add(cuenta_B.getAmigos().get(j));
+                    }
+               }
+           }
+       }
+       return lista_amigosdeamigos;
+   }
+
+    public ArrayList<Publicaciones> getPublicaciones_to_show() {
+        return publicaciones_to_show;
+    }
+
+    public void setPublicaciones_to_show(ArrayList<Publicaciones> publicaciones_to_show) {
+        this.publicaciones_to_show = publicaciones_to_show;
+    }
+
+    public String getAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(String Acesso) {
+        this.acceso = Acesso;
+    }
     
+    public ArrayList<Publicaciones> Publicaciones_de_Amigos_de_Amigos(Cuenta cuenta_A , Cuenta cuenta_B){
+        ArrayList <Publicaciones> temp_to_show = new ArrayList();
+        ArrayList <Cuenta> amigos_de_amigos = AmigosdeAmigos(cuenta_A, cuenta_B);
+        for (int i = 0; i < amigos_de_amigos.size(); i++) {
+            if(amigos_de_amigos.get(i).getAcceso().equals("Amigos de Amigos")){
+                for (int j = 0; j < amigos_de_amigos.get(i).getPublicaciones().size(); j++) {
+                    temp_to_show.add(amigos_de_amigos.get(i).getPublicaciones().get(j));
+                }
+            }
+        }
+        return temp_to_show;
+    }
+    public void Publicaciones_to_show(){
+        publicaciones_to_show = new ArrayList();
+        for (int i = 0; i < amigos.size(); i++) {
+            for (int j = 0; j < amigos.get(i).getPublicaciones().size(); j++) {
+                publicaciones_to_show.add(amigos.get(i).getPublicaciones().get(j));
+            }
+        }
+    }
     
     @Override
     public String toString() {
@@ -194,5 +244,26 @@ public class Cuenta {
         }
         return cadena;
     }
+    public ArrayList<Cuenta> Personas_no_agregadas(ArrayList<Cuenta> lista_dada){
+        
+        for (int i = 0; i < solicitudes.size(); i++) {
+            for (int j = 0; j < lista_dada.size(); j++) {
+                if(lista_dada.get(j).getId_cuenta() == solicitudes.get(i).getId_cuenta()){
+                    System.out.println("Hola");
+                    lista_dada.remove(j);
+                    j = lista_dada.size()+1;
+                }
+            }
+        }
+        for (int i = 0; i < amigos.size(); i++) {
+            for (int j = 0; j < lista_dada.size(); j++) {
+                if(lista_dada.get(j).getId_cuenta() == amigos.get(i).getId_cuenta()){
+                    lista_dada.remove(j);
+                    j = lista_dada.size()+1;
+                }
+            }
+        }
+        return lista_dada;
+    } 
     
 }

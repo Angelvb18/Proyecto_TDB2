@@ -140,6 +140,9 @@ public class RedisConfig {
             if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
+            if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
+                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+            }
             
            
             
@@ -180,11 +183,15 @@ public class RedisConfig {
             if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
-            
+            if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
+                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+            }
            
             
         }
          temp.setPublicaciones(Obtener_Publicaciones_deUsuario(Integer.parseInt(parseado_key[1])));
+         temp.setAmigos(Lista_solicitada("Amigos:"+parseado_key[1]));
+         temp.setSolicitudes(Lista_solicitada("Solicitudes:"+parseado_key[1]));
        return temp;
    }
    
@@ -242,6 +249,7 @@ public class RedisConfig {
         ArrayList<Cuenta> listas = new ArrayList();
         for (int i = 1; i < Integer.parseInt(getNumerodeCuentas()); i++) {
             if(i != UsuarioActivo){
+                System.out.println("sadasdsdadasd"+i);
                 Map <String ,String> cuenta = Obtener_Registro("Cuenta:"+i);
                 Cuenta temp = new Cuenta();
                     temp.setId_cuenta(i);
@@ -269,11 +277,15 @@ public class RedisConfig {
                     if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
                         temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
                     }
-                    
+                    if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
+                        temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+                    }
                     
                 }
                 temp.setPublicaciones(Obtener_Publicaciones_deUsuario(i));
                 listas.add(temp);
+            }else{
+                System.out.println("si Entro :" + UsuarioActivo);
             }
         }
         
@@ -376,6 +388,7 @@ public class RedisConfig {
        }
        return  lista;
    }
+   
     
    public JSONObject CreateJasonObject(){
        String hola []= {"dsa" , "fsfsd","fsdf"};
