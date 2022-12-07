@@ -13,6 +13,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -1734,9 +1736,21 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_FotoCrearPub.setText("FOTO");
         jPanel4.add(jl_FotoCrearPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 180));
 
-        cb_elegirFoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_elegirFoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+            "CallSignRL.gif",
+            "FeathersBanner.gif",
+            "NiceSlice.gif",
+            "StarbaseARC.gif",
+            "Tagged.gif",
+            "Unicorn.gif"
+        }));
         cb_elegirFoto.setBorder(null);
-        jPanel4.add(cb_elegirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 200, 30));
+        cb_elegirFoto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_elegirFotoItemStateChanged(evt);
+            }
+        });
+        jPanel4.add(cb_elegirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 200, 30));
 
         JP_CrearPublicacion.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
@@ -2708,7 +2722,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_crearPubMouseClicked
 
     private void jl_PublicarPubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_PublicarPubMouseClicked
-resetColor(btn_prin);
+        resetColor(btn_prin);
         setColor(btn_publicaciones);
         resetColor(btn_buscarAmigos);
         resetColor(btn_solicitudes);
@@ -2722,8 +2736,26 @@ resetColor(btn_prin);
         content.add(JP_Publicaciones);
         content.revalidate();
         content.repaint();
-        index_publicaciones_to_show = 0;
+        Date fecha_actual = new Date();
+         SimpleDateFormat sp = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         
+        String fecha_formateada = sp.format(fecha_actual);
+        
+        Publicaciones publicacion = new Publicaciones(cuentaActiva.getId_cuenta(), Integer.parseInt(r.getNumerodePublicaciones()), jt_EscribirPub.getText(),catcher, fecha_formateada);
+        cuentaActiva.publicaciones.add(publicacion);
+        String [][] key_vaule= new String [3][2];
+        key_vaule[0][0]="Foto";
+        key_vaule[0][1]=publicacion.getFoto();
+        key_vaule[1][0]="Contenido";
+        key_vaule[1][1]=publicacion.getContenido();
+        key_vaule[2][0]="fecha";
+        key_vaule[2][1]= fecha_formateada;
+        String Cantidad_Actual_Publicaciones = r.getNumerodePublicaciones();
+        r.Insertar_Registro("Publicacion:"+Cantidad_Actual_Publicaciones,key_vaule);
+        r.Agregar_a_Lista_de_Registro("Publicaciones:"+cuentaActiva.getId_cuenta(), "Publicacion:"+Cantidad_Actual_Publicaciones);
+        //CargarCuentas();
+        
+        index_publicaciones_to_show = 0;
         Show_publicacion_in_publicaciones();        // TODO add your handling code here:
     }//GEN-LAST:event_jl_PublicarPubMouseClicked
 
@@ -2765,6 +2797,12 @@ resetColor(btn_prin);
         jd_PedirString.setLocationRelativeTo(this);
         jd_PedirString.setVisible(true);
     }//GEN-LAST:event_jl_editarEmailMouseClicked
+
+    private void cb_elegirFotoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_elegirFotoItemStateChanged
+        // TODO add your handling code here:
+        catcher = "./Imagenes/Portadas/"+cb_elegirFoto.getItemAt(cb_elegirFoto.getSelectedIndex());
+        jl_FotoCrearPub.setIcon(new ImageIcon(catcher));
+    }//GEN-LAST:event_cb_elegirFotoItemStateChanged
 
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
@@ -2922,7 +2960,7 @@ resetColor(btn_prin);
     public void Show_publicacion_in_publicaciones(){
         Date fechaactual = new Date();
         cuentaActiva.Publicaciones_to_show();
-        SimpleDateFormat sp = new SimpleDateFormat(catcher);
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         if(cuentaActiva.getPublicaciones_to_show().size() > 0){
             jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_cuenta(), "Nombre") +
                 " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_cuenta(), "Apellidos"));  
