@@ -83,7 +83,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jmi_solicitudes = new javax.swing.JMenuItem();
         jd_perfil = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
-        jlabel_portada_perfil = new javax.swing.JLabel();
+        jlabel_portada_perfil2 = new javax.swing.JLabel();
         jlabel_Nombre_perfil = new javax.swing.JLabel();
         jlabel_foto_perfil = new javax.swing.JLabel();
         jlabel_Apellido_perfil = new javax.swing.JLabel();
@@ -452,8 +452,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jd_publicaciones.setJMenuBar(jMenuBar1);
 
-        jlabel_portada_perfil.setText(" ");
-        jlabel_portada_perfil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlabel_portada_perfil2.setText(" ");
+        jlabel_portada_perfil2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jlabel_Nombre_perfil.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlabel_Nombre_perfil.setText("Nombre:");
@@ -515,7 +515,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlabel_portada_perfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+            .addComponent(jlabel_portada_perfil2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -544,7 +544,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlabel_portada_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlabel_portada_perfil2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1141,7 +1141,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1460,6 +1460,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarFotoPerfil.setForeground(new java.awt.Color(255, 255, 255));
         jl_editarFotoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_editarFotoPerfil.setText("EDITAR");
+        jl_editarFotoPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarFotoPerfilMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_editarFotoPerfilLayout = new javax.swing.GroupLayout(jp_editarFotoPerfil);
         jp_editarFotoPerfil.setLayout(jp_editarFotoPerfilLayout);
@@ -1483,6 +1488,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarFotoBanner.setForeground(new java.awt.Color(255, 255, 255));
         jl_editarFotoBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_editarFotoBanner.setText("EDITAR");
+        jl_editarFotoBanner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarFotoBannerMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_editarFotoBannerLayout = new javax.swing.GroupLayout(jp_editarFotoBanner);
         jp_editarFotoBanner.setLayout(jp_editarFotoBannerLayout);
@@ -1504,6 +1514,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
         jl_editarNombreApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_editarNombreApellido.setText("EDITAR");
+        jl_editarNombreApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarNombreApellidoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_editarNombreApellidoLayout = new javax.swing.GroupLayout(jp_editarNombreApellido);
         jp_editarNombreApellido.setLayout(jp_editarNombreApellidoLayout);
@@ -1529,6 +1544,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarEdad.setForeground(new java.awt.Color(255, 255, 255));
         jl_editarEdad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_editarEdad.setText("EDITAR");
+        jl_editarEdad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarEdadMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_editarEdadLayout = new javax.swing.GroupLayout(jp_editarEdad);
         jp_editarEdad.setLayout(jp_editarEdadLayout);
@@ -1550,6 +1570,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarEmail.setForeground(new java.awt.Color(255, 255, 255));
         jl_editarEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_editarEmail.setText("EDITAR");
+        jl_editarEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarEmailMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_editarEmailLayout = new javax.swing.GroupLayout(jp_editarEmail);
         jp_editarEmail.setLayout(jp_editarEmailLayout);
@@ -1659,15 +1684,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jt_EscribirPub.setBackground(new java.awt.Color(255, 255, 255));
         jt_EscribirPub.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        jt_EscribirPub.setForeground(new java.awt.Color(0, 0, 0));
         jt_EscribirPub.setText("ESCRIBE AQUI");
         jt_EscribirPub.setBorder(null);
         jPanel4.add(jt_EscribirPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 155, 553, 20));
 
         jLabel23.setFont(new java.awt.Font("Roboto Light", 0, 36)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("QUE ESTAS PENSANDO?");
         jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 41, 553, 82));
@@ -1702,8 +1724,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_FotoCrearPub.setText("FOTO");
         jPanel4.add(jl_FotoCrearPub, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 180));
 
-        cb_elegirFoto.setBackground(new java.awt.Color(255, 255, 255));
-        cb_elegirFoto.setForeground(new java.awt.Color(0, 0, 0));
         cb_elegirFoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cb_elegirFoto.setBorder(null);
         jPanel4.add(cb_elegirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 200, 30));
@@ -2453,7 +2473,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         // Abrir sección
         JP_VerPerfil.setSize(750, 490);
         JP_VerPerfil.setLocation(0,0);
-
+        Show_publicacion_in_perfil();
+        CargarPerfilUsuarioActivo();
         content.removeAll();
         content.add(JP_VerPerfil);
         content.revalidate();
@@ -2691,6 +2712,45 @@ resetColor(btn_prin);
         Show_publicacion_in_publicaciones();        // TODO add your handling code here:
     }//GEN-LAST:event_jl_PublicarPubMouseClicked
 
+    private void jl_editarFotoBannerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarFotoBannerMouseClicked
+        control_PedirCosas = "Portada";
+        ModelosComboBoxSelector(control_PedirCosas);
+        jd_ChosserSelector.setLocationRelativeTo(this);
+        jd_ChosserSelector.pack();
+        jd_ChosserSelector.setVisible(true);
+    }//GEN-LAST:event_jl_editarFotoBannerMouseClicked
+
+    private void jl_editarFotoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarFotoPerfilMouseClicked
+        control_PedirCosas = "Perfil";
+        ModelosComboBoxSelector(control_PedirCosas);
+        jd_ChosserSelector.setLocationRelativeTo(this);
+        jd_ChosserSelector.pack();
+        jd_ChosserSelector.setVisible(true);
+    }//GEN-LAST:event_jl_editarFotoPerfilMouseClicked
+
+    private void jl_editarNombreApellidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarNombreApellidoMouseClicked
+        control_PedirCosas = "Nombre";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jl_editarNombreApellidoMouseClicked
+
+    private void jl_editarEdadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarEdadMouseClicked
+        control_PedirCosas = "Edad";
+        jd_PedirFecha.setLocationRelativeTo(this);
+        jd_PedirFecha.pack();
+        jd_PedirFecha.setVisible(true);
+    }//GEN-LAST:event_jl_editarEdadMouseClicked
+
+    private void jl_editarEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarEmailMouseClicked
+        control_PedirCosas = "Email";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
+    }//GEN-LAST:event_jl_editarEmailMouseClicked
+
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
     }
@@ -2741,17 +2801,17 @@ resetColor(btn_prin);
         
     }
     public void CargarPerfilUsuarioActivo(){
-        jb_edit_portada.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jb_edit_foto.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jb_edit_nombre.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jb_edit_apelllido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jb_edit_email.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jb_edit_edad.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jlabel_portada_perfil.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
-        jlabel_foto_perfil.setIcon(new ImageIcon(cuentaActiva.getFoto_Perfil()));
-        jlabel_Nombre_perfil.setText("Nombre: " + cuentaActiva.getNombre());
-        jlabel_Apellido_perfil.setText("Apellido: " +cuentaActiva.getApellido());
-        jlabel_Email_perfil.setText("Email:" + cuentaActiva.email);
+        jl_editarFotoBanner.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jl_editarFotoPerfil.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jl_editarNombreApellido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        //jb_edit_apelllido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jl_editarEmail.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jl_editarEdad.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+        jlabel_portada_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
+        jlabel_foto_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Perfil()));
+        jlabel_Nombre_perfil1.setText("Nombre y Apellido: " + cuentaActiva.getNombre() + " " + cuentaActiva.getApellido());
+        //jlabel_Apellido_perfil1.setText("Apellido: " +cuentaActiva.getApellido());
+        jlabel_Email_perfil1.setText("Email:" + cuentaActiva.email);
         String parttern = "dd/mm/yyyy";
         SimpleDateFormat formato = new SimpleDateFormat(parttern);
         Date fecha_actual = new Date();
@@ -2763,7 +2823,7 @@ resetColor(btn_prin);
             System.out.println("");
         }
         int a = fecha_actual.getYear()-fecha_nacimiento.getYear();
-        jlabel_Edad_perfil.setText("Edad: " +(a));
+        jlabel_Edad_perfil1.setText("Edad: " +(a));
     }
     public void cargarComboBox(){
         
@@ -2859,13 +2919,41 @@ resetColor(btn_prin);
             String comentario = "";
             for (int j = 0; j < cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().size(); j++) {
                    comentario =  cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().get(j).getNombreComment() +": "+ cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getComentarios().get(j).getContenido() ;
+                   
                    model.addElement(comentario);
             }
-            jl_comentarios.setModel(model);
-            
-            
+            jl_comentarios1.setModel(model);
+            System.out.println("Esta:" + cuentaActiva.getPublicaciones_to_show().size());
+            System.out.println("s"+cuentaActiva.getPublicaciones_to_show());
         }
     }
+    
+    public void Show_publicacion_in_perfil(){
+        Date fechaactual = new Date();
+        
+        SimpleDateFormat sp = new SimpleDateFormat(catcher);
+        if(cuentaActiva.getPublicaciones().size() > 0){
+            jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Nombre") +
+                " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Apellidos"));  
+            jl_fotoPubPerfil.setIcon(new ImageIcon(cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getFoto()));
+            jLabel25.setText("DESCRIPCION:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getContenido());
+            
+            DefaultListModel<String> model = new DefaultListModel<>();
+            jl_comentariosPubPerfil.setModel(model);
+            String comentario = "";
+            for (int j = 0; j < cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getComentarios().size(); j++) {
+                   comentario =  cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getComentarios().get(j).getNombreComment() +": "+ cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getComentarios().get(j).getContenido() ;
+                   model.addElement(comentario);
+            }
+            jl_comentariosPubPerfil.setModel(model);
+            
+            
+            
+        }else{
+            System.out.println("nel");
+        }
+    }
+    
     public void ModelosComboBoxSelector(String bandera){
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         if(bandera.equals("Perfil")){
@@ -3063,8 +3151,8 @@ resetColor(btn_prin);
     private javax.swing.JLabel jlabel_Nombre_perfil1;
     private javax.swing.JLabel jlabel_foto_perfil;
     private javax.swing.JLabel jlabel_foto_perfil1;
-    private javax.swing.JLabel jlabel_portada_perfil;
     private javax.swing.JLabel jlabel_portada_perfil1;
+    private javax.swing.JLabel jlabel_portada_perfil2;
     private javax.swing.JMenuItem jmi_perfil;
     private javax.swing.JMenuItem jmi_solicitudes;
     private javax.swing.JLabel jp_Actualizar;
@@ -3115,5 +3203,6 @@ String catcher = "";
 int xMouse, yMouse;
 int index_publicaciones_to_show;
 ArrayList <Cuenta> encontrados;
+int index_publicaciones_to_show_perfil;
 }
 
