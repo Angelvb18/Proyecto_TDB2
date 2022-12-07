@@ -316,6 +316,44 @@ public class RedisConfig {
                     if(Publicacion_Actual.keySet().toArray()[j].toString().equals("fecha")){
                         temp.setFecha(Publicacion_Actual.values().toArray()[j].toString());
                     }
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("creador")){
+                        temp.setId_cuenta(Integer.parseInt(Publicacion_Actual.values().toArray()[j].toString()));
+                    }
+            }
+            temp.setComentarios(Obtener_Comentarios_Publicacion(temp));
+            lista.add(temp);
+            
+        }
+        ArrayList <Publicaciones> list_temp_compartidas  = Obtener_Publicaciones_Compartidas_deUsuario(Usuario_Designado);
+        for (int i = 0; i < list_temp_compartidas.size(); i++) {
+            lista.add(list_temp_compartidas.get(i));
+        }
+        return  lista;
+    }
+    public ArrayList<Publicaciones> Obtener_Publicaciones_Compartidas_deUsuario(int Usuario_Designado){
+        ArrayList<Publicaciones> lista = new ArrayList(); 
+        
+        Object[]lista_Publicaciones = conection.smembers("Compartidas:"+Usuario_Designado).toArray();
+        for (int i = 0; i < lista_Publicaciones.length; i++) {
+            String[] parseado = lista_Publicaciones[i].toString().split(":") ;
+            int Id_publicacion = Integer.parseInt(parseado[1]);
+            Map <String , String >  Publicacion_Actual =Obtener_Registro(lista_Publicaciones[i].toString());
+            Publicaciones temp = new Publicaciones();
+            temp.setId_cuenta(Usuario_Designado);
+            temp.setId_publicaciones(Id_publicacion);
+            for (int j = 0; j < (Publicacion_Actual.values().toArray().length-1); j++) {
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Contenido")){
+                        temp.setContenido((Publicacion_Actual.values().toArray()[j].toString()));
+                    }
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("Foto")){
+                        temp.setFoto((Publicacion_Actual.values().toArray()[j].toString()));
+                    }
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("fecha")){
+                        temp.setFecha(Publicacion_Actual.values().toArray()[j].toString());
+                    }
+                    if(Publicacion_Actual.keySet().toArray()[j].toString().equals("creador")){
+                        temp.setId_cuenta(Integer.parseInt(Publicacion_Actual.values().toArray()[j].toString()));
+                    }
             }
             temp.setComentarios(Obtener_Comentarios_Publicacion(temp));
             lista.add(temp);

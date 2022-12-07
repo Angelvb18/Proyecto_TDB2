@@ -843,6 +843,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         btn_verPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_verPerfil.setPreferredSize(new java.awt.Dimension(270, 51));
         btn_verPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verPerfilMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_verPerfilMouseEntered(evt);
             }
@@ -1150,7 +1153,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1166,6 +1169,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         jp_Actualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jp_Actualizar.setText("COMPARTIR");
+        jp_Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jp_ActualizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_actualizarPubLayout = new javax.swing.GroupLayout(jp_actualizarPub);
         jp_actualizarPub.setLayout(jp_actualizarPubLayout);
@@ -1574,6 +1582,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_pubDelante1.setForeground(new java.awt.Color(255, 255, 255));
         jl_pubDelante1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_pubDelante1.setText("->");
+        jl_pubDelante1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_pubDelante1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_pubDelante1Layout = new javax.swing.GroupLayout(jp_pubDelante1);
         jp_pubDelante1.setLayout(jp_pubDelante1Layout);
@@ -1969,12 +1982,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         /*Creas la matiz 
           ej npmbre , valor en ma[0][0] ma[0][1]*/
         
-        String[][] matriz = new String[5][2];
+        String[][] matriz = new String[6][2];
         matriz[0][0] = "Email";
         matriz[1][0] = "Nombre";
         matriz[2][0] = "Apellidos";
         matriz[3][0] = "Password";
         matriz[4][0] = "Date";
+        matriz[5][0] = "acceso";
         
         matriz[0][1] = jt_email.getText();
         matriz[1][1] = jt_nombres.getText();
@@ -1982,7 +1996,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         matriz[3][1] = r.convertirSHA256(jt_contra_registro.getText());
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
         matriz[4][1] = formato.format(jd_fecharegistro.getDate());
-        
+        matriz[5][1] = "Amigos";
         jt_email.setText("");
         jt_nombres.setText("");
         jt_apellidos.setText("");
@@ -2304,7 +2318,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 comentario, 
                 cuentaActiva.getNombre());
         cuentaActiva.getPublicaciones().get(cb_Publicacion.getSelectedIndex()).getComentarios().add(objComentario);
-        String [][] key_value = new String[3][2];
+        String [][] key_value = new String[4][2];
         key_value[0][0]="Contenido";
         key_value[0][1]= objComentario.getContenido();
         key_value[1][0]="Email";
@@ -2635,7 +2649,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_TitleMousePressed
 
     private void jl_pubAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtrasMouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         if(index_publicaciones_to_show > 0){
             index_publicaciones_to_show--;
         }
@@ -2714,6 +2728,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         }
                
         Tabla_Busqueda_Solicitudes();
+       cuentaActiva.Publicaciones_to_show();
+       Show_publicacion_in_publicaciones();
     }//GEN-LAST:event_jLabel35MouseClicked
 
     private void jl_pubDelanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubDelanteMouseClicked
@@ -2772,13 +2788,16 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         
         Publicaciones publicacion = new Publicaciones(cuentaActiva.getId_cuenta(), Integer.parseInt(r.getNumerodePublicaciones()), jt_EscribirPub.getText(),catcher, fecha_formateada);
         cuentaActiva.publicaciones.add(publicacion);
-        String [][] key_vaule= new String [3][2];
+        String [][] key_vaule= new String [4][2];
         key_vaule[0][0]="Foto";
         key_vaule[0][1]=publicacion.getFoto();
         key_vaule[1][0]="Contenido";
         key_vaule[1][1]=publicacion.getContenido();
         key_vaule[2][0]="fecha";
         key_vaule[2][1]= fecha_formateada;
+        key_vaule[3][0]="creador";
+        key_vaule[3][1]= cuentaActiva.getId_cuenta()+"";
+        
         String Cantidad_Actual_Publicaciones = r.getNumerodePublicaciones();
         r.Insertar_Registro("Publicacion:"+Cantidad_Actual_Publicaciones,key_vaule);
         r.Agregar_a_Lista_de_Registro("Publicaciones:"+cuentaActiva.getId_cuenta(), "Publicacion:"+Cantidad_Actual_Publicaciones);
@@ -2833,6 +2852,37 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jl_editarApellidoMouseClicked
 
+    private void btn_verPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verPerfilMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_verPerfilMouseClicked
+
+    private void jl_pubDelante1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubDelante1MouseClicked
+        // TODO add your handling code here:
+        if(index_publicaciones_to_show_perfil < cuentaActiva.getPublicaciones().size()-1){
+            index_publicaciones_to_show_perfil++;
+        }
+        Show_publicacion_in_perfil();
+    }//GEN-LAST:event_jl_pubDelante1MouseClicked
+
+    private void jp_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jp_ActualizarMouseClicked
+        // TODO add your handling code here:
+        
+        if(cuentaActiva.getPublicaciones_to_show().size() > 0){
+            Publicaciones publicacion = cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show);
+            cuentaActiva.publicaciones.add(publicacion);
+            r.Agregar_a_Lista_de_Registro("Compartidas:"+cuentaActiva.getId_cuenta(), "Publicacion:"+publicacion.getId_publicaciones());
+        
+        }
+        
+        
+        
+        
+        //CargarCuentas();
+        
+        index_publicaciones_to_show = 0;
+        Show_publicacion_in_publicaciones(); 
+    }//GEN-LAST:event_jp_ActualizarMouseClicked
+
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
     }
@@ -2883,20 +2933,20 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         
     }
     public void CargarPerfilUsuarioActivo(){
-        jl_editarFotoBanner.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jl_editarFotoPerfil.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jl_editarNombreApellido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+       // jl_editarFotoBanner.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+      //  jl_editarFotoPerfil.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+       // jl_editarNombreApellido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
         //jb_edit_apelllido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jl_editarEmail.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jl_editarEdad.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-        jlabel_portada_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
+    //    jl_editarEmail.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
+     //   jlabel_portada_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
         jlabel_foto_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Perfil()));
-        jlabel_Nombre_perfil1.setText("Nombre y Apellido: " + cuentaActiva.getNombre() + " " + cuentaActiva.getApellido());
-        //jlabel_Apellido_perfil1.setText("Apellido: " +cuentaActiva.getApellido());
+        jlabel_Nombre_perfil2.setText("Nombre: " + cuentaActiva.getNombre() );
+        jlabel_Nombre_perfil1.setText("Apellido: " +cuentaActiva.getApellido());
         jlabel_Email_perfil1.setText("Email:" + cuentaActiva.email);
-        String parttern = "dd/mm/yyyy";
+        String parttern = "dd/MM/yyyy";
         SimpleDateFormat formato = new SimpleDateFormat(parttern);
         Date fecha_actual = new Date();
+        
         Date fecha_nacimiento = null;
         fecha_actual.setTime(fecha_actual.getTime());
         try{
@@ -3013,7 +3063,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     public void Show_publicacion_in_perfil(){
         Date fechaactual = new Date();
         
-        SimpleDateFormat sp = new SimpleDateFormat(catcher);
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         if(cuentaActiva.getPublicaciones().size() > 0){
             jLabel24.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Nombre") +
                 " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Apellidos"));  
