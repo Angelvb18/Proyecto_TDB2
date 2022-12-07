@@ -207,9 +207,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_fotoPubPerfil = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_comentariosPubPerfil = new javax.swing.JList<>();
-        jLabel31 = new javax.swing.JLabel();
+        jl_descripcion = new javax.swing.JLabel();
         jp_cambiarModo = new javax.swing.JPanel();
         jl_cambiarModo = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         JP_CrearPublicacion = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jt_EscribirPub = new javax.swing.JTextField();
@@ -614,13 +616,15 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             jd_PedirStringLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_PedirStringLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jl_PedirString)
-                .addGap(33, 33, 33)
-                .addComponent(jt_PedirString, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_PedirStringLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jd_PedirStringLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_PedirStringLayout.createSequentialGroup()
+                        .addComponent(jl_PedirString)
+                        .addGap(33, 33, 33)
+                        .addComponent(jt_PedirString, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addGroup(jd_PedirStringLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         jd_PedirStringLayout.setVerticalGroup(
@@ -1524,9 +1528,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_editarNombreApellido.setLayout(jp_editarNombreApellidoLayout);
         jp_editarNombreApellidoLayout.setHorizontalGroup(
             jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_editarNombreApellidoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jp_editarNombreApellidoLayout.createSequentialGroup()
+                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jp_editarNombreApellidoLayout.setVerticalGroup(
             jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1650,11 +1654,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_comentariosPubPerfil.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(jl_comentariosPubPerfil);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 350, 160));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 350, 120));
 
-        jLabel31.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
-        jLabel31.setText("DESCRIPCION:");
-        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 340, 20));
+        jl_descripcion.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jl_descripcion.setText("DESCRIPCION:");
+        jPanel3.add(jl_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 340, 20));
 
         jp_cambiarModo.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1676,6 +1680,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         );
 
         jPanel3.add(jp_cambiarModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 170, 30));
+
+        jLabel24.setText("Publicado por:");
+        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 190, -1));
+
+        jLabel26.setText("jLabel26");
+        jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
 
         JP_VerPerfil.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
@@ -2473,6 +2483,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         // Abrir sección
         JP_VerPerfil.setSize(750, 490);
         JP_VerPerfil.setLocation(0,0);
+        index_publicaciones_to_show_perfil = 0;
         Show_publicacion_in_perfil();
         CargarPerfilUsuarioActivo();
         content.removeAll();
@@ -2591,6 +2602,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
     private void jl_pubAtras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_pubAtras1MouseClicked
         // TODO add your handling code here:
+        if(index_publicaciones_to_show_perfil > 0){
+            index_publicaciones_to_show_perfil--;
+        }
+        Show_publicacion_in_perfil();
     }//GEN-LAST:event_jl_pubAtras1MouseClicked
 
     private void jf_buscarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jf_buscarAmigosActionPerformed
@@ -2933,10 +2948,10 @@ resetColor(btn_prin);
         
         SimpleDateFormat sp = new SimpleDateFormat(catcher);
         if(cuentaActiva.getPublicaciones().size() > 0){
-            jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Nombre") +
+            jLabel24.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Nombre") +
                 " "+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getId_cuenta(), "Apellidos"));  
             jl_fotoPubPerfil.setIcon(new ImageIcon(cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getFoto()));
-            jLabel25.setText("DESCRIPCION:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getContenido());
+            jl_descripcion.setText("DESCRIPCION:"+cuentaActiva.getPublicaciones().get(index_publicaciones_to_show_perfil).getContenido());
             
             DefaultListModel<String> model = new DefaultListModel<>();
             jl_comentariosPubPerfil.setModel(model);
@@ -3062,9 +3077,10 @@ resetColor(btn_prin);
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -3125,6 +3141,7 @@ resetColor(btn_prin);
     private javax.swing.JList<String> jl_comentarios1;
     private javax.swing.JList<String> jl_comentariosPubPerfil;
     private javax.swing.JLabel jl_crearPub;
+    private javax.swing.JLabel jl_descripcion;
     private javax.swing.JLabel jl_editarEdad;
     private javax.swing.JLabel jl_editarEmail;
     private javax.swing.JLabel jl_editarFotoBanner;
