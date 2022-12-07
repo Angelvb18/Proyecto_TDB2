@@ -195,8 +195,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarFotoPerfil = new javax.swing.JLabel();
         jp_editarFotoBanner = new javax.swing.JPanel();
         jl_editarFotoBanner = new javax.swing.JLabel();
-        jp_editarNombreApellido = new javax.swing.JPanel();
-        jl_editarNombreApellido = new javax.swing.JLabel();
         jp_editarEdad = new javax.swing.JPanel();
         jl_editarEdad = new javax.swing.JLabel();
         jp_editarEmail = new javax.swing.JPanel();
@@ -214,6 +212,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_cambiarModo = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
+        jlabel_Nombre_perfil2 = new javax.swing.JLabel();
+        jp_editarNombre = new javax.swing.JPanel();
+        jl_editarNombre = new javax.swing.JLabel();
+        jp_editarApellido = new javax.swing.JPanel();
+        jl_editarApellido = new javax.swing.JLabel();
         JP_CrearPublicacion = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jt_EscribirPub = new javax.swing.JTextField();
@@ -1147,7 +1150,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1444,8 +1447,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jPanel3.add(jlabel_portada_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 110));
 
         jlabel_Nombre_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
-        jlabel_Nombre_perfil1.setText("NOMBRE Y APELLIDO:");
-        jPanel3.add(jlabel_Nombre_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 350, 20));
+        jlabel_Nombre_perfil1.setText("APELLIDO:");
+        jPanel3.add(jlabel_Nombre_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 350, 20));
 
         jlabel_foto_perfil1.setText(" ");
         jlabel_foto_perfil1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1453,11 +1456,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jlabel_Email_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         jlabel_Email_perfil1.setText("EMAIL:");
-        jPanel3.add(jlabel_Email_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 360, 20));
+        jPanel3.add(jlabel_Email_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 360, 20));
 
         jlabel_Edad_perfil1.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         jlabel_Edad_perfil1.setText("EDAD:");
-        jPanel3.add(jlabel_Edad_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 120, 20));
+        jPanel3.add(jlabel_Edad_perfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 120, 20));
 
         jp_editarFotoPerfil.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1513,36 +1516,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jPanel3.add(jp_editarFotoBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 100, 30));
 
-        jp_editarNombreApellido.setBackground(new java.awt.Color(25, 118, 210));
-
-        jl_editarNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
-        jl_editarNombreApellido.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        jl_editarNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
-        jl_editarNombreApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_editarNombreApellido.setText("EDITAR");
-        jl_editarNombreApellido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_editarNombreApellidoMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_editarNombreApellidoLayout = new javax.swing.GroupLayout(jp_editarNombreApellido);
-        jp_editarNombreApellido.setLayout(jp_editarNombreApellidoLayout);
-        jp_editarNombreApellidoLayout.setHorizontalGroup(
-            jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_editarNombreApellidoLayout.createSequentialGroup()
-                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jp_editarNombreApellidoLayout.setVerticalGroup(
-            jp_editarNombreApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_editarNombreApellidoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_editarNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel3.add(jp_editarNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 120, 30));
-
         jp_editarEdad.setBackground(new java.awt.Color(25, 118, 210));
 
         jl_editarEdad.setBackground(new java.awt.Color(255, 255, 255));
@@ -1560,14 +1533,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_editarEdad.setLayout(jp_editarEdadLayout);
         jp_editarEdadLayout.setHorizontalGroup(
             jp_editarEdadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_editarEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jl_editarEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jp_editarEdadLayout.setVerticalGroup(
             jp_editarEdadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jl_editarEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.add(jp_editarEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 120, 30));
+        jPanel3.add(jp_editarEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 110, 20));
 
         jp_editarEmail.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1586,14 +1559,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_editarEmail.setLayout(jp_editarEmailLayout);
         jp_editarEmailLayout.setHorizontalGroup(
             jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jp_editarEmailLayout.setVerticalGroup(
             jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.add(jp_editarEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 120, 30));
+        jPanel3.add(jp_editarEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 110, 20));
 
         jp_pubDelante1.setBackground(new java.awt.Color(25, 118, 210));
 
@@ -1688,6 +1661,62 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jLabel26.setText("jLabel26");
         jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
+
+        jlabel_Nombre_perfil2.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        jlabel_Nombre_perfil2.setText("NOMBRE:");
+        jPanel3.add(jlabel_Nombre_perfil2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 350, 20));
+
+        jp_editarNombre.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarNombre.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarNombre.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarNombre.setText("EDITAR");
+        jl_editarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarNombreMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_editarNombreLayout = new javax.swing.GroupLayout(jp_editarNombre);
+        jp_editarNombre.setLayout(jp_editarNombreLayout);
+        jp_editarNombreLayout.setHorizontalGroup(
+            jp_editarNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        jp_editarNombreLayout.setVerticalGroup(
+            jp_editarNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, 20));
+
+        jp_editarApellido.setBackground(new java.awt.Color(25, 118, 210));
+
+        jl_editarApellido.setBackground(new java.awt.Color(255, 255, 255));
+        jl_editarApellido.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jl_editarApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jl_editarApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_editarApellido.setText("EDITAR");
+        jl_editarApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_editarApellidoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_editarApellidoLayout = new javax.swing.GroupLayout(jp_editarApellido);
+        jp_editarApellido.setLayout(jp_editarApellidoLayout);
+        jp_editarApellidoLayout.setHorizontalGroup(
+            jp_editarApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        jp_editarApellidoLayout.setVerticalGroup(
+            jp_editarApellidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_editarApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jp_editarApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 20));
 
         JP_VerPerfil.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
@@ -2775,14 +2804,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_ChosserSelector.setVisible(true);
     }//GEN-LAST:event_jl_editarFotoPerfilMouseClicked
 
-    private void jl_editarNombreApellidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarNombreApellidoMouseClicked
-        control_PedirCosas = "Nombre";
-        jl_PedirString.setText(control_PedirCosas);
-        jd_PedirString.pack();
-        jd_PedirString.setLocationRelativeTo(this);
-        jd_PedirString.setVisible(true);
-    }//GEN-LAST:event_jl_editarNombreApellidoMouseClicked
-
     private void jl_editarEdadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarEdadMouseClicked
         control_PedirCosas = "Edad";
         jd_PedirFecha.setLocationRelativeTo(this);
@@ -2803,6 +2824,14 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         catcher = "./Imagenes/Portadas/"+cb_elegirFoto.getItemAt(cb_elegirFoto.getSelectedIndex());
         jl_FotoCrearPub.setIcon(new ImageIcon(catcher));
     }//GEN-LAST:event_cb_elegirFotoItemStateChanged
+
+    private void jl_editarNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarNombreMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jl_editarNombreMouseClicked
+
+    private void jl_editarApellidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarApellidoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jl_editarApellidoMouseClicked
 
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
@@ -3180,11 +3209,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_comentariosPubPerfil;
     private javax.swing.JLabel jl_crearPub;
     private javax.swing.JLabel jl_descripcion;
+    private javax.swing.JLabel jl_editarApellido;
     private javax.swing.JLabel jl_editarEdad;
     private javax.swing.JLabel jl_editarEmail;
     private javax.swing.JLabel jl_editarFotoBanner;
     private javax.swing.JLabel jl_editarFotoPerfil;
-    private javax.swing.JLabel jl_editarNombreApellido;
+    private javax.swing.JLabel jl_editarNombre;
     private javax.swing.JLabel jl_fotoPubPerfil;
     private javax.swing.JLabel jl_fotoselector;
     private javax.swing.JLabel jl_pubAtras;
@@ -3204,6 +3234,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jlabel_Email_perfil1;
     private javax.swing.JLabel jlabel_Nombre_perfil;
     private javax.swing.JLabel jlabel_Nombre_perfil1;
+    private javax.swing.JLabel jlabel_Nombre_perfil2;
     private javax.swing.JLabel jlabel_foto_perfil;
     private javax.swing.JLabel jlabel_foto_perfil1;
     private javax.swing.JLabel jlabel_portada_perfil1;
@@ -3219,11 +3250,12 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jp_actualizarPub;
     private javax.swing.JPanel jp_cambiarModo;
     private javax.swing.JPanel jp_crearPub;
+    private javax.swing.JPanel jp_editarApellido;
     private javax.swing.JPanel jp_editarEdad;
     private javax.swing.JPanel jp_editarEmail;
     private javax.swing.JPanel jp_editarFotoBanner;
     private javax.swing.JPanel jp_editarFotoPerfil;
-    private javax.swing.JPanel jp_editarNombreApellido;
+    private javax.swing.JPanel jp_editarNombre;
     private javax.swing.JPanel jp_pubAtras;
     private javax.swing.JPanel jp_pubAtras1;
     private javax.swing.JPanel jp_pubDelante;
