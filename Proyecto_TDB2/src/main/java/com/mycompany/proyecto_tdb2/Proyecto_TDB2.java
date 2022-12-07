@@ -23,7 +23,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import redis.clients.jedis.util.Hashing;
-
+import java.util.Properties;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 /**
  *
  * @author angel
@@ -36,7 +47,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     public Proyecto_TDB2() {
         
         initComponents();
-        
+        mProperties = new Properties();
     }
 
     /**
@@ -56,7 +67,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jt_email = new javax.swing.JTextField();
+        jt_email_Registro = new javax.swing.JTextField();
         jt_nombres = new javax.swing.JTextField();
         jt_apellidos = new javax.swing.JTextField();
         jt_contra_registro = new javax.swing.JTextField();
@@ -291,7 +302,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jt_email, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jt_email_Registro, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(jt_nombres)
                             .addComponent(jt_apellidos)
                             .addComponent(jt_contra_registro)
@@ -308,7 +319,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jt_email, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(jt_email_Registro, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -1153,7 +1164,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1990,14 +2001,29 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         matriz[4][0] = "Date";
         matriz[5][0] = "acceso";
         
-        matriz[0][1] = jt_email.getText();
+        matriz[0][1] = jt_email_Registro.getText();
         matriz[1][1] = jt_nombres.getText();
         matriz[2][1] = jt_apellidos.getText();
         matriz[3][1] = r.convertirSHA256(jt_contra_registro.getText());
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
         matriz[4][1] = formato.format(jd_fecharegistro.getDate());
         matriz[5][1] = "Amigos";
-        jt_email.setText("");
+        
+        createEmail();
+        sendEmail();
+        String posibleCode="";
+        while (!posibleCode.equals(codigo)){
+            try {
+                posibleCode = JOptionPane.showInputDialog("INGRESE EL CODIGO ENVIADO A SU CORREO");
+            if (!posibleCode.equals(codigo)){
+                JOptionPane.showMessageDialog(this, "CODIGO INCORRECTO!!");
+            }
+            } catch (Exception e) {
+                posibleCode = "";
+            }
+        }
+        
+        jt_email_Registro.setText("");
         jt_nombres.setText("");
         jt_apellidos.setText("");
         jt_contra_registro.setText("");
@@ -3131,7 +3157,73 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         }
     }
+    
+    public String crearCodigo(){
+        Random r = new Random();
+        codigo = "";
+        for (int i = 0; i < 5; i++) {
+            codigo = codigo + (char)(r.nextInt(26) + 'A');
+        }
+        System.out.println(codigo);
+        return codigo;
+    }
+    
+     private void createEmail() {
+        emailTo = jt_email_Registro.getText();
+        System.out.println(emailTo);
+        subject = "CodigoDeVerificacion".trim();
+        contenido = crearCodigo().trim();
+        
+         // Simple mail transfer protocol
+        mProperties.put("mail.smtp.host", "smtp.gmail.com");
+        mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        mProperties.setProperty("mail.smtp.starttls.enable", "true");
+        mProperties.setProperty("mail.smtp.port", "587");
+        mProperties.setProperty("mail.smtp.user",emailFrom);
+        mProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        mProperties.setProperty("mail.smtp.auth", "true");
+        
+        mSession = Session.getDefaultInstance(mProperties);
+        
+        
+            mCorreo = new MimeMessage(mSession);
+        try {
+            mCorreo.setFrom(new InternetAddress(emailFrom));
+            mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
+            mCorreo.setSubject(subject);
+            mCorreo.setText(contenido, "ISO-8859-1", "html");
+                     
+        } catch (AddressException ex) {
+            Logger.getLogger(Proyecto_TDB2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Proyecto_TDB2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+       
+    }
 
+    private void sendEmail() {
+  
+            Transport mTransport;
+        try {
+            mTransport = mSession.getTransport("smtp");
+            
+            mTransport.connect("garciajamil69@gmail.com", "wxpoaujlglrhmzof");
+            mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
+            mTransport.close();
+            JOptionPane.showMessageDialog(null, "Correo enviado");
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(Proyecto_TDB2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Proyecto_TDB2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+      
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Header;
@@ -3316,7 +3408,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JTextField jt_apellidos;
     private javax.swing.JTextField jt_contra_login;
     private javax.swing.JTextField jt_contra_registro;
-    private javax.swing.JTextField jt_email;
+    private javax.swing.JTextField jt_email_Registro;
     private javax.swing.JTextField jt_email_login;
     private javax.swing.JTextField jt_nombres;
     private javax.swing.JTable jt_tablaBusquedaAmigos;
@@ -3341,5 +3433,15 @@ int xMouse, yMouse;
 int index_publicaciones_to_show;
 ArrayList <Cuenta> encontrados;
 int index_publicaciones_to_show_perfil;
+private static String emailFrom = "garciajamil69@gmail.com";
+private static String passwordFrom = "wxpoaujlglrhmzof";
+private String emailTo;
+private String subject;
+private String contenido;
+
+private Properties mProperties;
+private Session mSession;
+private MimeMessage mCorreo;
+private String codigo;
 }
 
