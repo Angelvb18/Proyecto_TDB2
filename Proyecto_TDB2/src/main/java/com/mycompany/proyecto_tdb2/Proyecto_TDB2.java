@@ -120,6 +120,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_ChosserSelector = new javax.swing.JDialog();
         jc_Selectorporfile = new javax.swing.JComboBox<>();
         jl_fotoselector = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jd_solicitudes = new javax.swing.JDialog();
         cb_solicitudes = new javax.swing.JComboBox<>();
         jb_aceptar = new javax.swing.JButton();
@@ -208,8 +209,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_editarFotoBanner = new javax.swing.JLabel();
         jp_editarEdad = new javax.swing.JPanel();
         jl_editarEdad = new javax.swing.JLabel();
-        jp_editarEmail = new javax.swing.JPanel();
-        jl_editarEmail = new javax.swing.JLabel();
         jp_pubDelante1 = new javax.swing.JPanel();
         jl_pubDelante1 = new javax.swing.JLabel();
         jp_pubAtras1 = new javax.swing.JPanel();
@@ -700,6 +699,13 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Aceptar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_ChosserSelectorLayout = new javax.swing.GroupLayout(jd_ChosserSelector.getContentPane());
         jd_ChosserSelector.getContentPane().setLayout(jd_ChosserSelectorLayout);
         jd_ChosserSelectorLayout.setHorizontalGroup(
@@ -710,6 +716,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                     .addComponent(jc_Selectorporfile, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_fotoselector, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(137, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ChosserSelectorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18))
         );
         jd_ChosserSelectorLayout.setVerticalGroup(
             jd_ChosserSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,7 +728,9 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
                 .addComponent(jl_fotoselector, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(jc_Selectorporfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(4, 4, 4)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
         jb_aceptar.setText("Aceptar");
@@ -1164,7 +1176,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jp_crearPub.setLayout(jp_crearPubLayout);
         jp_crearPubLayout.setHorizontalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_crearPub, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jl_crearPub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
         );
         jp_crearPubLayout.setVerticalGroup(
             jp_crearPubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1561,32 +1573,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
         jPanel3.add(jp_editarEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 110, 20));
 
-        jp_editarEmail.setBackground(new java.awt.Color(25, 118, 210));
-
-        jl_editarEmail.setBackground(new java.awt.Color(255, 255, 255));
-        jl_editarEmail.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        jl_editarEmail.setForeground(new java.awt.Color(255, 255, 255));
-        jl_editarEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_editarEmail.setText("EDITAR");
-        jl_editarEmail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_editarEmailMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_editarEmailLayout = new javax.swing.GroupLayout(jp_editarEmail);
-        jp_editarEmail.setLayout(jp_editarEmailLayout);
-        jp_editarEmailLayout.setHorizontalGroup(
-            jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-        );
-        jp_editarEmailLayout.setVerticalGroup(
-            jp_editarEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_editarEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(jp_editarEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 110, 20));
-
         jp_pubDelante1.setBackground(new java.awt.Color(25, 118, 210));
 
         jl_pubDelante1.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
@@ -1666,6 +1652,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jl_cambiarModo.setForeground(new java.awt.Color(255, 255, 255));
         jl_cambiarModo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_cambiarModo.setText("CAMBIAR MODO");
+        jl_cambiarModo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_cambiarModoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_cambiarModoLayout = new javax.swing.GroupLayout(jp_cambiarModo);
         jp_cambiarModo.setLayout(jp_cambiarModoLayout);
@@ -2221,10 +2212,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_edit_emailMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         if(control_PedirCosas.equals("Edad") ){
             Date fechaobtenida = jd_chosefecha_pedirfecha.getDate();
-            SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
             cuentaActiva.setFecha(formato.format(fechaobtenida));
             r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "Date", cuentaActiva.getFecha());
             CargarPerfilUsuarioActivo();
@@ -2253,22 +2244,10 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         if(control_PedirCosas.equals("Perfil")){
             catcher = "./Imagenes/Usuarios/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
             jl_fotoselector.setIcon(new ImageIcon(catcher));
-            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_perfil", catcher);
-            cuentaActiva.setFoto_Perfil(catcher);
-            CargarPerfilUsuarioActivo();
         }else{
             if(control_PedirCosas.equals("Portada")){
                 catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
                 jl_fotoselector.setIcon(new ImageIcon(catcher));
-                r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_portada", catcher);
-                cuentaActiva.setFoto_Portada(catcher);
-                CargarPerfilUsuarioActivo();
-            }else{
-                if (control_PedirCosas.equals("Imagenpublic")) {
-                    catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
-                    jla_FotoPublicacion.setIcon(new ImageIcon(catcher));
-                    
-                }
             }
         }
         //jd_ChosserSelector.dispose();
@@ -2284,7 +2263,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_edit_fotoMouseClicked
 
     private void jb_edit_portadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_edit_portadaMouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         control_PedirCosas = "Portada";
         ModelosComboBoxSelector(control_PedirCosas);
         jd_ChosserSelector.setLocationRelativeTo(this);
@@ -2632,7 +2611,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         index_publicaciones_to_show = 0;
         
         Show_publicacion_in_publicaciones();
-                         
+                        
     }//GEN-LAST:event_btn_publicacionesMousePressed
 
     private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
@@ -2856,14 +2835,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         jd_PedirFecha.setVisible(true);
     }//GEN-LAST:event_jl_editarEdadMouseClicked
 
-    private void jl_editarEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarEmailMouseClicked
-        control_PedirCosas = "Email";
-        jl_PedirString.setText(control_PedirCosas);
-        jd_PedirString.pack();
-        jd_PedirString.setLocationRelativeTo(this);
-        jd_PedirString.setVisible(true);
-    }//GEN-LAST:event_jl_editarEmailMouseClicked
-
     private void cb_elegirFotoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_elegirFotoItemStateChanged
         // TODO add your handling code here:
         catcher = "./Imagenes/Portadas/"+cb_elegirFoto.getItemAt(cb_elegirFoto.getSelectedIndex());
@@ -2872,10 +2843,20 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
 
     private void jl_editarNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarNombreMouseClicked
         // TODO add your handling code here:
+        control_PedirCosas = "Nombre";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
     }//GEN-LAST:event_jl_editarNombreMouseClicked
 
     private void jl_editarApellidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_editarApellidoMouseClicked
         // TODO add your handling code here:
+        control_PedirCosas = "Apellidos";
+        jl_PedirString.setText(control_PedirCosas);
+        jd_PedirString.pack();
+        jd_PedirString.setLocationRelativeTo(this);
+        jd_PedirString.setVisible(true);
     }//GEN-LAST:event_jl_editarApellidoMouseClicked
 
     private void btn_verPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verPerfilMouseClicked
@@ -2908,6 +2889,38 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
         index_publicaciones_to_show = 0;
         Show_publicacion_in_publicaciones(); 
     }//GEN-LAST:event_jp_ActualizarMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        if(control_PedirCosas.equals("Perfil")){
+            catcher = "./Imagenes/Usuarios/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+            jl_fotoselector.setIcon(new ImageIcon(catcher));
+            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_perfil", catcher);
+            cuentaActiva.setFoto_Perfil(catcher);
+            CargarPerfilUsuarioActivo();
+        }else{
+            if(control_PedirCosas.equals("Portada")){
+                catcher = "./Imagenes/Portadas/"+jc_Selectorporfile.getItemAt(jc_Selectorporfile.getSelectedIndex());
+                jl_fotoselector.setIcon(new ImageIcon(catcher));
+                r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "foto_portada", catcher);
+                cuentaActiva.setFoto_Portada(catcher);
+                CargarPerfilUsuarioActivo();
+            }
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jl_cambiarModoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_cambiarModoMouseClicked
+         // TODO add your handling code here:
+         if (cuentaActiva.getAcceso().equals("Amigos")) {
+            cuentaActiva.setAcceso("AmigosdeAmigos");
+            r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "acceso", cuentaActiva.getAcceso());
+        }else{
+             cuentaActiva.setAcceso("Amigos");
+             r.Agregar_Atributo_Valor_Registo("Cuenta:"+cuentaActiva.getId_cuenta(), "acceso", cuentaActiva.getAcceso());
+        }
+         Show_publicacion_in_publicaciones();
+        JOptionPane.showMessageDialog(this, "Modo:"+cuentaActiva.getAcceso());
+    }//GEN-LAST:event_jl_cambiarModoMouseClicked
 
      void setColor(JPanel panel){
         panel.setBackground(new Color(21,101,192));
@@ -2964,7 +2977,8 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
        // jl_editarNombreApellido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
         //jb_edit_apelllido.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
     //    jl_editarEmail.setIcon(new ImageIcon("./Imagenes/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png"));
-     //   jlabel_portada_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
+        jlabel_portada_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Portada()));
+        System.out.println("xcvxcv"+cuentaActiva.getFoto_Portada());
         jlabel_foto_perfil1.setIcon(new ImageIcon(cuentaActiva.getFoto_Perfil()));
         jlabel_Nombre_perfil2.setText("Nombre: " + cuentaActiva.getNombre() );
         jlabel_Nombre_perfil1.setText("Apellido: " +cuentaActiva.getApellido());
@@ -3065,6 +3079,11 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     public void Show_publicacion_in_publicaciones(){
         Date fechaactual = new Date();
         cuentaActiva.Publicaciones_to_show();
+        for (int i = 0; i < cuentas.size(); i++) {
+                cuentas.get(i).setAmigos(r.Lista_solicitada("Amigos:"+cuentas.get(i).getId_cuenta()));
+                cuentas.get(i).setSolicitudes(r.Lista_solicitada("Solicitudes:"+cuentas.get(i).getId_cuenta()));
+                cuentaActiva.Publicaciones_de_Amigos_de_Amigos(cuentaActiva, cuentas.get(i));
+            }
         SimpleDateFormat sp = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         if(cuentaActiva.getPublicaciones_to_show().size() > 0){
             jl_Name_person_publicaciones.setText("NOMBRE PERSONA:"+ r.Obtener_valor_Registro("Cuenta:"+cuentaActiva.getPublicaciones_to_show().get(index_publicaciones_to_show).getId_cuenta(), "Nombre") +
@@ -3268,6 +3287,7 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -3353,7 +3373,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JLabel jl_descripcion;
     private javax.swing.JLabel jl_editarApellido;
     private javax.swing.JLabel jl_editarEdad;
-    private javax.swing.JLabel jl_editarEmail;
     private javax.swing.JLabel jl_editarFotoBanner;
     private javax.swing.JLabel jl_editarFotoPerfil;
     private javax.swing.JLabel jl_editarNombre;
@@ -3394,7 +3413,6 @@ public class Proyecto_TDB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jp_crearPub;
     private javax.swing.JPanel jp_editarApellido;
     private javax.swing.JPanel jp_editarEdad;
-    private javax.swing.JPanel jp_editarEmail;
     private javax.swing.JPanel jp_editarFotoBanner;
     private javax.swing.JPanel jp_editarFotoPerfil;
     private javax.swing.JPanel jp_editarNombre;

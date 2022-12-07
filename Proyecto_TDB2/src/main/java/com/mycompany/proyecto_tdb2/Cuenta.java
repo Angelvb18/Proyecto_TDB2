@@ -5,7 +5,10 @@
 package com.mycompany.proyecto_tdb2;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 /**
@@ -179,7 +182,8 @@ public class Cuenta {
        
         ArrayList <Cuenta> amigos_de_amigos = AmigosdeAmigos(cuenta_A, cuenta_B);
         for (int i = 0; i < amigos_de_amigos.size(); i++) {
-            if(amigos_de_amigos.get(i).getAcceso().equals("Amigos de Amigos")){
+            if(amigos_de_amigos.get(i).getAcceso().equals("AmigosdeAmigos")){
+                System.out.println("mklsdlasdmlkkld ");
                 for (int j = 0; j < amigos_de_amigos.get(i).getPublicaciones().size(); j++) {
                     publicaciones_to_show.add(amigos_de_amigos.get(i).getPublicaciones().get(j));
                 }
@@ -193,8 +197,22 @@ public class Cuenta {
             for (int j = 0; j < amigos.get(i).getPublicaciones().size(); j++) {
                 publicaciones_to_show.add(amigos.get(i).getPublicaciones().get(j));
             }
+            
         }
+        /*Date actual = new Date();
         
+        for (int i = 0; i < publicaciones_to_show.size(); i++) {
+            long resta = actual.getTime() - publicaciones_to_show.get(i).getFecha_en_date().getTime();
+            System.out.println(resta);
+            long hours = TimeUnit.SECONDS.toHours(resta);
+            long aux = 2000;
+            if(hours > aux ){
+                publicaciones_to_show.remove(i);
+                System.out.println("Entro"+hours);
+                
+            }
+        }
+        System.out.println("Sizea = "+ publicaciones_to_show.size());*/
     }
     
     @Override

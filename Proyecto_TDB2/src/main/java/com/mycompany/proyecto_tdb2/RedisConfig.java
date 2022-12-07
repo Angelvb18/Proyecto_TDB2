@@ -141,7 +141,7 @@ public class RedisConfig {
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
             if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
-                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+                temp.setAcceso(cuenta.values().toArray()[j].toString());
             }
             
            
@@ -181,10 +181,12 @@ public class RedisConfig {
                 temp.setFoto_Perfil(cuenta.values().toArray()[j].toString());
             }
             if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
+                
                 temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
             }
             if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
-                temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+                System.out.println("aentonsdsdds:::"+cuenta.values().toArray()[j].toString());
+                temp.setAcceso(cuenta.values().toArray()[j].toString());
             }
            
             
@@ -274,10 +276,11 @@ public class RedisConfig {
                         temp.setFoto_Perfil(cuenta.values().toArray()[j].toString());
                     }
                     if(cuenta.keySet().toArray()[j].toString().equals("foto_portada")){
+                        
                         temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
                     }
                     if(cuenta.keySet().toArray()[j].toString().equals("acceso")){
-                        temp.setFoto_Portada(cuenta.values().toArray()[j].toString());
+                        temp.setAcceso(cuenta.values().toArray()[j].toString());
                     }
                     
                 }

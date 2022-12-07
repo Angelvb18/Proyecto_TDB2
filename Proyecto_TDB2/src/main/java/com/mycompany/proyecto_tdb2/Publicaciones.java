@@ -4,8 +4,12 @@
  */
 package com.mycompany.proyecto_tdb2;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +23,7 @@ public class Publicaciones {
     String fecha;
     ArrayList<Comentarios>Comentarios = new ArrayList();
     String acceso;
-
+    Date fecha_en_date;
     public Publicaciones(int id_cuenta, int id_publicaciones, String contenido, String fecha) {
         this.id_cuenta = id_cuenta;
         this.id_publicaciones = id_publicaciones;
@@ -73,6 +77,28 @@ public class Publicaciones {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+        setFecha_en_date();
+    }
+
+    public String getAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(String acceso) {
+        this.acceso = acceso;
+    }
+
+    public Date getFecha_en_date() {
+        return fecha_en_date;
+    }
+
+    public void setFecha_en_date() {
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+        try {
+            this.fecha_en_date = sp.parse(getFecha());
+        } catch (ParseException ex) {
+           
+        }
     }
 
     public ArrayList<Comentarios> getComentarios() {
