@@ -153,8 +153,10 @@ public class Cuenta {
        for (int i = 0; i < cuenta_A.getAmigos().size(); i++) {
            for (int j = 0; j < cuenta_B.getAmigos().size(); j++) {
                if(cuenta_A.getId_cuenta() != cuenta_B.getAmigos().get(j).getId_cuenta()){
-                   if (cuenta_A.getAmigos().get(i) == cuenta_B.getAmigos().get(j)) {
-                        lista_amigosdeamigos.add(cuenta_B.getAmigos().get(j));
+                   
+                   if (cuenta_A.getAmigos().get(i).getId_cuenta() == cuenta_B.getAmigos().get(j).getId_cuenta()) {
+                       System.out.println("jkad:" + cuenta_B.getEmail()); 
+                       lista_amigosdeamigos.add(cuenta_B);
                     }
                }
            }
@@ -181,6 +183,7 @@ public class Cuenta {
     public void Publicaciones_de_Amigos_de_Amigos(Cuenta cuenta_A , Cuenta cuenta_B){
        
         ArrayList <Cuenta> amigos_de_amigos = AmigosdeAmigos(cuenta_A, cuenta_B);
+        System.out.println("sdasd:"+amigos_de_amigos.size());
         for (int i = 0; i < amigos_de_amigos.size(); i++) {
             if(amigos_de_amigos.get(i).getAcceso().equals("AmigosdeAmigos")){
                 System.out.println("mklsdlasdmlkkld ");
